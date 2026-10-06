@@ -24,17 +24,17 @@ jobs:
         run: |
           set -euo pipefail
           STAGE="asset-transfer/socialspot-2026-10-06"
-          cat "$STAGE"/chunk_*.txt | tr -d '\n\r ' | base64 --decode > /tmp/socialspot_web_transfer.tar.gz
-          echo "9a389fb9412ca8520c0506209cb9abd3137e446bd895a3e1323c6628fbae7ea7  /tmp/socialspot_web_transfer.tar.gz" | sha256sum -c -
+          cat "$STAGE"/chunk_*.txt | tr -d '\n\r ' | base64 --decode > /tmp/socialspot_web_transfer22.tar.gz
+          echo "91c1506a350b13b6b0423119f5c42509f60b0066da47ad99e5f31bfc2e6d9914  /tmp/socialspot_web_transfer22.tar.gz" | sha256sum -c -
           rm -rf /tmp/socialspot_unpack
           mkdir -p /tmp/socialspot_unpack
-          tar -xzf /tmp/socialspot_web_transfer.tar.gz -C /tmp/socialspot_unpack
+          tar -xzf /tmp/socialspot_web_transfer22.tar.gz -C /tmp/socialspot_unpack
 
       - name: Install web-ready media
         shell: bash
         run: |
           set -euo pipefail
-          SRC="/tmp/socialspot_unpack/socialspot_web_transfer"
+          SRC="/tmp/socialspot_unpack/socialspot_web_transfer2"
           for ROOT in assets-src assets; do
             DEST="$ROOT/gallery/2026-10"
             rm -rf "$DEST"
