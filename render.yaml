@@ -1,0 +1,35 @@
+# Render blueprint: New + > Blueprint > pick this repo.
+# A persistent disk keeps the database between deploys (needs a paid instance).
+services:
+  - type: web
+    name: social-spot
+    runtime: node
+    plan: starter
+    buildCommand: echo "Nothing to build. The site is prebuilt in public/."
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: social-spot-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: PUBLIC_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: AT_USERNAME
+        sync: false
+      - key: AT_API_KEY
+        sync: false
+      - key: AT_SENDER_ID
+        sync: false

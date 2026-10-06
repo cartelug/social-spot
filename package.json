@@ -1,0 +1,24 @@
+{
+  "name": "social-spot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Social Spot Bwebajja: website, The Replay ticketing, venue bookings and admin console",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server/index.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch server/index.js",
+    "build": "node scripts/build.js",
+    "test": "node --test test/engine.test.js",
+    "create-staff": "node --disable-warning=ExperimentalWarning scripts/create-staff.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.10",
+    "qrcode-generator": "1.4.4",
+    "jsqr": "1.4.0",
+    "@fontsource/manrope": "5.2.8",
+    "@fontsource/ibm-plex-mono": "5.2.7"
+  }
+}

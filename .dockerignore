@@ -1,0 +1,11 @@
+node_modules
+data
+build
+src
+test
+assets-src
+scripts/build.js
+scripts/extract_logo.py
+.git
+.env
+*.log
