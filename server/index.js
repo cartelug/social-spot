@@ -53,6 +53,7 @@ const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
   '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json', '.txt': 'text/plain; charset=utf-8',
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.avif': 'image/avif', '.mp4': 'video/mp4', '.webm': 'video/webm',
 };
 const SECURITY_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
@@ -193,6 +194,20 @@ async function serveFile(req, res, file, { spa = false } = {}) {
   if (entry.type.startsWith('text/html')) headers['Content-Security-Policy'] = CSP;
   const useGz = entry.gz && /\bgzip\b/.test(req.headers['accept-encoding'] || '');
   if (useGz) headers['Content-Encoding'] = 'gzip';
+  else {
+    // byte ranges: Safari will not play a <video> from a server that can't send part of the file
+    headers['Accept-Ranges'] = 'bytes';
+    const m = /^bytes=(\d*)-(\d*)$/.exec(String(req.headers.range || '').trim());
+    if (m && (m[1] !== '' || m[2] !== '')) {
+      const size = entry.raw.length;
+      const start = m[1] === '' ? Math.max(0, size - Number(m[2])) : Number(m[1]);
+      const end = m[1] === '' || m[2] === '' ? size - 1 : Math.min(Number(m[2]), size - 1);
+      if (start > end || start >= size) return send(res, 416, '', { ...headers, 'Content-Range': `bytes */${size}` });
+      headers['Content-Range'] = `bytes ${start}-${end}/${size}`;
+      headers['Content-Length'] = end - start + 1;
+      return send(res, 206, req.method === 'HEAD' ? '' : entry.raw.subarray(start, end + 1), headers);
+    }
+  }
   send(res, 200, req.method === 'HEAD' ? '' : useGz ? entry.gz : entry.raw, headers);
 }
 

@@ -26,6 +26,14 @@ for (const f of files) copyFileSync(join(SRC_ASSETS, f), P('assets', f));
 for (const p of meta) copyFileSync(join(SRC_ASSETS, 'parts', `${p.id}.png`), P('assets', 'parts', `${p.id}.png`));
 copyFileSync(join(SRC_ASSETS, 'social-spot-logo-original.png'), P('assets', 'social-spot-logo.png'));
 
+// photos and video: web-ready files in assets-src/media are published to assets/media;
+// camera originals stay in assets-src/media/originals and are never served
+const MEDIA = join(SRC_ASSETS, 'media');
+if (existsSync(MEDIA)) {
+  mkdirSync(P('assets', 'media'), { recursive: true });
+  for (const f of readdirSync(MEDIA, { withFileTypes: true })) if (f.isFile() && !f.name.startsWith('.')) copyFileSync(join(MEDIA, f.name), P('assets', 'media', f.name));
+}
+
 const QR_VER = '1.4.4';
 const JSQR_VER = '1.4.0';
 const nm = (...a) => P('node_modules', ...a);
