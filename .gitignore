@@ -3,3 +3,4 @@ data/
 build/
 .env
 *.log
+shots/
