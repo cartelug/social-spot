@@ -1,0 +1,70 @@
+name: Import Social Spot media assets
+
+on:
+  push:
+    branches:
+      - asset-upload-2026-10-06
+    paths:
+      - "asset-transfer/socialspot-2026-10-06/READY"
+
+permissions:
+  contents: write
+
+jobs:
+  import-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout upload branch
+        uses: actions/checkout@v4
+        with:
+          ref: asset-upload-2026-10-06
+
+      - name: Rebuild and verify media pack
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE="asset-transfer/socialspot-2026-10-06"
+          cat "$STAGE"/chunk_*.txt | tr -d '\n\r ' | base64 --decode > /tmp/socialspot_web_compact.tar.gz
+          echo "9774363fef92d78a710ec4c426294dfd9bc77ad0056ca77cd3153a0f86897d8b  /tmp/socialspot_web_compact.tar.gz" | sha256sum -c -
+          rm -rf /tmp/socialspot_unpack
+          mkdir -p /tmp/socialspot_unpack
+          tar -xzf /tmp/socialspot_web_compact.tar.gz -C /tmp/socialspot_unpack
+
+      - name: Install web-ready media
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="/tmp/socialspot_unpack/socialspot_web_compact"
+          for ROOT in assets-src assets; do
+            DEST="$ROOT/gallery/2026-10"
+            rm -rf "$DEST"
+            mkdir -p "$DEST"
+            cp -R "$SRC"/images "$DEST"/
+            cp -R "$SRC"/videos "$DEST"/
+          done
+
+          cat > assets-src/gallery/2026-10/README.md <<'EOF'
+          # Social Spot — October 2026 media
+
+          Web-ready media prepared from the October 2026 Social Spot camera upload.
+
+          - 24 optimized WebP stills
+          - 2 optimized MP4 video clips
+          - Apple Live Photo companion MP4 files were not duplicated when a still image was available.
+          - HEIC/DNG/JPG sources were converted to browser-friendly media.
+          - Runtime copy: `assets/gallery/2026-10/`
+          - Source copy: `assets-src/gallery/2026-10/`
+          EOF
+          cp assets-src/gallery/2026-10/README.md assets/gallery/2026-10/README.md
+
+      - name: Remove transfer staging and commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf asset-transfer/socialspot-2026-10-06
+          rm -f .github/workflows/import-socialspot-assets.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add optimized Social Spot October 2026 media assets"
+          git push origin HEAD:asset-upload-2026-10-06
