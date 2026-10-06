@@ -1,5 +1,6 @@
 // Tiny app core: safe HTML templates, router, RPC, toasts, dialogs, icons.
 import { esc, waNumber } from '../shared/util.js';
+import { routeProgress, withTransition, trapFocus, lockScroll } from './motion.js';
 
 export const app = {
   backend: null, // { mode, call(method, params), me(), login?, logout? }
@@ -131,6 +132,7 @@ export async function render(path, { keepScroll = false } = {}) {
   if (app.view && app.view.cleanup) app.view.cleanup();
   const ctx = makeCtx();
   app.view = ctx;
+  const stopProgress = routeProgress();
   try {
     const layout = hit.r.layout || 'public';
     const outlet = await app.layouts[layout](p);
@@ -142,19 +144,27 @@ export async function render(path, { keepScroll = false } = {}) {
     const root = document.createElement('div');
     root.className = 'view';
     root.innerHTML = String(res.body);
-    outlet.replaceChildren(root);
+    const pageChange = app.shownPath !== undefined && p !== app.shownPath;
+    app.shownPath = p;
+    await withTransition(() => {
+      outlet.replaceChildren(root);
+      if (!keepScroll && !app.fragment) window.scrollTo(0, 0);
+    }, { animate: pageChange && !keepScroll });
+    if (seq !== renderSeq) return;
     ctx.root = root;
     linkify(rootEl());
     if (res.mount) await res.mount(root, ctx);
     if (app.fragment) {
       const el = document.getElementById(app.fragment);
       if (el) requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
-    } else if (!keepScroll) window.scrollTo(0, 0);
+    }
     if (app.onRoute) app.onRoute(p, layout);
   } catch (e) {
     console.error(e);
     const outlet = document.querySelector('[data-outlet]');
     if (outlet) { outlet.innerHTML = String(html`<div class="wrap section"><div class="notice red">${icon('alert')}<div><b>That page didn’t load.</b><br>${errText(e)}</div></div><p class="mt"><a href="/" class="btn line" style="margin-top:16px">Go to the home page</a></p></div>`); linkify(outlet); }
+  } finally {
+    stopProgress();
   }
 }
 
@@ -237,7 +247,7 @@ export function toast(msg, kind = '') {
   t.className = `toast ${kind}`;
   t.textContent = msg;
   box.append(t);
-  setTimeout(() => t.remove(), kind === 'bad' ? 6000 : 3800);
+  setTimeout(() => { t.classList.add('out'); setTimeout(() => t.remove(), 260); }, kind === 'bad' ? 6000 : 3800);
 }
 
 /** Modal built into the page (the preview frame has no native confirm/prompt). */
@@ -250,7 +260,20 @@ export function dialog({ title, body = '', actions = [{ label: 'Close', value: n
       <form class="stack" data-dlg novalidate>${body}<p class="form-error" data-err></p>
       <div class="actions">${actions.map((a, i) => html`<button type="${a.submit ? 'submit' : 'button'}" class="btn ${a.kind || ''}" data-i="${i}">${a.label}</button>`)}</div></form></div>`);
     const prevFocus = document.activeElement;
-    const close = (v) => { scrim.remove(); document.removeEventListener('keydown', onKey); if (prevFocus && prevFocus.focus) prevFocus.focus(); resolve(v); };
+    const unlock = lockScroll();
+    const untrap = trapFocus(scrim);
+    let closed = false;
+    const close = (v) => {
+      if (closed) return;
+      closed = true;
+      document.removeEventListener('keydown', onKey);
+      untrap();
+      unlock();
+      scrim.classList.add('closing');
+      setTimeout(() => scrim.remove(), 200);
+      if (prevFocus && prevFocus.focus) prevFocus.focus();
+      resolve(v);
+    };
     const onKey = (e) => { if (e.key === 'Escape') close(null); };
     document.addEventListener('keydown', onKey);
     scrim.addEventListener('click', (e) => { if (e.target === scrim || e.target.closest('[data-close]')) close(null); });
@@ -353,7 +376,15 @@ export function startClocks() {
       const ms = Math.max(0, Number(el.dataset.countdown) - now);
       const d = Math.floor(ms / 864e5), h = Math.floor((ms % 864e5) / 36e5), m = Math.floor((ms % 36e5) / 6e4), s = Math.floor((ms % 6e4) / 1e3);
       const parts = el.querySelectorAll('b');
-      if (parts.length === 4) { parts[0].textContent = d; parts[1].textContent = String(h).padStart(2, '0'); parts[2].textContent = String(m).padStart(2, '0'); parts[3].textContent = String(s).padStart(2, '0'); }
+      if (parts.length === 4) {
+        [String(d), String(h).padStart(2, '0'), String(m).padStart(2, '0'), String(s).padStart(2, '0')].forEach((v, i) => {
+          if (parts[i].textContent === v) return;
+          parts[i].textContent = v;
+          parts[i].classList.remove('tick');
+          void parts[i].offsetWidth; // restart the animation
+          parts[i].classList.add('tick');
+        });
+      }
     });
     document.querySelectorAll('[data-timer]').forEach((el) => {
       const ms = Math.max(0, Number(el.dataset.timer) - now);

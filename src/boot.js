@@ -7,6 +7,7 @@ import { app, startRouter, startClocks, refreshSite, rootEl, html, icon, errText
 import { publicLayout } from './views/public.js';
 import { adminLayout, bareLayout } from './views/admin.js';
 import { startPreloader } from './preloader.js';
+import { initMotion, afterRoute } from './motion.js';
 
 function siteBase() {
   let b = window.SS_BASE || '/';
@@ -42,6 +43,8 @@ export async function boot({ assets, mode, makeBackend, fallbackBackend }) {
     return;
   }
   startClocks();
+  initMotion();
+  app.onRoute = afterRoute;
   await startRouter();
   pre.finish();
 }

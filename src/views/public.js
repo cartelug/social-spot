@@ -1,6 +1,7 @@
 import { app, html, raw, icon, when, rpc, route, navigate, render, on, toast, dialog, act, errText, copyText, waShare, countdownHtml, refreshSite, formValues, busy, rootEl, linkify, absUrl } from '../core.js';
 import { contactFields, payPanel, statusHead, stubHtml, kv, money } from '../components.js';
 import { fillQrs } from '../qr.js';
+import { trapFocus, lockScroll } from '../motion.js';
 import { fmtDate, fmtTime, fmtUGX, eatStampToMs, DOW, dowOf, addDays } from '../../shared/util.js';
 
 // ------------------------------------------------------------------ layout
@@ -41,11 +42,26 @@ function openMenu() {
   sheet.className = 'sheet';
   sheet.setAttribute('role', 'dialog');
   sheet.setAttribute('aria-label', 'Menu');
+  sheet.setAttribute('aria-modal', 'true');
   sheet.innerHTML = String(html`<div class="sheet-top"><a href="/" class="brand"><img src="${app.assets.logoSmall}" alt="Social Spot"></a><button class="menu-btn" data-x aria-label="Close menu">${icon('x')}</button></div>
-    <nav>${[['/', 'Home', ''], ...NAV].map(([h, t, s]) => html`<a href="${h}">${t}<small>${s}</small></a>`)}</nav>
-    <a class="btn lg block" href="/replay#tickets" style="margin-top:28px">Get Replay tickets</a>
-    <div class="contact">${v.area} · ${v.landmark}<br><a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a></div>`);
-  const close = () => { sheet.remove(); document.removeEventListener('keydown', onKey); };
+    <nav>${[['/', 'Home', ''], ...NAV].map(([h, t, s], i) => html`<a href="${h}" style="--i:${i}">${t}<small>${s}</small></a>`)}</nav>
+    <a class="btn lg block" href="/replay#tickets" style="margin-top:28px;--i:${NAV.length + 1}">Get Replay tickets</a>
+    <div class="contact" style="--i:${NAV.length + 2}">${v.area} · ${v.landmark}<br><a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a></div>`);
+  const menuBtn = document.querySelector('[data-menu]');
+  const unlock = lockScroll();
+  const untrap = trapFocus(sheet);
+  if (menuBtn) menuBtn.setAttribute('aria-expanded', 'true');
+  let closed = false;
+  const close = () => {
+    if (closed) return;
+    closed = true;
+    document.removeEventListener('keydown', onKey);
+    untrap();
+    unlock();
+    if (menuBtn) { menuBtn.setAttribute('aria-expanded', 'false'); }
+    sheet.classList.add('closing');
+    setTimeout(() => sheet.remove(), 240);
+  };
   const onKey = (e) => { if (e.key === 'Escape') close(); };
   sheet.addEventListener('click', (e) => { if (e.target.closest('[data-x]') || e.target.closest('a')) close(); });
   document.addEventListener('keydown', onKey);
@@ -95,7 +111,7 @@ route('/', async () => {
         <p class="lead">Football turf, a gym with classes every day, steam and sauna, a penthouse to stay in, and Quiz Night every Saturday. ${s.venue.area}, ${s.venue.landmark.charAt(0).toLowerCase() + s.venue.landmark.slice(1)}.</p>
         <div class="row"><a class="btn lg" href="/replay">Get ${ev.name.replace(/^The /, '')} tickets ${icon('arrow')}</a><a class="btn lg line" href="/book">Book a session</a></div>
       </div>
-      <a class="feature-ticket" href="/replay" style="text-decoration:none" aria-label="${ev.name}, ${ev.edition}, ${fmtDate(ev.date, { long: true, year: true })}">
+      <a class="feature-ticket" data-tilt href="/replay" style="text-decoration:none" aria-label="${ev.name}, ${ev.edition}, ${fmtDate(ev.date, { long: true, year: true })}">
         <p class="eyebrow">${s.venue.name} presents</p>
         <h2>${ev.name}</h2>
         <p class="ed">${ev.edition}</p>
@@ -108,6 +124,8 @@ route('/', async () => {
         </div>
       </a>
     </div></section>
+
+    <div class="ticker" aria-hidden="true"><div class="ticker-track">${[0, 1].map(() => html`<ul>${['Football turf', 'Gym & classes', 'Steam & sauna', 'Penthouse stays', 'Quiz Night', ev.name, 'Kids soccer', 'Family Dinner'].map((t) => html`<li>${t}</li>`)}</ul>`)}</div></div>
 
     <section class="section" aria-labelledby="week-h"><div class="wrap stack" style="--gap:24px">
       <div class="row between"><div><p class="eyebrow red">This week</p><h2 class="h2" id="week-h" style="margin-top:8px">Seven days, one spot.</h2></div>
