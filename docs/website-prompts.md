@@ -4,6 +4,7 @@ Two prompts you can paste into any capable AI model (Claude, etc.).
 
 - **Prompt 1** tells the model to study the Social Spot website, then write a full brief for it.
 - **Prompt 2** is that full brief, already written from this codebase. Use it as it is to build, rebuild or extend the site.
+- **[design-prompt.md](design-prompt.md)** is the master design prompt: backgrounds, art direction and the visual system, with measured contrast and tested CSS recipes. Use it for any visual redesign.
 
 ---
 
