@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, copyFileSy
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { DEFAULTS } from '../shared/catalog.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const P = (...a) => join(ROOT, ...a);
@@ -102,6 +103,15 @@ writeFileSync(P(cssName), siteCss);
 // first path segments the app itself uses; on GitHub Pages anything else is the repo folder
 const ROUTE_ROOTS = 'replay|book|quiz|tickets|t|p|b|admin|404';
 const BASE_SCRIPT = `(function(){var d=document,m=d.querySelector('meta[name="ss-base"]'),b=m&&m.getAttribute('content'),p=location.pathname;if(!b){if(d.documentElement.hasAttribute('data-404')){var s=p.split('/').filter(Boolean),h=location.hostname;b=(/\\.github\\.io$/i.test(h)||h==='localhost'||h==='127.0.0.1')&&s.length&&!/^(${ROUTE_ROOTS})$/.test(s[0])?'/'+s[0]+'/':'/';}else{b=p.slice(0,p.lastIndexOf('/')+1)||'/';}}window.SS_BASE=b;var h=d.head;function add(t,a){var e=d.createElement(t);for(var k in a)e.setAttribute(k,a[k]);h.appendChild(e);return e;}add('base',{href:b});add('link',{rel:'icon',type:'image/png',sizes:'32x32',href:b+'assets/favicon-32.png'});add('link',{rel:'apple-touch-icon',href:b+'assets/apple-touch-icon.png'});add('link',{rel:'manifest',href:b+'manifest.webmanifest'});add('link',{rel:'stylesheet',href:b+'${cssName}'});['config.js','${jsName}'].forEach(function(f){var e=d.createElement('script');e.src=b+f;e.async=false;h.appendChild(e);});})();`;
+// structured data so search engines can show the venue and The Replay as an event
+const V = DEFAULTS.venue, E = DEFAULTS.event;
+const abs = (path) => (PUBLIC_URL ? `${PUBLIC_URL}/${path}` : path);
+const venueLd = { '@type': 'SportsActivityLocation', name: V.name, description: 'Football turf, gym, steam and sauna, penthouse stays and Quiz Night every Saturday.', telephone: V.phone, image: abs('assets/og.jpg'), address: { '@type': 'PostalAddress', streetAddress: V.landmark, addressLocality: V.area, addressCountry: 'UG' }, ...(PUBLIC_URL ? { url: PUBLIC_URL } : {}) };
+const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': [venueLd, {
+  '@type': 'Event', name: `${E.name}: ${E.edition}`, description: E.pitch, startDate: `${E.date}T${E.gatesOpen}:00+03:00`, eventStatus: 'https://schema.org/EventScheduled', eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', image: abs('assets/og.jpg'),
+  location: { '@type': 'Place', name: V.name, address: venueLd.address }, organizer: { '@type': 'Organization', name: V.name, telephone: V.phone },
+  ...(PUBLIC_URL ? { url: `${PUBLIC_URL}/replay`, offers: { '@type': 'AggregateOffer', priceCurrency: 'UGX', lowPrice: Math.min(...E.releases.map((r) => r.price)), highPrice: Math.max(...E.releases.map((r) => r.price)), url: `${PUBLIC_URL}/replay` } } : {}),
+}] }).replace(/</g, '\\u003c');
 const description = 'Social Spot, Akright City, Bwebajja: football turf, gym, steam and sauna, penthouse stays and Quiz Night every Saturday. Tickets for The Replay, Saturday 12 December 2026.';
 const page = (is404) => `<!doctype html>
 <html lang="en"${is404 ? ' data-404' : ''}>
@@ -121,6 +131,11 @@ const page = (is404) => `<!doctype html>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Social Spot · Bwebajja">
+<meta name="twitter:description" content="Everything worth leaving the house for.">
+<meta name="apple-mobile-web-app-title" content="Social Spot">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script type="application/ld+json">${jsonLd}</script>
 </head>
 <body>
 <div id="app"><noscript><p style="padding:24px;font-family:system-ui">Social Spot needs JavaScript to sell tickets and take bookings. Call 0393 103 799.</p></noscript></div>

@@ -24,12 +24,18 @@ export function publicLayout() {
         <div class="nav-actions"><a class="btn sm hide-sm" href="/replay#tickets">Get tickets</a><button class="menu-btn" data-menu aria-label="Open menu" aria-expanded="false">${icon('menu')}</button></div>
       </div></header>
       <main data-outlet id="main"></main>
-      <footer class="footer"><div class="wrap cols">
-        <div><img src="${app.assets.logoSmall}" alt="Social Spot" width="520" height="172"><p>${v.slogan}</p></div>
+      <footer class="footer"><div class="wrap footer-cta">
+        <p class="h2">${v.slogan}</p>
+        <div class="row"><a class="btn glow" href="tel:${v.phone.replace(/\s/g, '')}">${icon('phone')}Call ${v.phone}</a><a class="btn glass" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Elite High School Akright City Bwebajja')}" target="_blank" rel="noopener">${icon('pin')}Directions</a></div>
+      </div><div class="wrap cols">
+        <div><img src="${app.assets.logoSmall}" alt="Social Spot" width="520" height="172"><p>${v.area}. ${v.landmark}.</p></div>
         <div><h4>Visit</h4><ul><li>${v.area}</li><li>${v.landmark}</li><li><a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a></li></ul></div>
         <div><h4>Go to</h4><ul>${NAV.map(([h, t]) => html`<li><a href="${h}">${t}</a></li>`)}<li><a href="/admin">Staff login</a></li></ul></div>
       </div><div class="wrap" style="margin-top:28px"><p class="tiny dim">© ${new Date().getFullYear()} ${v.name}, ${v.area}.</p></div></footer>`);
     el.querySelector('[data-menu]').addEventListener('click', openMenu);
+    const onScroll = () => document.documentElement.classList.toggle('scrolled', window.scrollY > 12);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
   el.querySelectorAll('.navlinks a').forEach((a) => a.toggleAttribute('aria-current', app.path.startsWith(a.getAttribute('href'))));
   el.querySelectorAll('.navlinks a[aria-current]').forEach((a) => a.setAttribute('aria-current', 'page'));
@@ -75,7 +81,7 @@ function releaseNote(r, s) {
 }
 
 // ------------------------------------------------------------------ home
-route('/', async () => {
+route('/', async (_p, ctx) => {
   const s = await fresh();
   const ev = s.event;
   const fp = fromPrice(s);
@@ -85,55 +91,78 @@ route('/', async () => {
   const nextQuiz = s.quizDays[0];
   const gym = a.gym;
   const plan = (k) => gym.plans.find((p) => p.key === k);
+  const heroPhoto = hasPhoto('night-lanterns');
+  const nightTurf = turfPhotoId(a.turf.nightFrom) === 'turf-night';
+  const ticker = ['Football turf', 'Gym & daily classes', 'Steam & sauna', 'Penthouse stays', `Quiz Night · Saturdays ${fmtTime(a.quiz.time)}`, 'Bucket Night · Fridays', 'Family Dinner · Sundays', `${ev.name} · ${fmtDate(ev.date, { noDow: true })}`];
+  const shots = [
+    ['night-lanterns', 'Lantern nights', 'The terrace after dark'],
+    ['sunset-arrival', 'Golden hour', 'Sun going down over the terrace'],
+    ['turf-night', 'Under the lights', `Night games from ${fmtTime(a.turf.nightFrom)}`],
+    ['gym', 'The gym', 'Classes every day'],
+    ['golden-hour', 'Tables & lounges', 'Family Dinner every Sunday'],
+    ['quiz-sheet', 'Quiz Night', `Every Saturday, ${fmtTime(a.quiz.time)}`],
+    ['main-peak', 'Big nights', `${ev.name}, ${fmtDate(ev.date, { noDow: true })}`],
+  ].filter(([id]) => hasPhoto(id));
   return {
     title: '',
     body: html`
-    <section class="hero ${hasPhoto('night-lanterns') ? 'has-photo' : ''}">${when(hasPhoto('night-lanterns'), () => html`<div class="photo-bg">${photo('night-lanterns', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}<div class="wrap hero-grid">
-      <div>
-        <img class="hero-logo" src="${app.assets.logo}" alt="Social Spot" width="1200" height="397">
-        <h1>${s.venue.slogan}</h1>
-        <p class="lead">Football turf, a gym with classes every day, steam and sauna, a penthouse to stay in, and Quiz Night every Saturday. ${s.venue.area}, ${s.venue.landmark.charAt(0).toLowerCase() + s.venue.landmark.slice(1)}.</p>
-        <div class="row"><a class="btn lg" href="/replay">Get ${ev.name.replace(/^The /, '')} tickets ${icon('arrow')}</a><a class="btn lg line" href="/book">Book a session</a></div>
-      </div>
-      <a class="feature-ticket" href="/replay" style="text-decoration:none" aria-label="${ev.name}, ${ev.edition}, ${fmtDate(ev.date, { long: true, year: true })}">
-        <p class="eyebrow">${s.venue.name} presents</p>
-        <h2>${ev.name}</h2>
-        <p class="ed">${ev.edition}</p>
-        <div class="meta"><span>${fmtDate(ev.date, { long: true, longMonth: true, year: true })}</span><span>Gates open ${fmtTime(ev.gatesOpen)}</span><span>${s.venue.name}, ${s.venue.area.split(',')[0]}</span></div>
-        <div class="perf"></div>
-        ${when(!ev.over, () => countdownHtml(ev.startsAt))}
-        <div class="foot" style="margin-top:14px">
-          ${when(fp, () => html`<p class="from">${fp.label}<b class="num">${fmtUGX(fp.price)}</b>${when(fp.opens, () => html`On sale ${fmtDate(fp.opens.slice(0, 10))}`)}</p>`)}
-          <span class="btn sm">Tickets ${icon('arrow')}</span>
+    <section class="hero hero-xl ${heroPhoto ? 'has-photo' : ''}">${when(heroPhoto, () => html`<div class="photo-bg kb">${photo('night-lanterns', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">${icon('pin')}${s.venue.area}</p>
+          <img class="hero-logo" src="${app.assets.logo}" alt="Social Spot" width="1200" height="397">
+          <h1>${s.venue.slogan}</h1>
+          <p class="lead">Football turf, a gym with classes every day, steam and sauna, a penthouse to stay in, and Quiz Night every Saturday. ${s.venue.landmark}.</p>
+          <div class="row cta-row"><a class="btn lg glow" href="/replay">Get ${ev.name.replace(/^The /, '')} tickets ${icon('arrow')}</a><a class="btn lg glass" href="/book">Book a session</a></div>
         </div>
-      </a>
-    </div></section>
+        <a class="feature-ticket" href="/replay" style="text-decoration:none" aria-label="${ev.name}, ${ev.edition}, ${fmtDate(ev.date, { long: true, year: true })}">
+          <p class="eyebrow">${s.venue.name} presents</p>
+          <h2>${ev.name}</h2>
+          <p class="ed">${ev.edition}</p>
+          <div class="meta"><span>${fmtDate(ev.date, { long: true, longMonth: true, year: true })}</span><span>Gates open ${fmtTime(ev.gatesOpen)}</span><span>${s.venue.name}, ${s.venue.area.split(',')[0]}</span></div>
+          <div class="perf"></div>
+          ${when(!ev.over, () => countdownHtml(ev.startsAt))}
+          <div class="foot" style="margin-top:14px">
+            ${when(fp, () => html`<p class="from">${fp.label}<b class="num">${fmtUGX(fp.price)}</b>${when(fp.opens, () => html`On sale ${fmtDate(fp.opens.slice(0, 10))}`)}</p>`)}
+            <span class="btn sm">Tickets ${icon('arrow')}</span>
+          </div>
+        </a>
+      </div>
+    </section>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">${[0, 1].map(() => html`<span class="marquee-set">${ticker.map((t) => html`<span>${t}</span><i>✦</i>`)}</span>`)}</div></div>
 
-    <section class="section" aria-labelledby="week-h"><div class="wrap stack" style="--gap:24px">
-      <div class="row between"><div><p class="eyebrow red">This week</p><h2 class="h2" id="week-h" style="margin-top:8px">Seven days, one spot.</h2></div>
+    ${when(shots.length >= 4, () => html`<section class="section gallery-sec" aria-labelledby="spot-h">
+      <div class="wrap"><div class="sec-head row between"><div><p class="eyebrow red">The spot</p><h2 class="h1" id="spot-h">Day to night, one address.</h2></div>
+        <p class="muted sec-aside">A turf, a gym, a terrace and a penthouse on one compound in Akright City.</p></div></div>
+      <div class="gallery" role="list">${shots.map(([id, t, sub], i) => html`<figure class="shot ${i === 0 ? 'big' : ''}" role="listitem">${i >= 5 && hasPhoto(id) && app.assets.photos[id].crops.band ? photo(id, 'band', { mobile: 'tall', sizes: '(min-width: 900px) 600px, 78vw' }) : photo(id, 'tall', { sizes: i === 0 ? '(min-width: 900px) 600px, 78vw' : '(min-width: 900px) 300px, 78vw' })}<figcaption><b>${t}</b><span>${sub}</span></figcaption></figure>`)}</div>
+      <p class="wrap swipe-hint tiny dim">Swipe for more</p>
+    </section>`)}
+
+    <section class="section" aria-labelledby="week-h"><div class="wrap stack" style="--gap:28px">
+      <div class="sec-head row between"><div><p class="eyebrow red">This week</p><h2 class="h1" id="week-h">Seven days, one spot.</h2></div>
       <a class="btn line sm" href="/book">Book anything ${icon('arrow')}</a></div>
       <div class="week">${order.map((d, i) => html`<div class="day ${i === 0 ? 'today' : ''}">
         <header><h3>${i === 0 ? 'Today' : DOW[d]}</h3><span class="tiny dim">${fmtDate(addDays(s.today, i), { noDow: true })}</span></header>
         <ul>${s.week[d].map((it) => html`<li class="${it.kind === 'gym' ? '' : 'hl'}">${it.text}</li>`)}</ul></div>`)}</div>
     </div></section>
 
-    <section class="section" aria-labelledby="book-h"><div class="wrap stack" style="--gap:28px">
-      <div><p class="eyebrow red">Book online</p><h2 class="h2" id="book-h" style="margin-top:8px">Pick a time. Show your code at reception.</h2>
-      <p class="lead" style="margin-top:12px">${a.loyalty} Gym, turf and kids soccer.</p></div>
-      <div class="grid" style="--min:300px">
-        ${amenityCard(turfPhotoId(a.turf.nightFrom), 'Football turf', 'Hire the turf by the hour for your team or your company.', [[`Day, until ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.dayRate)} / hr`], [`Night, from ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.nightRate)} / hr`], ['Open sessions, Wed–Fri 7–11 PM', `${fmtUGX(a.turf.adultPerPerson)} / person`]], '/book/turf', 'Book the turf')}
-        ${amenityCard('gym', 'Gym', `Classes every day. Mornings ${fmtTime(gym.sessions[0].from)}–${fmtTime(gym.sessions[0].to)}, evenings ${fmtTime(gym.sessions[1].from)}–${fmtTime(gym.sessions[1].to)}.`, [['Day pass', fmtUGX(plan('gym-day').price)], ['Monthly', fmtUGX(plan('gym-month').price)], ['Gym & sauna, monthly', fmtUGX(plan('gs-month').price)]], '/book/gym', 'Get a gym pass')}
-        ${amenityCard('', 'Steam & sauna', 'Book a slot, walk in, switch off.', [['Adults', fmtUGX(a.sauna.adult)], ['Kids', fmtUGX(a.sauna.kid)]], '/book/sauna', 'Book a session')}
-        ${amenityCard('sunset-arrival', 'Penthouse', 'Five ways to stay, from a single room to the full floor with every balcony.', a.penthouse.packages.slice(0, 3).map((p) => [p.name, `${money(p.price, 'USD')} / night`]), '/book/penthouse', 'Request a stay')}
-        ${amenityCard('', 'Kids soccer', 'Saturday training on the turf.', [['With a coach', fmtUGX(a.kids.withCoach)], ['Kids only', fmtUGX(a.kids.kidsOnly)]], '/book/kids', 'Book a Saturday')}
-        ${amenityCard('golden-hour', 'Tables & Family Dinner', `Sundays are Family Dinner Day. Fridays are Bucket Night: ${a.bucketNight.offer}.`, [['Table reservation', 'Free'], ['Food and drinks', 'Bought on the day']], '/book/table', 'Reserve a table')}
+    <section class="section" aria-labelledby="book-h"><div class="wrap stack" style="--gap:32px">
+      <div class="sec-head"><p class="eyebrow red">Book online</p><h2 class="h1" id="book-h">Pick a time. Show your code at reception.</h2>
+      <p class="lead" style="margin-top:14px">${a.loyalty} Gym, turf and kids soccer.</p></div>
+      <div class="grid cards" style="--min:300px;--gap:20px">
+        ${amenityCard(nightTurf ? 'turf-night' : 'turf-day', 'Football turf', `From ${fmtUGX(a.turf.dayRate)} / hr`, 'Hire the turf by the hour for your team or your company.', [[`Day, until ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.dayRate)} / hr`], [`Night, from ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.nightRate)} / hr`], ['Open sessions, Wed–Fri 7–11 PM', `${fmtUGX(a.turf.adultPerPerson)} / person`]], '/book/turf', 'Book the turf')}
+        ${amenityCard('gym', 'Gym', `Day pass ${fmtUGX(plan('gym-day').price)}`, `Classes every day. Mornings ${fmtTime(gym.sessions[0].from)}–${fmtTime(gym.sessions[0].to)}, evenings ${fmtTime(gym.sessions[1].from)}–${fmtTime(gym.sessions[1].to)}.`, [['Day pass', fmtUGX(plan('gym-day').price)], ['Monthly', fmtUGX(plan('gym-month').price)], ['Gym & sauna, monthly', fmtUGX(plan('gs-month').price)]], '/book/gym', 'Get a gym pass')}
+        ${amenityCard('', 'Steam & sauna', `Adults ${fmtUGX(a.sauna.adult)}`, 'Book a slot, walk in, switch off.', [['Adults', fmtUGX(a.sauna.adult)], ['Kids', fmtUGX(a.sauna.kid)]], '/book/sauna', 'Book a session')}
+        ${amenityCard('sunset-arrival', 'Penthouse', `From ${money(Math.min(...a.penthouse.packages.map((p) => p.price)), 'USD')} / night`, 'Five ways to stay, from a single room to the full floor with every balcony.', a.penthouse.packages.slice(0, 3).map((p) => [p.name, `${money(p.price, 'USD')} / night`]), '/book/penthouse', 'Request a stay')}
+        ${amenityCard('', 'Kids soccer', `From ${fmtUGX(a.kids.kidsOnly)}`, 'Saturday training on the turf.', [['With a coach', fmtUGX(a.kids.withCoach)], ['Kids only', fmtUGX(a.kids.kidsOnly)]], '/book/kids', 'Book a Saturday')}
+        ${amenityCard('golden-hour', 'Tables & Family Dinner', 'Free to reserve', `Sundays are Family Dinner Day. Fridays are Bucket Night: ${a.bucketNight.offer}.`, [['Table reservation', 'Free'], ['Food and drinks', 'Bought on the day']], '/book/table', 'Reserve a table')}
       </div>
     </div></section>
 
-    <section class="section band" aria-labelledby="quiz-h"><div class="wrap quiz-band">
-      <div class="stack" style="--gap:14px"><p class="eyebrow red">Every Saturday</p><h2 class="h1" id="quiz-h">Quiz Night</h2>
+    <section class="section band quiz-sec" aria-labelledby="quiz-h"><div class="wrap quiz-band">
+      <div class="stack" style="--gap:16px"><p class="eyebrow red">Every Saturday</p><h2 class="display sm" id="quiz-h">Quiz Night</h2>
         <p class="lead">${a.quiz.rounds} rounds hosted by ${a.quiz.host}. ${a.quiz.entry ? fmtUGX(a.quiz.entry) + ' entry' : 'Free entry'}. Round winners take ${a.quiz.roundPrize.toLowerCase()}.</p>
-        <div class="row"><a class="btn lg" href="/quiz">Register your team</a></div></div>
+        <div class="row"><a class="btn lg glow" href="/quiz">Register your team ${icon('arrow')}</a></div></div>
       <div class="stack" style="--gap:14px">${photo('quiz-sheet', 'band', { sizes: '(min-width: 900px) 520px, 100vw', cls: 'rounded' })}<div class="facts">
         <div><b>${fmtTime(a.quiz.time)}</b><span>Every Saturday</span></div>
         <div><b>${nextQuiz ? fmtDate(nextQuiz.date, { noDow: true }) : '—'}</b><span>Next quiz</span></div>
@@ -142,8 +171,19 @@ route('/', async () => {
       </div></div>
     </div></section>
 
+    ${when(!ev.over, () => html`<section class="cta-band ${hasPhoto('night-crowd') ? 'has-photo' : ''}" aria-labelledby="cta-h">${when(hasPhoto('night-crowd'), () => html`<div class="photo-bg">${photo('night-crowd', 'wide', { mobile: 'tall', alt: '' })}</div>`)}
+      <div class="wrap cta-grid">
+        <div class="stack" style="--gap:14px"><p class="eyebrow">${s.venue.name} presents · ${fmtDate(ev.date, { long: true, longMonth: true })}</p>
+          <h2 class="display glow-text" id="cta-h">${ev.name}</h2><p class="ed">${ev.edition}</p>
+          <p class="lead">${ev.pitch}</p>
+          <div class="row cta-row"><a class="btn lg glow" href="/replay#tickets">Get tickets ${icon('arrow')}</a><a class="btn lg glass" href="/replay">See the night</a></div></div>
+        <div class="stack cta-count" style="--gap:12px"><p class="eyebrow">Gates open in</p>${countdownHtml(ev.startsAt, true)}
+          ${when(fp, () => html`<p class="muted small">${fp.label} <b class="num" style="color:var(--paper)">${fmtUGX(fp.price)}</b></p>`)}</div>
+      </div>
+    </section>`)}
+
     <section class="section" aria-labelledby="visit-h"><div class="wrap split even">
-      <div class="stack" style="--gap:14px"><p class="eyebrow red">Find us</p><h2 class="h1" id="visit-h">${s.venue.area}</h2><p class="lead">${s.venue.landmark}.</p>
+      <div class="stack" style="--gap:16px"><p class="eyebrow red">Find us</p><h2 class="h1" id="visit-h">${s.venue.area}</h2><p class="lead">${s.venue.landmark}.</p>
         <div class="row"><a class="btn line" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Elite High School Akright City Bwebajja')}" target="_blank" rel="noopener">${icon('pin')}Open in Maps</a>
         <span class="copyline"><a class="btn" href="${telHref()}">${icon('phone')}${s.venue.phone}</a><button class="icon-btn" data-copy="${s.venue.phone}" aria-label="Copy phone number">${icon('copy')}</button></span></div>
         ${when(hasPhoto('entrance'), () => html`<div class="arrive">${[['entrance', 'The gate'], ['parking', 'Parking inside the gate']].map(([id, cap]) => html`<figure>${photo(id, 'card', { sizes: '(min-width: 900px) 280px, 50vw', cls: 'rounded' })}<figcaption>${cap}</figcaption></figure>`)}</div>`)}</div>
@@ -152,15 +192,24 @@ route('/', async () => {
         ${kv([['Gym, mornings', `${fmtTime(gym.sessions[0].from)} – ${fmtTime(gym.sessions[0].to)}`], ['Gym, evenings', `${fmtTime(gym.sessions[1].from)} – ${fmtTime(gym.sessions[1].to)}`], ['Open soccer', 'Wed – Fri, 7 – 11 PM'], ['Quiz Night', `Saturdays, ${fmtTime(a.quiz.time)}`], ['Family Dinner', 'Sundays']])}
         <p class="hint">For anything else, call us before you set off.</p>
       </div>
-    </div></section>`,
+    </div></section>
+
+    <div class="sticky-cta" data-sticky><p class="from">${ev.name}${when(fp, () => html`<b class="num">${fmtUGX(fp.price)}</b>`)}</p><div class="row" style="--gap:8px;flex-wrap:nowrap"><a class="btn line sm" href="/book">Book</a><a class="btn sm glow" href="/replay#tickets">Tickets</a></div></div>`,
     mount(root) {
       on(root, 'click', '[data-copy]', (b) => copyText(b.dataset.copy, b));
+      const sticky = root.querySelector('[data-sticky]');
+      const hero = root.querySelector('.hero');
+      if (sticky && hero && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((es) => sticky.classList.toggle('show', !es[0].isIntersecting), { threshold: 0 });
+        io.observe(hero);
+        ctx.onCleanup(() => io.disconnect());
+      }
     },
   };
 });
 const CARD_SIZES = '(min-width: 1240px) 380px, (min-width: 700px) 45vw, 100vw';
-function amenityCard(photoId, name, text, prices, href, cta) {
-  return html`<article class="amenity">${photoOrTile(photoId, 'card', { sizes: CARD_SIZES, alt: '' })}<h3 class="h3">${name}</h3><p class="muted small">${text}</p>
+function amenityCard(photoId, name, tag, text, prices, href, cta) {
+  return html`<article class="amenity"><a class="amenity-media" href="${href}" tabindex="-1" aria-hidden="true">${photoOrTile(photoId, 'card', { sizes: CARD_SIZES, alt: '' })}<span class="price-tag">${tag}</span></a><h3 class="h3">${name}</h3><p class="muted small">${text}</p>
     <div class="prices">${prices.map(([k, v]) => html`<div><span>${k}</span><span>${v}</span></div>`)}</div>
     <a class="btn line sm" href="${href}">${cta} ${icon('arrow')}</a></article>`;
 }
@@ -213,20 +262,21 @@ route('/replay', async (_p, ctx) => {
   return {
     title: `${ev.name} · ${ev.edition}`,
     body: html`
-    <section class="replay-hero ${hasPhoto('night-crowd') ? 'has-photo' : ''}">${when(hasPhoto('night-crowd'), () => html`<div class="photo-bg">${photo('night-crowd', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}<div class="wrap split with-aside">
+    <section class="replay-hero ${hasPhoto('night-crowd') ? 'has-photo' : ''}">${when(hasPhoto('night-crowd'), () => html`<div class="photo-bg kb">${photo('night-crowd', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}<div class="wrap split with-aside">
       <div>
         <p class="eyebrow">${s.venue.name} presents</p>
-        <h1 class="display">${ev.name}</h1>
+        <h1 class="display xl glow-text">${ev.name}</h1>
         <p class="ed">${ev.edition}</p>
         <div class="meta"><span>${icon('cal')}${fmtDate(ev.date, { long: true, longMonth: true, year: true })}</span><span>${icon('clock')}Gates ${fmtTime(ev.gatesOpen)}</span><span>${icon('pin')}${s.venue.name}, ${s.venue.area}</span></div>
         <p class="lead" style="margin-top:22px">${ev.pitch}</p>
-        <div class="row" style="margin-top:26px"><a class="btn lg" href="#tickets">Get tickets</a><a class="btn lg line" href="/tickets">Find my ticket</a></div>
+        <div class="row cta-row" style="margin-top:26px"><a class="btn lg glow" href="#tickets">Get tickets ${icon('arrow')}</a><a class="btn lg glass" href="/tickets">Find my ticket</a></div>
       </div>
       <div class="stack" style="--gap:12px;align-self:end">${when(!ev.over, () => html`<p class="eyebrow">Gates open in</p>${countdownHtml(ev.startsAt, true)}`)}</div>
     </div></section>
+    <div class="marquee" aria-hidden="true"><div class="marquee-track">${[0, 1].map(() => html`<span class="marquee-set">${ev.programme.map((p) => html`<span>${fmtTime(p.time)} · ${p.name}</span><i>✦</i>`)}</span>`)}</div></div>
 
     <section class="section" id="tickets" aria-labelledby="t-h" style="scroll-margin-top:84px"><div class="wrap stack" style="--gap:28px">
-      <div><p class="eyebrow red">Tickets</p><h2 class="h2" id="t-h" style="margin-top:8px">Prices rise as each release sells out.</h2></div>
+      <div class="sec-head"><p class="eyebrow red">Tickets</p><h2 class="h1" id="t-h">Prices rise as each release sells out.</h2></div>
       <div class="split">
         <div class="board">
           <div class="board-head"><h3 class="h3">General admission</h3><span class="muted small">Entry from ${fmtTime(ev.gatesOpen)} · main social floor</span></div>
@@ -247,7 +297,7 @@ route('/replay', async (_p, ctx) => {
     </div></section>
 
     <section class="section" aria-labelledby="prog-h"><div class="wrap split">
-      <div class="stack" style="--gap:22px"><div><p class="eyebrow red">The night</p><h2 class="h2" id="prog-h" style="margin-top:8px">Five chapters, sunset to the last song.</h2></div>
+      <div class="stack" style="--gap:22px"><div class="sec-head"><p class="eyebrow red">The night</p><h2 class="h1" id="prog-h">Five chapters, sunset to the last song.</h2></div>
         <div class="tracklist">${ev.programme.map((p, i) => { const ph = CHAPTER_PHOTOS[i] ? photo(CHAPTER_PHOTOS[i], 'square', { sizes: '(max-width: 560px) 72px, 96px', alt: '' }) : ''; return html`<div class="track ${ph ? 'has-ph' : ''}"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="tm">${fmtTime(p.time)}</span><div><h3>${p.name}</h3><p>${p.text}</p></div>${ph}</div>`; })}</div></div>
       <div class="stack" style="--gap:16px">
         <div class="panel stack" style="--gap:12px"><h3 class="h4">On the night</h3><ul class="terms">${ev.promise.map((p) => html`<li>${p}</li>`)}</ul><p class="small"><b>Dress:</b> ${ev.dress}</p></div>

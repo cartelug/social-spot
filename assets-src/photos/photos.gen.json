@@ -240,6 +240,34 @@
      },
      "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoQAAsAA4BaJQBOgBnPB4TPXoAA/N3Mdpj9F2cpFuUdTOILrXKBUJEERrupRYaQ68xzE+yGxiNpGAAA",
      "color": "#6f7b87"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/sunset-arrival-tall-480.0e9cc9f5.avif"
+       ],
+       [
+        960,
+        "assets/photos/sunset-arrival-tall-960.dcffd2f0.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/sunset-arrival-tall-480.cd8d177b.jpg"
+       ],
+       [
+        960,
+        "assets/photos/sunset-arrival-tall-960.bfaa6d46.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoNABAAA4BaJZACdAC8+kNjbAAA/OFvS//KME7aEITGxtvZvBwMVRifotZ0FotVHH4RgZnxBw5Br9Ni0ZgAAA==",
+     "color": "#5b6b79"
     }
    }
   },
@@ -337,6 +365,34 @@
      },
      "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACwAQCdASoQAAUAA4BaJQBOgBtddgUAAP7CBr/jXTHb5JKLm1gvN64Lv6Z9L+QSSGzgn1CTmQAAAA==",
      "color": "#404249"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/golden-hour-tall-480.ec493a49.avif"
+       ],
+       [
+        960,
+        "assets/photos/golden-hour-tall-960.d24ddc95.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/golden-hour-tall-480.9b83ca3f.jpg"
+       ],
+       [
+        960,
+        "assets/photos/golden-hour-tall-960.ab2e9b26.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQAgCdASoNABAAA4BaJQBOkBLismOQKMEAAP6sPzU4MjPstVh7wLCB45jZ7XO3KjDVjw2b3LVz3xflsaCpRui6Me4QWCrrCetPAAAA",
+     "color": "#47515d"
     }
    }
   },
@@ -370,6 +426,70 @@
      },
      "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADwAQCdASoQABAAA4BaJYwCsACxuUDUIfAA/vhWJCPH7TPOkkQoq8uAfvCUF3nD3bU2qvm5u3pB+llL8vbyiugBny80IcJ0SroXIkhwAAA=",
      "color": "#514643"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/main-peak-tall-480.9d84dd54.avif"
+       ],
+       [
+        960,
+        "assets/photos/main-peak-tall-960.8edc2c0e.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/main-peak-tall-480.4ca835b2.jpg"
+       ],
+       [
+        960,
+        "assets/photos/main-peak-tall-960.a30b58c6.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoNABAAA4BaJZQC7AD0mPvaraAA/vhSL0XAUEI7TqvO0JBM5RxxTnC4EmT66eTN1ekfXF6HFW8Mo5+O2Cos0AAA",
+     "color": "#4a4140"
+    },
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/main-peak-band-480.bff678d3.avif"
+       ],
+       [
+        960,
+        "assets/photos/main-peak-band-960.ce9fc5b3.avif"
+       ],
+       [
+        1600,
+        "assets/photos/main-peak-band-1600.c6f170a8.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/main-peak-band-480.36c7e92e.jpg"
+       ],
+       [
+        960,
+        "assets/photos/main-peak-band-960.3d622250.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/main-peak-band-1600.b8b83c83.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAACQAQCdASoQAAUAA4BaJQBWABi7iIAA/vhX90I8ftM86NAnYRa0HJUYxcINpDXgAAA=",
+     "color": "#555050"
     }
    }
   },
@@ -513,6 +633,34 @@
      },
      "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAUAA4BaJZQAAq9ckM74AMszjfeM07c3uBsO8XLLU3VdH6DAp+2aQvICwAAA",
      "color": "#6b756b"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-day-tall-480.9fbeb914.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-tall-960.f33b6351.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-day-tall-480.968d2edf.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-tall-960.2e7f11ed.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoNABAAA4BaJZQCdAERG8bI+oAA/vUT8cHZwT5HDRPyFEAjKDdZUKQVWp9B4HprbdmFyrjsZLbWFAAA",
+     "color": "#818c8e"
     }
    }
   },
@@ -582,6 +730,34 @@
      },
      "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAUAA4BaJagCdADp/Wj08AD+OjoE1M2R4nHnzCWmTnWsTSZoevKE4woZmAAA",
      "color": "#4f4b1f"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-night-tall-480.807c509b.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-night-tall-960.91a575a1.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-night-tall-480.075f65be.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-night-tall-960.36429a57.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoNABAAA4BaJZgC7ADz5pLALPgA/vhsV+KawdXZEoScxCl7nmYhu+/6+ngHtnP0RuAAAA==",
+     "color": "#312d17"
     }
    }
   },
@@ -651,6 +827,34 @@
      },
      "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAUAA4BaJZQC7AEOZ/HeAPKiLydJrPXcruAhUVUmoHE1Hz50KX2U+M9T6AAA",
      "color": "#695d59"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/gym-tall-480.ec300afd.avif"
+       ],
+       [
+        960,
+        "assets/photos/gym-tall-960.320d0dbb.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/gym-tall-480.6010304d.jpg"
+       ],
+       [
+        960,
+        "assets/photos/gym-tall-960.97043586.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoNABAAA4BaJZACdACyn0wmDwAA/sjgD1o2gLiMyi3EN4qJUEEuLKo29Xr/klrOjuALTNtLZp9m/s67gSyEB/suD/nPiAAA",
+     "color": "#6e615b"
     }
    }
   },
@@ -720,6 +924,34 @@
      },
      "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAQAgCdASoQAAsAA4BaJZACdAELZIfAYoMAAP6H3c2pZQSASqNwFnzF/GVj6iG9He9m4842+0w6cOLiqyYwIAAA",
      "color": "#a18a6d"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/quiz-sheet-tall-480.c514614c.avif"
+       ],
+       [
+        960,
+        "assets/photos/quiz-sheet-tall-960.c09f81aa.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/quiz-sheet-tall-480.a94e44a6.jpg"
+       ],
+       [
+        960,
+        "assets/photos/quiz-sheet-tall-960.6a6926b3.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoNABAAA4BaJZACdAEQMGY+7EoAAP7aa3DdSevz5QNxUYaTS43pwvAO3YMhFK/oCK6kJDNwTE8iJlFPo1SAAA==",
+     "color": "#9c8264"
     }
    }
   },
