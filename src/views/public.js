@@ -18,12 +18,13 @@ export function publicLayout() {
     el.innerHTML = String(html`
       ${when(app.mode === 'preview', html`<div class="preview-bar"><b>Live preview.</b> Orders and bookings made here are test data${app.me ? html` · <a href="/admin">Open admin</a>` : ''}.</div>`)}
       ${when(app.offline, () => html`<div class="preview-bar" role="status"><b>Online tickets and bookings aren’t available right now.</b> Call <a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a> to book.</div>`)}
-      <header class="topbar"><div class="wrap">
+      <a class="skip-link" href="#main">Skip to content</a>
+      <header class="topbar"><div class="scroll-progress" aria-hidden="true"></div><div class="wrap">
         <a class="brand" href="/" aria-label="Social Spot home"><img src="${app.assets.logoSmall}" alt="Social Spot" width="520" height="172"></a>
         <nav class="navlinks" aria-label="Main">${NAV.map(([h, t]) => html`<a href="${h}">${t}</a>`)}</nav>
         <div class="nav-actions"><a class="btn sm hide-sm" href="/replay#tickets">Get tickets</a><button class="menu-btn" data-menu aria-label="Open menu" aria-expanded="false">${icon('menu')}</button></div>
       </div></header>
-      <main data-outlet id="main"></main>
+      <main data-outlet id="main" tabindex="-1"></main>
       <footer class="footer"><div class="wrap footer-cta">
         <p class="h2">${v.slogan}</p>
         <div class="row"><a class="btn glow" href="tel:${v.phone.replace(/\s/g, '')}">${icon('phone')}Call ${v.phone}</a><a class="btn glass" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Elite High School Akright City Bwebajja')}" target="_blank" rel="noopener">${icon('pin')}Directions</a></div>
@@ -31,30 +32,59 @@ export function publicLayout() {
         <div><img src="${app.assets.logoSmall}" alt="Social Spot" width="520" height="172"><p>${v.area}. ${v.landmark}.</p></div>
         <div><h4>Visit</h4><ul><li>${v.area}</li><li>${v.landmark}</li><li><a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a></li></ul></div>
         <div><h4>Go to</h4><ul>${NAV.map(([h, t]) => html`<li><a href="${h}">${t}</a></li>`)}<li><a href="/admin">Staff login</a></li></ul></div>
-      </div><div class="wrap" style="margin-top:28px"><p class="tiny dim">© ${new Date().getFullYear()} ${v.name}, ${v.area}.</p></div></footer>`);
+      </div><div class="wrap footer-bottom"><p class="small muted">© ${new Date().getFullYear()} ${v.name}, ${v.area}.</p><button class="motion-toggle" data-motion-toggle aria-pressed="false"><span class="motion-symbol" aria-hidden="true">Ⅱ</span><span data-motion-label>Pause animations</span></button><a href="#main" class="back-top">Back to top ${icon('arrow')}</a></div></footer>`);
     el.querySelector('[data-menu]').addEventListener('click', openMenu);
     const onScroll = () => document.documentElement.classList.toggle('scrolled', window.scrollY > 12);
+    // Assign once: switching between the staff and public layouts must not stack listeners.
+    if (app.publicScroll) window.removeEventListener('scroll', app.publicScroll);
+    app.publicScroll = onScroll;
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
-  el.querySelectorAll('.navlinks a').forEach((a) => a.toggleAttribute('aria-current', app.path.startsWith(a.getAttribute('href'))));
+  el.querySelectorAll('.navlinks a').forEach((a) => a.toggleAttribute('aria-current', app.path.startsWith(a.dataset.route || a.getAttribute('href'))));
   el.querySelectorAll('.navlinks a[aria-current]').forEach((a) => a.setAttribute('aria-current', 'page'));
   return el.querySelector('[data-outlet]');
 }
 function openMenu() {
+  if (document.querySelector('.sheet')) return;
   const v = app.site.venue;
+  const opener = document.activeElement;
+  const appRoot = rootEl();
+  const previousOverflow = document.body.style.overflow;
   const sheet = document.createElement('div');
   sheet.className = 'sheet';
   sheet.setAttribute('role', 'dialog');
   sheet.setAttribute('aria-label', 'Menu');
+  sheet.setAttribute('aria-modal', 'true');
   sheet.innerHTML = String(html`<div class="sheet-top"><a href="/" class="brand"><img src="${app.assets.logoSmall}" alt="Social Spot"></a><button class="menu-btn" data-x aria-label="Close menu">${icon('x')}</button></div>
-    <nav>${[['/', 'Home', ''], ...NAV].map(([h, t, s]) => html`<a href="${h}">${t}<small>${s}</small></a>`)}</nav>
+    <p class="eyebrow menu-eyebrow">Make a little time for a good time.</p>
+    <nav>${[['/', 'Home', 'The good times start here'], ...NAV].map(([h, t, s], i) => html`<a href="${h}"><span class="menu-number">0${i + 1}</span><span>${t}<small>${s}</small></span>${icon('arrow')}</a>`)}</nav>
     <a class="btn lg block" href="/replay#tickets" style="margin-top:28px">Get Replay tickets</a>
     <div class="contact">${v.area} · ${v.landmark}<br><a href="tel:${v.phone.replace(/\s/g, '')}">${v.phone}</a></div>`);
-  const close = () => { sheet.remove(); document.removeEventListener('keydown', onKey); };
-  const onKey = (e) => { if (e.key === 'Escape') close(); };
+  let closed = false;
+  const close = () => {
+    if (closed) return;
+    closed = true;
+    sheet.remove();
+    document.removeEventListener('keydown', onKey);
+    document.body.style.overflow = previousOverflow;
+    appRoot.inert = false;
+    appRoot.querySelector('[data-menu]')?.setAttribute('aria-expanded', 'false');
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+  };
+  const onKey = (e) => {
+    if (e.key === 'Escape') close();
+    if (e.key !== 'Tab') return;
+    const focusable = [...sheet.querySelectorAll('a, button')];
+    const first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  };
   sheet.addEventListener('click', (e) => { if (e.target.closest('[data-x]') || e.target.closest('a')) close(); });
   document.addEventListener('keydown', onKey);
+  appRoot.querySelector('[data-menu]')?.setAttribute('aria-expanded', 'true');
+  appRoot.inert = true;
+  document.body.style.overflow = 'hidden';
   document.body.append(sheet);
   linkify(sheet);
   sheet.querySelector('[data-x]').focus();
@@ -93,7 +123,7 @@ route('/', async (_p, ctx) => {
   const plan = (k) => gym.plans.find((p) => p.key === k);
   const heroPhoto = hasPhoto('night-lanterns');
   const nightTurf = turfPhotoId(a.turf.nightFrom) === 'turf-night';
-  const ticker = ['Football turf', 'Gym & daily classes', 'Steam & sauna', 'Penthouse stays', `Quiz Night · Saturdays ${fmtTime(a.quiz.time)}`, 'Bucket Night · Fridays', 'Family Dinner · Sundays', `${ev.name} · ${fmtDate(ev.date, { noDow: true })}`];
+  const ticker = ['Play a little', 'Stay a little', 'Move a little', 'Make a night of it', 'Your people. Your spot.'];
   const shots = [
     ['night-lanterns', 'Lantern nights', 'The terrace after dark'],
     ['sunset-arrival', 'Golden hour', 'Sun going down over the terrace'],
@@ -109,14 +139,14 @@ route('/', async (_p, ctx) => {
     <section class="hero hero-xl ${heroPhoto ? 'has-photo' : ''}">${when(heroPhoto, () => html`<div class="photo-bg kb">${photo('night-lanterns', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="kicker">${icon('pin')}${s.venue.area}</p>
-          <img class="hero-logo" src="${app.assets.logo}" alt="Social Spot" width="1200" height="397">
-          <h1>${s.venue.slogan}</h1>
-          <p class="lead">Football turf, a gym with classes every day, steam and sauna, a penthouse to stay in, and Quiz Night every Saturday. ${s.venue.landmark}.</p>
-          <div class="row cta-row"><a class="btn lg glow" href="/replay">Get ${ev.name.replace(/^The /, '')} tickets ${icon('arrow')}</a><a class="btn lg glass" href="/book">Book a session</a></div>
+          <p class="kicker"><span class="live-dot" aria-hidden="true"></span>Your people. Your spot. <span class="kicker-location">${s.venue.area}</span></p>
+          <h1 class="hero-title">${s.venue.slogan === 'Everything worth leaving the house for.' ? html`<span>Everything worth</span> <span>leaving the</span> <span class="hero-accent">house for.</span>` : s.venue.slogan}</h1>
+          <p class="lead">From the first kick to the last song. Turf, fitness, food and good company — all at your spot in Akright City.</p>
+          <div class="row cta-row"><a class="btn lg" href="/book">Find your thing ${icon('arrow')}</a><a class="btn lg glass" href="/replay">Explore ${ev.name} ${icon('arrow')}</a></div>
+          <p class="hero-location">${icon('pin')}${s.venue.landmark} · ${s.venue.area}</p>
         </div>
         <a class="feature-ticket" href="/replay" style="text-decoration:none" aria-label="${ev.name}, ${ev.edition}, ${fmtDate(ev.date, { long: true, year: true })}">
-          <p class="eyebrow">${s.venue.name} presents</p>
+          <div class="ticket-top"><p class="eyebrow">The next big night</p><span class="ticket-arrow" aria-hidden="true">${icon('arrow')}</span></div>
           <h2>${ev.name}</h2>
           <p class="ed">${ev.edition}</p>
           <div class="meta"><span>${fmtDate(ev.date, { long: true, longMonth: true, year: true })}</span><span>Gates open ${fmtTime(ev.gatesOpen)}</span><span>${s.venue.name}, ${s.venue.area.split(',')[0]}</span></div>
@@ -128,18 +158,19 @@ route('/', async (_p, ctx) => {
           </div>
         </a>
       </div>
+      <div class="wrap hero-bottom"><a href="${shots.length >= 4 ? '#spot-h' : '#week-h'}" class="scroll-cue"><span class="scroll-cue-icon" aria-hidden="true">↓</span>Discover your spot</a><span class="hero-index" aria-hidden="true">SPORT · SOUND · GOOD COMPANY</span><button class="motion-toggle" data-motion-toggle aria-pressed="false"><span class="motion-symbol" aria-hidden="true">Ⅱ</span><span data-motion-label>Pause animations</span></button></div>
     </section>
     <div class="marquee" aria-hidden="true"><div class="marquee-track">${[0, 1].map(() => html`<span class="marquee-set">${ticker.map((t) => html`<span>${t}</span><i>✦</i>`)}</span>`)}</div></div>
 
     ${when(shots.length >= 4, () => html`<section class="section gallery-sec" aria-labelledby="spot-h">
-      <div class="wrap"><div class="sec-head row between"><div><p class="eyebrow red">The spot</p><h2 class="h1" id="spot-h">Day to night, one address.</h2></div>
+      <div class="wrap"><div class="sec-head row between"><div><p class="eyebrow red">01 / A place for your people</p><h2 class="h1" id="spot-h">Day to night.<br>One address.</h2></div>
         <p class="muted sec-aside">A turf, a gym, a terrace and a penthouse on one compound in Akright City.</p></div></div>
       <div class="gallery" role="list">${shots.map(([id, t, sub], i) => html`<figure class="shot ${i === 0 ? 'big' : ''}" role="listitem">${i >= 5 && hasPhoto(id) && app.assets.photos[id].crops.band ? photo(id, 'band', { mobile: 'tall', sizes: '(min-width: 900px) 600px, 78vw' }) : photo(id, 'tall', { sizes: i === 0 ? '(min-width: 900px) 600px, 78vw' : '(min-width: 900px) 300px, 78vw' })}<figcaption><b>${t}</b><span>${sub}</span></figcaption></figure>`)}</div>
       <p class="wrap swipe-hint tiny dim">Swipe for more</p>
     </section>`)}
 
-    <section class="section" aria-labelledby="week-h"><div class="wrap stack" style="--gap:28px">
-      <div class="sec-head row between"><div><p class="eyebrow red">This week</p><h2 class="h1" id="week-h">Seven days, one spot.</h2></div>
+    <section class="section programme-section" aria-labelledby="week-h"><div class="wrap stack" style="--gap:28px">
+      <div class="sec-head row between"><div><p class="eyebrow red">02 / Make it a regular thing</p><h2 class="h1" id="week-h">Your week. Sorted.</h2></div>
       <a class="btn line sm" href="/book">Book anything ${icon('arrow')}</a></div>
       <div class="week">${order.map((d, i) => html`<div class="day ${i === 0 ? 'today' : ''}">
         <header><h3>${i === 0 ? 'Today' : DOW[d]}</h3><span class="tiny dim">${fmtDate(addDays(s.today, i), { noDow: true })}</span></header>
@@ -147,7 +178,7 @@ route('/', async (_p, ctx) => {
     </div></section>
 
     <section class="section" aria-labelledby="book-h"><div class="wrap stack" style="--gap:32px">
-      <div class="sec-head"><p class="eyebrow red">Book online</p><h2 class="h1" id="book-h">Pick a time. Show your code at reception.</h2>
+      <div class="sec-head"><p class="eyebrow red">03 / Find your thing</p><h2 class="h1" id="book-h">A little more<br>life in your day.</h2>
       <p class="lead" style="margin-top:14px">${a.loyalty} Gym, turf and kids soccer.</p></div>
       <div class="grid cards" style="--min:300px;--gap:20px">
         ${amenityCard(nightTurf ? 'turf-night' : 'turf-day', 'Football turf', `From ${fmtUGX(a.turf.dayRate)} / hr`, 'Hire the turf by the hour for your team or your company.', [[`Day, until ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.dayRate)} / hr`], [`Night, from ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.nightRate)} / hr`], ['Open sessions, Wed–Fri 7–11 PM', `${fmtUGX(a.turf.adultPerPerson)} / person`]], '/book/turf', 'Book the turf')}

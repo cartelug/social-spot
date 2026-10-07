@@ -1,3 +1,4 @@
+import { mountMotion } from './motion.js';
 // Tiny app core: safe HTML templates, router, RPC, toasts, dialogs, icons.
 import { esc, waNumber } from '../shared/util.js';
 
@@ -118,30 +119,6 @@ export function back(fallback = '/') {
   }
 }
 
-// Scroll-in motion: blocks below the fold fade up once as they reach the screen.
-// Skipped for reduced motion and for in-place refreshes (nothing should replay).
-const REVEAL = '.sec-head, .amenity, .shot, .day, .track, .tier, .board, .facts, .quiz-band > *, .cta-grid > *, .arrive figure, .split > .panel, details.faq';
-let revealer = null;
-function reveal(root) {
-  if (!('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
-  revealer = revealer || new IntersectionObserver((entries) => entries.forEach((e) => {
-    if (!e.isIntersecting) return;
-    const el = e.target;
-    el.classList.add('in');
-    revealer.unobserve(el);
-    setTimeout(() => el.classList.remove('rv', 'in'), 1100); // hand transforms back to hover effects
-  }), { rootMargin: '0px 0px -6% 0px' });
-  const fold = window.innerHeight;
-  root.querySelectorAll(REVEAL).forEach((el) => {
-    const r = el.getBoundingClientRect();
-    if (r.top < fold || (r.left > window.innerWidth)) return; // already on screen, or off to the side in a scroller
-    const i = el.parentElement ? [...el.parentElement.children].indexOf(el) : 0;
-    el.style.setProperty('--rv-d', `${(i % 4) * 70}ms`);
-    el.classList.add('rv');
-    revealer.observe(el);
-  });
-}
-
 let renderSeq = 0;
 export async function render(path, { keepScroll = false } = {}) {
   const seq = ++renderSeq;
@@ -174,7 +151,10 @@ export async function render(path, { keepScroll = false } = {}) {
       const el = document.getElementById(app.fragment);
       if (el) requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
     } else if (!keepScroll) window.scrollTo(0, 0);
-    if (!keepScroll) reveal(root);
+    if (!keepScroll && layout === 'public') {
+      root.classList.add('page-enter');
+      mountMotion(root, ctx);
+    }
     if (app.onRoute) app.onRoute(p, layout);
   } catch (e) {
     console.error(e);
@@ -237,7 +217,10 @@ export function startRouter() {
     if (href.startsWith('#')) {
       ev.preventDefault();
       const el = document.getElementById(href.slice(1));
-      if (el) el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      if (el) {
+        el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches || document.documentElement.hasAttribute('data-motion-off') ? 'auto' : 'smooth', block: 'start' });
+        if (a.classList.contains('skip-link')) el.focus({ preventScroll: true });
+      }
       return;
     }
     if (!href.startsWith('/')) return;

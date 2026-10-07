@@ -7,6 +7,7 @@ import { app, startRouter, startClocks, refreshSite, rootEl, html, icon, errText
 import { publicLayout } from './views/public.js';
 import { adminLayout, bareLayout } from './views/admin.js';
 import { startPreloader } from './preloader.js';
+import { setupMotionPreference } from './motion.js';
 
 function siteBase() {
   let b = window.SS_BASE || '/';
@@ -20,6 +21,7 @@ export async function boot({ assets, mode, makeBackend, fallbackBackend }) {
   app.layouts = { public: publicLayout, admin: adminLayout, bare: bareLayout };
   if (mode === 'server') app.base = siteBase();
   rootEl();
+  setupMotionPreference();
   const adminStart = mode === 'server' ? location.pathname.slice(app.base.length - 1).startsWith('/admin') : /^#admin/.test(location.hash || '');
   const pre = adminStart ? { ready: Promise.resolve(), finish() {} } : startPreloader(assets);
   try {
