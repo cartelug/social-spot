@@ -15,7 +15,7 @@ import { createEngine } from '../shared/engine.js';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // The website lives at the top of this folder (index.html beside package.json).
 // Only these files and folders are ever served; server code and data never are.
-const PUBLIC_FILES = new Set(['index.html', '404.html', 'config.js', 'manifest.webmanifest', 'robots.txt']);
+const PUBLIC_FILES = new Set(['index.html', '404.html', 'config.js', 'favicon.ico', 'manifest.webmanifest', 'robots.txt']);
 const PUBLIC_DIRS = new Set(['assets', 'fonts', 'vendor']);
 const isPublic = (rel) => {
   const parts = rel.split('/').filter(Boolean);

@@ -22,8 +22,9 @@ mkdirSync(P('build'), { recursive: true });
 
 // ---------------------------------------------------------------- logo assets
 const meta = JSON.parse(readFileSync(join(SRC_ASSETS, 'parts.json'), 'utf8')).parts.filter((p) => p.id !== 'dust');
-const files = ['logo-1200.png', 'logo-520.png', 'favicon-32.png', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'og.png', 'og.jpg'];
+const files = ['logo-1200.png', 'logo-520.png', 'favicon-32.png', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'social-spot-mark.svg', 'social-spot-16.png', 'social-spot-32.png', 'social-spot-48.png', 'social-spot-96.png', 'social-spot-192.png', 'social-spot-512.png', 'social-spot-touch.png', 'social-spot-maskable.png', 'og.png', 'og.jpg'];
 for (const f of files) copyFileSync(join(SRC_ASSETS, f), P('assets', f));
+copyFileSync(join(SRC_ASSETS, 'favicon.ico'), P('favicon.ico'));
 for (const p of meta) copyFileSync(join(SRC_ASSETS, 'parts', `${p.id}.png`), P('assets', 'parts', `${p.id}.png`));
 copyFileSync(join(SRC_ASSETS, 'social-spot-logo-original.png'), P('assets', 'social-spot-logo.png'));
 
@@ -98,7 +99,7 @@ writeFileSync(P(jsName), siteJs);
 writeFileSync(P(cssName), siteCss);
 
 // ---------------------------------------------------------------- index.html + 404.html
-// The page's only resource tags are written by this small inline script, which first
+// This small inline script sets the base before static icon tags are parsed, and
 // works out where the site lives, so every file loads from the right folder:
 //  - served by the Social Spot server: the server fills in ss-base="/"
 //  - index.html on a static host: the folder index.html was loaded from
@@ -106,7 +107,7 @@ writeFileSync(P(cssName), siteCss);
 //    or '/' when the site has its own domain
 // first path segments the app itself uses; on GitHub Pages anything else is the repo folder
 const ROUTE_ROOTS = 'replay|book|quiz|tickets|t|p|b|admin|404';
-const BASE_SCRIPT = `(function(){var d=document,m=d.querySelector('meta[name="ss-base"]'),b=m&&m.getAttribute('content'),p=location.pathname;if(!b){if(d.documentElement.hasAttribute('data-404')){var s=p.split('/').filter(Boolean),h=location.hostname;b=(/\\.github\\.io$/i.test(h)||h==='localhost'||h==='127.0.0.1')&&s.length&&!/^(${ROUTE_ROOTS})$/.test(s[0])?'/'+s[0]+'/':'/';}else{b=p.slice(0,p.lastIndexOf('/')+1)||'/';}}window.SS_BASE=b;var h=d.head;function add(t,a){var e=d.createElement(t);for(var k in a)e.setAttribute(k,a[k]);h.appendChild(e);return e;}add('base',{href:b});add('link',{rel:'icon',type:'image/png',sizes:'32x32',href:b+'assets/favicon-32.png'});add('link',{rel:'apple-touch-icon',href:b+'assets/apple-touch-icon.png'});add('link',{rel:'manifest',href:b+'manifest.webmanifest'});['barlow-condensed-latin-700-normal.woff2','dm-sans-latin-400-normal.woff2'].forEach(function(f){add('link',{rel:'preload',as:'font',type:'font/woff2',crossorigin:'anonymous',href:b+'fonts/'+f});});add('link',{rel:'stylesheet',href:b+'${cssName}'});['config.js','${jsName}'].forEach(function(f){var e=d.createElement('script');e.src=b+f;e.async=false;h.appendChild(e);});})();`;
+const BASE_SCRIPT = `(function(){var d=document,m=d.querySelector('meta[name="ss-base"]'),b=m&&m.getAttribute('content'),p=location.pathname;if(!b){if(d.documentElement.hasAttribute('data-404')){var s=p.split('/').filter(Boolean),h=location.hostname;b=(/\\.github\\.io$/i.test(h)||h==='localhost'||h==='127.0.0.1')&&s.length&&!/^(${ROUTE_ROOTS})$/.test(s[0])?'/'+s[0]+'/':'/';}else{b=p.slice(0,p.lastIndexOf('/')+1)||'/';}}window.SS_BASE=b;var h=d.head;function add(t,a){var e=d.createElement(t);for(var k in a)e.setAttribute(k,a[k]);h.appendChild(e);return e;}add('base',{href:b});['barlow-condensed-latin-700-normal.woff2','dm-sans-latin-400-normal.woff2'].forEach(function(f){add('link',{rel:'preload',as:'font',type:'font/woff2',crossorigin:'anonymous',href:b+'fonts/'+f});});add('link',{rel:'stylesheet',href:b+'${cssName}'});['config.js','${jsName}'].forEach(function(f){var e=d.createElement('script');e.src=b+f;e.async=false;h.appendChild(e);});})();`;
 // structured data so search engines can show the venue and The Replay as an event
 const V = DEFAULTS.venue, E = DEFAULTS.event;
 const abs = (path) => (PUBLIC_URL ? `${PUBLIC_URL}/${path}` : path);
@@ -125,6 +126,11 @@ const page = (is404) => `<!doctype html>
 <meta name="ss-base" content="">
 <style>html,body{background:#0b0a0a;color:#f5f2ef;margin:0}</style>
 <script>${BASE_SCRIPT}</script>
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48 64x64">
+<link rel="icon" type="image/png" href="assets/social-spot-96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="assets/social-spot-mark.svg" sizes="any">
+<link rel="apple-touch-icon" href="assets/social-spot-touch.png" sizes="180x180">
+<link rel="manifest" href="manifest.webmanifest">
 <title>Social Spot · Bwebajja</title>
 <meta name="description" content="${description}">
 <meta name="theme-color" content="#0b0a0a">
@@ -170,7 +176,12 @@ window.SOCIAL_SPOT = {
 }
 writeFileSync(P('manifest.webmanifest'), JSON.stringify({
   name: 'Social Spot', short_name: 'Social Spot', start_url: '.', scope: '.', display: 'standalone', background_color: '#0b0a0a', theme_color: '#0b0a0a',
-  icons: [{ src: 'assets/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: 'assets/icon-512.png', sizes: '512x512', type: 'image/png' }],
+  id: '.', lang: 'en', description: 'Social Spot, Bwebajja: sport, music, wellness and stays.',
+  icons: [
+    { src: 'assets/social-spot-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+    { src: 'assets/social-spot-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+    { src: 'assets/social-spot-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+  ],
 }, null, 1));
 writeFileSync(P('robots.txt'), 'User-agent: *\nDisallow: /admin\nDisallow: /t/\nDisallow: /p/\nDisallow: /b/\n');
 writeFileSync(P('.nojekyll'), ''); // GitHub Pages: serve the files as they are
