@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-07",
+  "method": "Built-in image generation with exact local photographic references",
+  "assets": [
+    {
+      "id": "building-day",
+      "source": "IMG_7665.HEIC",
+      "reference": "IMG_7665.jpg",
+      "file": "building-restored-v2.jpg",
+      "prompt": "Use case: precise-object-edit. Asset type: supporting architecture photograph for the real Social Spot venue website in Akright City. Input image 1 is the edit target and the sole geometry authority. Restore this exact photograph, with the same camera position and portrait framing. Preserve every visible storey, white pergola beam, glass balcony, grey stone-clad column, roofline, window, burgundy foreground plant, parasol and white terrace chair in its real location. Preserve the partially visible rooftop sign exactly as visible; do not invent missing letters, substitute a logo, or complete hidden signage. Improve exposure in the shaded facade, gently neutralise the blue cast, recover glass and concrete detail, smooth compression and sensor noise while retaining true materials and ordinary wear. Keep the real clear daytime sky and lighting direction. Remove only the two incidental people on the balcony and incidental empty bottles where visible; keep furniture and structure unchanged. The result must look like a carefully restored real architectural photograph, not a new luxury resort or a CGI render. No added floors, pool, room, furniture, decorations, palm trees or amenities; no outpainting; no text overlay; no watermark. Output one polished portrait photo, matching the reference composition.",
+      "method": "built-in image_gen",
+      "output": "/workspace/scratch/1f6eb7b4e9cb/generated_images/exec-2df7a725-04eb-4252-b13a-73c53770642c.png",
+      "status": "accepted; visual comparison completed",
+      "limits": "Generated retouching can reconstruct fine surface detail. Original files remain the authority; no new venue amenities are asserted."
+    },
+    {
+      "id": "entrance",
+      "source": "IMG_2465.HEIC",
+      "reference": "IMG_2465.jpg",
+      "file": "entrance-restored-v2.jpg",
+      "prompt": "Use case: precise-object-edit. Asset type: truthful arrival/wayfinding photograph for Social Spot website. Input image 1 is the edit target and the sole authority for venue layout. Restore this exact elevated portrait photograph of the paved courtyard: the black ornamental gate at left, cream flat-roofed gatehouse with its door and two narrow green windows, stone boundary at right, black SUV in the foreground, tree canopy and hillside behind. Keep their positions, size, perspective and proportions unchanged. Remove only the three incidental people and their shadows; naturally reconstruct the small exposed paving and doorway behind them from adjacent real textures. Preserve the SUV, gate, motorcycle if visible, wall, plants and gatehouse. Improve balanced exposure, subtle natural colour, fine paving detail and noise; keep lived-in surfaces. Do not invent a Social Spot sign or change gate lettering, do not widen the courtyard, add parking bays, roads, greenery or buildings. The image must let a visitor recognise the real entrance. No outpainting, no creative remodel, no dramatic sky replacement, no embedded labels, no watermark. Output one portrait photograph matching the reference composition.",
+      "method": "built-in image_gen",
+      "output": "/workspace/scratch/1f6eb7b4e9cb/generated_images/exec-0b5c8512-79e4-4ae0-a0f7-40acd9dd61e5.png",
+      "status": "accepted; visual comparison completed",
+      "limits": "Generated retouching can reconstruct fine surface detail. Original files remain the authority; no new venue amenities are asserted."
+    },
+    {
+      "id": "match-viewing",
+      "source": "IMG_4765.jpg",
+      "reference": "IMG_4765.jpg",
+      "file": "bar-screen-restored-v2.jpg",
+      "prompt": "Use case: precise-object-edit. Asset type: supporting bar and football-viewing photograph for Social Spot website. Input image 1 is the exact edit target. Restore the same portrait frame and camera position: single wall-mounted television below the dark bottle shelf, black metal mesh, hanging wine glasses, green-red ornamental leaves above, real cream ceiling, surrounding bottles and warm low-light interior. Improve shadow detail modestly so the shelf and glasses are legible, remove digital noise and harsh screen colour bloom, keep the subdued bar atmosphere. Keep the television size, angle, frame and exact football image with the existing scoreboard unchanged; do not create match text, replace the broadcast, sharpen invented letters, add screens or invent any date or fixture. Remove only the cropped incidental person at the right edge and reconstruct the small dark wall behind them. Preserve bottle positions and labels as photographed without redesigning or promoting labels; no new beverages or food. Keep materials realistic and not glossy. No outpainting, luxury redesign, added seating, people, text overlay, watermark or architecture changes. Output one polished portrait venue photograph matching the reference.",
+      "method": "built-in image_gen",
+      "output": "/workspace/scratch/1f6eb7b4e9cb/generated_images/exec-c5b41e0b-d6d3-4682-bcda-f788a1ef0bb3.png",
+      "status": "accepted; visual comparison completed",
+      "limits": "Fine broadcast details, scoreboard lettering and bottle labels may be reconstructed by generation. The image establishes only the real screen and bar layout; it is not evidence of an exact match, score, date or advertised beverage. Original files remain the authority."
+    },
+    {
+      "id": "turf-night",
+      "source": "IMG_4766.HEIC",
+      "reference": "IMG_4766.jpg",
+      "file": "turf-night-restored-v2.jpg",
+      "prompt": "Use case: precise-object-edit. Asset type: supporting night football-turf photograph for Social Spot website. Input image 1 is the edit target and locks all geometry. Restore the exact elevated portrait photograph, showing the existing fenced artificial turf at lower-left, white goal and line markings, fine enclosing nets, warm strip lights, brick perimeter, narrow lawn and burgundy plants, wooden bench in the foreground, parked black SUV at right and distant city lights under a black sky. Keep every pitch boundary, pole, goal, net perspective, bench and SUV where it is. Lift the pitch and lawn shadows modestly, tame blown-out strip lights, remove sensor noise and improve clear natural detail while retaining genuine night darkness and warm lamp colours. Remove only the cropped incidental visitor at the very bottom-left; preserve the bench. Do not turn this into a stadium, enlarge the pitch, create extra lines, goals, floodlight towers or crowds, add signs, brighten the sky to daylight, or invent any amenity. No outpainting; no text overlay; no watermark. Output one polished portrait photograph with exactly the reference composition.",
+      "method": "built-in image_gen",
+      "output": "/workspace/scratch/1f6eb7b4e9cb/generated_images/exec-c81c11e8-fd55-459d-9637-4270ad41fbaa.png",
+      "status": "accepted; visual comparison completed",
+      "limits": "Generated retouching can reconstruct fine surface detail. Original files remain the authority; no new venue amenities are asserted."
+    }
+  ]
+}

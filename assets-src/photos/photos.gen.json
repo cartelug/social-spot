@@ -712,96 +712,116 @@
    "alt": "The football turf under floodlights at night, with the city lights behind",
    "crops": {
     "card": {
-     "w": 960,
-     "h": 640,
+     "w": 941,
+     "h": 627,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/turf-night-card-480.fb749eb3.avif"
+        "assets/photos/turf-night-card-480.99d97373.avif"
        ],
        [
-        960,
-        "assets/photos/turf-night-card-960.718f58cf.avif"
+        941,
+        "assets/photos/turf-night-card-941.522b2db5.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/turf-night-card-480.ed3ab155.jpg"
+        "assets/photos/turf-night-card-480.b29e6b8a.jpg"
        ],
        [
-        960,
-        "assets/photos/turf-night-card-960.9669dd0f.jpg"
+        941,
+        "assets/photos/turf-night-card-941.11398546.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAsAA4BaJagCdAEPPtPcgAD+GcSHAYZBleS6P9gtXfsaiSNqi5JXuOZ9bKan9y/XlCP3V4AAAA==",
-     "color": "#47411d"
+     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoQAAsAA4BaJbACdAEfaYbOpjAA/uxNSGGjI/pFSTb7LJ8U6kQUU7C5Mz4gERLAAAA=",
+     "color": "#49421b"
     },
     "band": {
-     "w": 1600,
-     "h": 533,
+     "w": 941,
+     "h": 313,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/turf-night-band-480.96b91221.avif"
+        "assets/photos/turf-night-band-480.49ba3576.avif"
        ],
        [
-        960,
-        "assets/photos/turf-night-band-960.157c5981.avif"
-       ],
-       [
-        1600,
-        "assets/photos/turf-night-band-1600.deb7e17c.avif"
+        941,
+        "assets/photos/turf-night-band-941.9c1151d8.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/turf-night-band-480.6c19f422.jpg"
+        "assets/photos/turf-night-band-480.f98744e3.jpg"
        ],
        [
-        960,
-        "assets/photos/turf-night-band-960.4698c209.jpg"
-       ],
-       [
-        1600,
-        "assets/photos/turf-night-band-1600.70c131f5.jpg"
+        941,
+        "assets/photos/turf-night-band-941.667edb8d.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAUAA4BaJagCdADp/Wj08AD+OjoE1M2R4nHnzCWmTnWsTSZoevKE4woZmAAA",
-     "color": "#4f4b1f"
+     "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoQAAUAA4BaJbACdAEN3QBGAAD+okriFy0xySdOz1exG9erPyfpvnPWCAA=",
+     "color": "#544c1f"
     },
     "tall": {
-     "w": 960,
-     "h": 1200,
+     "w": 941,
+     "h": 1176,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/turf-night-tall-480.807c509b.avif"
+        "assets/photos/turf-night-tall-480.c4241331.avif"
        ],
        [
-        960,
-        "assets/photos/turf-night-tall-960.91a575a1.avif"
+        941,
+        "assets/photos/turf-night-tall-941.3da6be1c.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/turf-night-tall-480.075f65be.jpg"
+        "assets/photos/turf-night-tall-480.5720879e.jpg"
        ],
        [
-        960,
-        "assets/photos/turf-night-tall-960.36429a57.jpg"
+        941,
+        "assets/photos/turf-night-tall-941.ed4cad48.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADwAQCdASoNABAAA4BaJZgC7ADz5pLALPgA/vhsV+KawdXZEoScxCl7nmYhu+/6+ngHtnP0RuAAAA==",
-     "color": "#312d17"
+     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAAAQAgCdASoNABAAA4BaJagC7AEO5EK+SlJAAP74SvgjM0BpLIfZF4Np99NlfnicfANzrwucgAA=",
+     "color": "#3c3517"
+    },
+    "full": {
+     "w": 941,
+     "h": 1672,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-night-full-480.3fe195d3.avif"
+       ],
+       [
+        941,
+        "assets/photos/turf-night-full-941.b9572191.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-night-full-480.3be01d6c.jpg"
+       ],
+       [
+        941,
+        "assets/photos/turf-night-full-941.797a5c5f.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRjgAAABXRUJQVlA4ICwAAACQAQCdASoJABAAA4BaJZgAAuTiTrAA/vkObYdXEnZx60q1AY/vKj/91+WAAA==",
+     "color": "#2b2713"
     }
    }
   },
@@ -1023,32 +1043,60 @@
    "alt": "The Social Spot entrance: the gate, the gatehouse and the paved courtyard",
    "crops": {
     "card": {
-     "w": 960,
-     "h": 720,
+     "w": 941,
+     "h": 706,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/entrance-card-480.f051c4a8.avif"
+        "assets/photos/entrance-card-480.2f3f8a1a.avif"
        ],
        [
-        960,
-        "assets/photos/entrance-card-960.b381b10d.avif"
+        941,
+        "assets/photos/entrance-card-941.0d073616.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/entrance-card-480.db6f350d.jpg"
+        "assets/photos/entrance-card-480.4174cc47.jpg"
        ],
        [
-        960,
-        "assets/photos/entrance-card-960.20df93af.jpg"
+        941,
+        "assets/photos/entrance-card-941.4503fdf3.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAQAgCdASoQAAwAA4BaJYgCdAD7VBlPvj4AAPKlgX2eBPKFIyQBBoknqJUs0rOuVJ7lHMqomyfIxQ8HhISQAAAA",
-     "color": "#8b7968"
+     "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAAAQAgCdASoQAAwAA4BaJQBOgBU90VU601wAAPulhzmIcwKa9bcTKONecfDmqiE0kkqBf043AVj0y6tk7lG4a1Bu0cPQdV7jogHyAAAA",
+     "color": "#807c67"
+    },
+    "full": {
+     "w": 941,
+     "h": 1672,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/entrance-full-480.e367949a.avif"
+       ],
+       [
+        941,
+        "assets/photos/entrance-full-941.743e33e1.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/entrance-full-480.4121d867.jpg"
+       ],
+       [
+        941,
+        "assets/photos/entrance-full-941.1fc607e6.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoJABAAA4BaJQBOgBuVc2a0AAD+s+wPnmN0qvIbpc2VB5qkMUE5bFGXGOQTnrrXXa4crAKLlMDOSP3Ro48LdgAA",
+     "color": "#878378"
     }
    }
   },
@@ -1089,40 +1137,148 @@
    "alt": "The Social Spot building by day: four floors of balconies above the terrace",
    "crops": {
     "band": {
-     "w": 1600,
-     "h": 533,
+     "w": 1086,
+     "h": 362,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/building-day-band-480.9fda2ab5.avif"
+        "assets/photos/building-day-band-480.8720607e.avif"
        ],
        [
         960,
-        "assets/photos/building-day-band-960.6a49415e.avif"
+        "assets/photos/building-day-band-960.625dc3f9.avif"
        ],
        [
-        1600,
-        "assets/photos/building-day-band-1600.d94d7003.avif"
+        1086,
+        "assets/photos/building-day-band-1086.038f28d1.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/building-day-band-480.ef071999.jpg"
+        "assets/photos/building-day-band-480.977aadf6.jpg"
        ],
        [
         960,
-        "assets/photos/building-day-band-960.ad5c60a6.jpg"
+        "assets/photos/building-day-band-960.062be017.jpg"
        ],
        [
-        1600,
-        "assets/photos/building-day-band-1600.aebb9aa3.jpg"
+        1086,
+        "assets/photos/building-day-band-1086.83287b43.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoQAAUAA4BaJYgCdADhgbvjQAD7ja5KonH6UVvAuzN6ke/ZnUB+A/poAAA=",
-     "color": "#728199"
+     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAACQAQCdASoQAAUAA4BaJZQCw7CCbOAA/LJ0bwfuHyE5s3F6K+rG6joj6707DbDGY2lCsZzjAAA=",
+     "color": "#6d717b"
+    },
+    "card": {
+     "w": 1086,
+     "h": 815,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/building-day-card-480.182b44ad.avif"
+       ],
+       [
+        960,
+        "assets/photos/building-day-card-960.5da2d12a.avif"
+       ],
+       [
+        1086,
+        "assets/photos/building-day-card-1086.97b74ede.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/building-day-card-480.db56b5bb.jpg"
+       ],
+       [
+        960,
+        "assets/photos/building-day-card-960.7f7e96cd.jpg"
+       ],
+       [
+        1086,
+        "assets/photos/building-day-card-1086.94d43efe.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAQCdASoQAAwAA4BaJQBOgBZxDBcfKAD9+uWBRqQJEhg9ctYueNxDUPpl7XSVOEICy/Pz3D3yh/wm7qKVAl7zFWAAAA==",
+     "color": "#717782"
+    },
+    "tall": {
+     "w": 1086,
+     "h": 1358,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/building-day-tall-480.bc336352.avif"
+       ],
+       [
+        960,
+        "assets/photos/building-day-tall-960.6bfb811c.avif"
+       ],
+       [
+        1086,
+        "assets/photos/building-day-tall-1086.7a094ba7.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/building-day-tall-480.0a8a71ad.jpg"
+       ],
+       [
+        960,
+        "assets/photos/building-day-tall-960.022665ec.jpg"
+       ],
+       [
+        1086,
+        "assets/photos/building-day-tall-1086.8382ee6f.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAQAgCdASoNABAAA4BaJbACdAEf0LgMY14AAOGvklmHfXarWZgNjDxjpEd7ADtXJUhoNTptBAeJ3lDw1LFIyYBm3KBzXnCxwQLrUd5yOboAAA==",
+     "color": "#6d7b8f"
+    },
+    "full": {
+     "w": 1086,
+     "h": 1448,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/building-day-full-480.0b121d32.avif"
+       ],
+       [
+        960,
+        "assets/photos/building-day-full-960.6ee48379.avif"
+       ],
+       [
+        1086,
+        "assets/photos/building-day-full-1086.96fd6ad3.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/building-day-full-480.96d7998d.jpg"
+       ],
+       [
+        960,
+        "assets/photos/building-day-full-960.6c3fd4bc.jpg"
+       ],
+       [
+        1086,
+        "assets/photos/building-day-full-1086.90f37d2a.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAwAgCdASoMABAAA4BaJbACdAEVHoElPB3AAADK1FKFmnVbPI7MT3fq3rpdo1/UnfJwTRgWY5NDJ9S0B9k2fKZ1j57xEQcT4AA=",
+     "color": "#6c7c94"
     }
    }
   },
@@ -1364,60 +1520,88 @@
    "alt": "Football on the big screen inside the Social Spot bar",
    "crops": {
     "card": {
-     "w": 960,
-     "h": 640,
+     "w": 941,
+     "h": 627,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/match-viewing-card-480.faeac99b.avif"
+        "assets/photos/match-viewing-card-480.16af3cde.avif"
        ],
        [
-        960,
-        "assets/photos/match-viewing-card-960.3add9b4f.avif"
+        941,
+        "assets/photos/match-viewing-card-941.497c0029.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/match-viewing-card-480.0a452601.jpg"
+        "assets/photos/match-viewing-card-480.a6e8ddda.jpg"
        ],
        [
-        960,
-        "assets/photos/match-viewing-card-960.b60eb2c5.jpg"
+        941,
+        "assets/photos/match-viewing-card-941.400995f9.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAsAA4BaJZgC7AEO+RiENgAA/vWA0KG0iAhk55cfzjDLV6744V+FBpSp/naseLaJRm25bSDY/VKiwAA=",
-     "color": "#333e39"
+     "lqip": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADwAQCdASoQAAsAA4BaJZACdAEO/u/JnwAA/vK7BvNLG4ed3fZKYCDp1850Z224cRQBPtJvxFj6zQ5frXAAAA==",
+     "color": "#393c2c"
     },
     "tall": {
-     "w": 960,
-     "h": 1200,
+     "w": 941,
+     "h": 1177,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/match-viewing-tall-480.4744d44d.avif"
+        "assets/photos/match-viewing-tall-480.247eec76.avif"
        ],
        [
-        960,
-        "assets/photos/match-viewing-tall-960.e8cc64d5.avif"
+        941,
+        "assets/photos/match-viewing-tall-941.54391482.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/match-viewing-tall-480.da0db45a.jpg"
+        "assets/photos/match-viewing-tall-480.eadc8d76.jpg"
        ],
        [
-        960,
-        "assets/photos/match-viewing-tall-960.f482b655.jpg"
+        941,
+        "assets/photos/match-viewing-tall-941.7897c16f.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoNABAAA4BaJYwCdIExGXz/7qoAAP7vkgZwHXnqrbCwuHZQOmNYBmR3Z9FNHzwUe8hF+D0cvaK82MKqcDrAAA==",
-     "color": "#30342e"
+     "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoNABAAA4BaJQBOgCPSVN/+dOAA/un/2ulUjMV+bsuAd7lDFEzTviCtRnOxPDBKglnF8HhuZfbffbZAAAA=",
+     "color": "#343224"
+    },
+    "full": {
+     "w": 941,
+     "h": 1672,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/match-viewing-full-480.72b6d1b2.avif"
+       ],
+       [
+        941,
+        "assets/photos/match-viewing-full-941.bcc23622.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/match-viewing-full-480.3d87fa58.jpg"
+       ],
+       [
+        941,
+        "assets/photos/match-viewing-full-941.1f862474.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADwAQCdASoJABAAA4BaJYgCdAEO433rg7AA/b64sxF/PO5Bo3Uyg03vqWmDROK1HGCEzAQAAAA=",
+     "color": "#453e2c"
     }
    }
   },

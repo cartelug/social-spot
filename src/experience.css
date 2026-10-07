@@ -339,6 +339,12 @@ body { background: var(--ink); font-size: 17px; line-height: 1.6; }
   .hero-bottom .motion-symbol { display: none; }
 }
 html[data-motion-off] { scroll-behavior: auto; }
+.visit-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-block: 6px; }
+.visit-tags span { border: 1px solid var(--line); border-radius: 100px; padding: 8px 12px; font-size: 12px; line-height: 1.4; color: var(--muted); }
+.visit-help { border-top: 1px solid var(--line); }
+.visit-help .btn { align-self: flex-start; }
+.visit-help details.faq p { font-size: 15px; line-height: 1.7; }
+@media(min-width:900px) { .gallery .shot:nth-last-child(-n+6):nth-child(n+6) { grid-column: span 2; } }
 html[data-motion-off] *, html[data-motion-off] *::before, html[data-motion-off] *::after { animation: none !important; transition: none !important; }
 html[data-motion-off] .rv { opacity: 1; transform: none; clip-path: none; }
 @media(prefers-reduced-motion:reduce) {

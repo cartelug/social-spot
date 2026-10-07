@@ -342,11 +342,8 @@
    }
   },
   "turf-night": {
-   "src": "IMG_4766.HEIC",
+   "src": "turf-night-restored-v2.jpg",
    "alt": "The football turf under floodlights at night, with the city lights behind",
-   "adjust": {
-    "brightness": 1.2
-   },
    "crops": {
     "card": {
      "ratio": [
@@ -354,12 +351,13 @@
       2
      ],
      "focus": [
-      0.4,
-      0.8
+      0.5,
+      0.66
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
      ]
     },
     "band": {
@@ -368,8 +366,13 @@
       1
      ],
      "focus": [
-      0.4,
-      0.78
+      0.5,
+      0.66
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     },
     "tall": {
@@ -383,9 +386,30 @@
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      941,
+      1672
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     }
+   },
+   "provenance": {
+    "type": "reference-restoration",
+    "source": "IMG_4766.HEIC",
+    "promptFile": "supporting-prompts-v2.json"
    }
   },
   "gym": {
@@ -500,7 +524,7 @@
    }
   },
   "entrance": {
-   "src": "IMG_2465.HEIC",
+   "src": "entrance-restored-v2.jpg",
    "alt": "The Social Spot entrance: the gate, the gatehouse and the paved courtyard",
    "crops": {
     "card": {
@@ -510,13 +534,34 @@
      ],
      "focus": [
       0.5,
-      0.6
+      0.43
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      941,
+      1672
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     }
+   },
+   "provenance": {
+    "type": "reference-restoration",
+    "source": "IMG_2465.HEIC",
+    "promptFile": "supporting-prompts-v2.json"
    }
   },
   "parking": {
@@ -540,7 +585,7 @@
    }
   },
   "building-day": {
-   "src": "IMG_7665.HEIC",
+   "src": "building-restored-v2.jpg",
    "alt": "The Social Spot building by day: four floors of balconies above the terrace",
    "crops": {
     "band": {
@@ -549,10 +594,65 @@
       1
      ],
      "focus": [
-      0.55,
-      0.3
+      0.53,
+      0.54
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "card": {
+     "ratio": [
+      4,
+      3
+     ],
+     "focus": [
+      0.53,
+      0.55
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.52,
+      0.55
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      1086,
+      1448
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     }
+   },
+   "provenance": {
+    "type": "reference-restoration",
+    "source": "IMG_7665.HEIC",
+    "promptFile": "supporting-prompts-v2.json"
    }
   },
   "penthouse": {
@@ -753,7 +853,7 @@
    }
   },
   "match-viewing": {
-   "src": "IMG_4765.jpg",
+   "src": "bar-screen-restored-v2.jpg",
    "alt": "Football on the big screen inside the Social Spot bar",
    "crops": {
     "card": {
@@ -767,7 +867,8 @@
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
      ]
     },
     "tall": {
@@ -781,9 +882,30 @@
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      941,
+      1672
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     }
+   },
+   "provenance": {
+    "type": "reference-restoration",
+    "source": "IMG_4765.jpg",
+    "promptFile": "supporting-prompts-v2.json"
    }
   }
  }

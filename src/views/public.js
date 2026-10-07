@@ -135,6 +135,8 @@ route('/', async (_p, ctx) => {
     ['main-peak', 'Big nights', `${ev.name}, ${fmtDate(ev.date, { noDow: true })}`],
     ['terrace', 'Room for your people', 'Tables, lounges & celebrations'],
     ['sauna-detail', 'Steam & sauna', 'Wellness detail · illustrative'],
+    ['building-day', 'Your spot in Akright', 'Balconies above the terrace'],
+    ['match-viewing', 'Match-day company', 'Football on the bar screen'],
   ].filter(([id]) => hasPhoto(id));
   return {
     title: '',
@@ -195,18 +197,24 @@ route('/', async (_p, ctx) => {
 
     ${when(hasPhoto('penthouse'), () => html`<section class="section space-stories" aria-labelledby="spaces-h"><div class="wrap">
       <article class="space-story">
+        <figure>${photo('building-day', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>The Social Spot building, looking up from the terrace.</figcaption></figure>
+        <div class="space-story-copy"><p class="eyebrow red">04 / One spot. Plenty of reasons.</p><h2 class="h1" id="spaces-h">Make a day<br>of it.</h2><p class="lead">A game on the turf. Time in the gym. A table with your people. Find us next to Elite High School in Akright City, Bwebajja, and choose the pace that suits you.</p>
+          <div class="visit-tags"><span>Turf & fitness</span><span>Tables & good company</span><span>Penthouse stays</span></div>
+          <a class="btn line" href="#visit-h">Plan your arrival ${icon('arrow')}</a></div>
+      </article>
+      <article class="space-story reverse">
         <figure>${photo('penthouse', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>The penthouse dining space and balcony. The view is part of the stay.</figcaption></figure>
-        <div class="space-story-copy"><p class="eyebrow red">04 / Make yourself at home</p><h2 class="h1" id="spaces-h">Upstairs.<br>Unhurried.</h2><p class="lead">Stay a little longer. Choose a room or reserve the full penthouse floor, with space to gather and balconies overlooking Akright City.</p>
+        <div class="space-story-copy"><p class="eyebrow red">Make yourself at home</p><h2 class="h1">Upstairs.<br>Unhurried.</h2><p class="lead">Stay a little longer. Choose a room or reserve the full penthouse floor, with space to gather and balconies overlooking Akright City.</p>
           <ul>${a.penthouse.packages.slice(0, 3).map((p) => html`<li><b>${p.name}</b> · ${money(p.price, 'USD')} / night</li>`)}</ul>
           <a class="btn line" href="/book/penthouse">Explore your stay ${icon('arrow')}</a></div>
       </article>
-      <article class="space-story reverse">
+      <article class="space-story">
         <figure>${photo('gym', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>The Social Spot gym. Cardio, strength and room to move.</figcaption></figure>
         <div class="space-story-copy"><p class="eyebrow red">Move. Unwind. Repeat.</p><h2 class="h1">A little time<br>for yourself.</h2><p class="lead">Make a workout part of your day, or book a steam and sauna session. A day pass makes it easy to start; monthly options make it a routine.</p>
           <ul><li><b>Gym day pass</b> · ${fmtUGX(plan('gym-day').price)}</li><li><b>Steam & sauna</b> · ${fmtUGX(a.sauna.adult)} per adult</li><li><b>Gym & sauna, monthly</b> · ${fmtUGX(plan('gs-month').price)}</li></ul>
           <div class="row"><a class="btn line" href="/book/gym">Choose a gym pass ${icon('arrow')}</a><a class="btn glass" href="/book/sauna">Steam & sauna ${icon('arrow')}</a></div></div>
       </article>
-      ${when(hasPhoto('match-viewing'), () => html`<article class="space-story">
+      ${when(hasPhoto('match-viewing'), () => html`<article class="space-story reverse">
         <figure>${photo('match-viewing', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>Football on the screen inside the Social Spot bar.</figcaption></figure>
         <div class="space-story-copy"><p class="eyebrow red">Bring the whole table</p><h2 class="h1">Big screen.<br>Good company.</h2><p class="lead">Come for the football. Stay for the food, drinks and company. Reserve a table for your group and call us to check the match programme.</p>
           <a class="btn line" href="/book/table">Reserve your table ${icon('arrow')}</a></div>
@@ -245,6 +253,17 @@ route('/', async (_p, ctx) => {
         <h3 class="h4">Weekly times</h3>
         ${kv([['Gym, mornings', `${fmtTime(gym.sessions[0].from)} – ${fmtTime(gym.sessions[0].to)}`], ['Gym, evenings', `${fmtTime(gym.sessions[1].from)} – ${fmtTime(gym.sessions[1].to)}`], ['Open soccer', 'Wed – Fri, 7 – 11 PM'], ['Quiz Night', `Saturdays, ${fmtTime(a.quiz.time)}`], ['Family Dinner', 'Sundays']])}
         <p class="hint">For anything else, call us before you set off.</p>
+      </div>
+    </div></section>
+
+    <section class="section visit-help" aria-labelledby="help-h"><div class="wrap split even">
+      <div class="stack" style="--gap:18px"><p class="eyebrow red">Before you set off</p><h2 class="h1" id="help-h">A good visit<br>starts here.</h2><p class="lead">Pick your activity, check the time and bring your people. Call us if you need help choosing.</p><a class="btn line" href="${telHref()}">${icon('phone')}Talk to Social Spot</a></div>
+      <div class="stack" style="--gap:12px">
+        <details class="faq"><summary>How do I reserve?</summary><p>${app.offline ? html`Call <a href="${telHref()}">${s.venue.phone}</a> with your activity, preferred date and group size. Our team will confirm the arrangements.` : html`Choose your activity on the <a href="/book">booking page</a>, or call our team for help with your plans.`}</p></details>
+        <details class="faq"><summary>Where is the entrance?</summary><p>Find us ${s.venue.landmark.toLowerCase()}, in ${s.venue.area}. The gate and parking photos above show the arrival area. Call if you need help finding us.</p></details>
+        <details class="faq"><summary>Can I come for a workout?</summary><p>A gym day pass is ${fmtUGX(plan('gym-day').price)}. Morning sessions run ${fmtTime(gym.sessions[0].from)}–${fmtTime(gym.sessions[0].to)}; evening sessions run ${fmtTime(gym.sessions[1].from)}–${fmtTime(gym.sessions[1].to)}. <a href="/book/gym">See the gym options</a>.</p></details>
+        <details class="faq"><summary>What should I check for a group visit?</summary><p>Call with your date, arrival time, activity and group size. For football screenings, ask our team which matches are showing. <a href="/book/table">Table reservations</a> are free; food and drinks are bought on the day.</p></details>
+        <details class="faq"><summary>Can we stay upstairs?</summary><p>Choose from the <a href="/book/penthouse">penthouse packages</a>, from ${money(Math.min(...a.penthouse.packages.map((p) => p.price)), 'USD')} per night. Contact our team to confirm the package and dates for your stay.</p></details>
       </div>
     </div></section>
 

@@ -11,7 +11,10 @@ fake luxury finishes, enlarged facilities and sharpening halos.
 | Football turf / kids soccer | IMG_0904 | Restore only a locked crop of the real pitch; retain enclosure, goals, planting and scale |
 | Penthouse | Recovered IMG_2419 | Restore real dining/balcony view, preserving marble, checkerboard tiles and gorilla pendant |
 | Tables / terrace | IMG_7677 | Restore the existing terrace layout and white lounge furniture |
-| Match viewing | IMG_4765 | Responsive crops of the original bar and screen |
+| Match viewing | IMG_4765 | Source-based bar/screen restoration; no future fixture or score claim depends on reconstructed details |
+| Building | IMG_7665 | Restore existing facade, floors, balconies and terrace; preserve the partially visible sign |
+| Entrance | IMG_2465 | Improve arrival recognition, remove incidental visitors, retain gate/gatehouse/courtyard geometry |
+| Night turf | IMG_4766 | Restore genuine night detail; retain pitch enclosure, goal, bench and parking context |
 | Steam & sauna | No room reference in the supplied archive | A clearly labelled illustrative wellness detail; never depict an invented sauna room as the venue |
 | Nightlife, entrance and parking | Existing originals | Keep the real photography already used on the website |
 

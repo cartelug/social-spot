@@ -25,7 +25,7 @@ The website files are already built. Run `npm install && npm run build` only aft
 
 ## Photos
 
-Phone originals (HEIC or JPEG, as they come off the phone) live in `assets-src/photos/originals/`, never in `assets/`, so they aren't published. `assets-src/photos/photos.json` says which ones the site uses, their alt text and how each is cropped (shape and focus point).
+Phone originals (HEIC or JPEG, as they come off the phone) live in `assets-src/photos/originals/`; the website components consume derivatives from `assets/photos/`. The Node server excludes source originals from its public allowlist. Tracked originals remain accessible in a public GitHub repository, and static-host publication must be reviewed separately. `assets-src/photos/photos.json` says which ones the site uses, their alt text and how each is cropped (shape and focus point).
 
 To add or change a photo, drop the original in `originals/`, edit `photos.json`, then:
 
@@ -37,7 +37,7 @@ npm run build
 
 That writes AVIF and JPEG copies at a few widths to `assets/photos/` with GPS and camera details removed, a tiny blurred placeholder for each, and the share image `assets-src/og.jpg`. Pages pick the right size and format for each screen and load photos only as you scroll to them.
 
-Still to shoot: steam & sauna, the penthouse inside and its views, kids soccer, food and drinks. Until then those cards show the logo.
+The gym, turf, penthouse dining/balcony, terrace, bar screen, building and entrance now use source-based restored venue photography. Originals and final prompts are preserved in `assets-src/photos/`. The sauna macro is visibly labelled illustrative. Still to shoot: the real sauna interior, each bedroom/bathroom, consented kids-soccer sessions, plated food and drinks. See `docs/Social_Spot_Completion_Plan.md` for the full completion blueprint.
 
 ## Go-live checklist (Founders opens Mon 12 Oct)
 
