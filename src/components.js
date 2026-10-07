@@ -12,6 +12,7 @@ export const money = (n, cur = 'UGX') => fmtMoney(n, cur);
 const PHONE = '(max-width: 699px)';
 const srcset = (list) => list.map(([w, f]) => `${f} ${w}w`).join(', ');
 export const hasPhoto = (id) => Boolean(app.assets.photos && app.assets.photos[id]);
+export const photoNote = (id) => hasPhoto(id) && app.assets.photos[id].note ? html`<small class="photo-note">${app.assets.photos[id].note}</small>` : '';
 export function photo(id, crop, { mobile = '', sizes = '100vw', eager = false, cls = '', alt } = {}) {
   const p = hasPhoto(id) && app.assets.photos[id];
   const c = p && p.crops[crop];

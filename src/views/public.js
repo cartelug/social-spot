@@ -1,5 +1,6 @@
 import { app, html, raw, icon, when, rpc, route, navigate, render, on, toast, dialog, act, errText, copyText, waShare, countdownHtml, refreshSite, formValues, busy, rootEl, linkify, absUrl } from '../core.js';
-import { contactFields, payPanel, statusHead, stubHtml, kv, money, photo, hasPhoto, photoOrTile, turfPhotoId } from '../components.js';
+import { contactFields, payPanel, statusHead, stubHtml, kv, money, photo, hasPhoto, photoOrTile, photoNote, turfPhotoId } from '../components.js';
+import { mountPhotoViewer } from '../photo-viewer.js';
 import { fillQrs } from '../qr.js';
 import { fmtDate, fmtTime, fmtUGX, eatStampToMs, DOW, dowOf, addDays } from '../../shared/util.js';
 
@@ -129,9 +130,11 @@ route('/', async (_p, ctx) => {
     ['sunset-arrival', 'Golden hour', 'Sun going down over the terrace'],
     ['turf-night', 'Under the lights', `Night games from ${fmtTime(a.turf.nightFrom)}`],
     ['gym', 'The gym', 'Classes every day'],
-    ['golden-hour', 'Tables & lounges', 'Family Dinner every Sunday'],
+    ['penthouse', 'Penthouse views', 'Dining space & balcony views'],
     ['quiz-sheet', 'Quiz Night', `Every Saturday, ${fmtTime(a.quiz.time)}`],
     ['main-peak', 'Big nights', `${ev.name}, ${fmtDate(ev.date, { noDow: true })}`],
+    ['terrace', 'Room for your people', 'Tables, lounges & celebrations'],
+    ['sauna-detail', 'Steam & sauna', 'Wellness detail · illustrative'],
   ].filter(([id]) => hasPhoto(id));
   return {
     title: '',
@@ -165,8 +168,8 @@ route('/', async (_p, ctx) => {
     ${when(shots.length >= 4, () => html`<section class="section gallery-sec" aria-labelledby="spot-h">
       <div class="wrap"><div class="sec-head row between"><div><p class="eyebrow red">01 / A place for your people</p><h2 class="h1" id="spot-h">Day to night.<br>One address.</h2></div>
         <p class="muted sec-aside">A turf, a gym, a terrace and a penthouse on one compound in Akright City.</p></div></div>
-      <div class="gallery" role="list">${shots.map(([id, t, sub], i) => html`<figure class="shot ${i === 0 ? 'big' : ''}" role="listitem">${i >= 5 && hasPhoto(id) && app.assets.photos[id].crops.band ? photo(id, 'band', { mobile: 'tall', sizes: '(min-width: 900px) 600px, 78vw' }) : photo(id, 'tall', { sizes: i === 0 ? '(min-width: 900px) 600px, 78vw' : '(min-width: 900px) 300px, 78vw' })}<figcaption><b>${t}</b><span>${sub}</span></figcaption></figure>`)}</div>
-      <p class="wrap swipe-hint tiny dim">Swipe for more</p>
+      <div class="gallery" role="list">${shots.map(([id, t, sub], i) => html`<figure class="shot ${i === 0 ? 'big' : ''}" role="listitem">${i >= 5 && hasPhoto(id) && app.assets.photos[id].crops.band ? photo(id, 'band', { mobile: 'tall', sizes: '(min-width: 900px) 600px, 78vw' }) : photo(id, 'tall', { sizes: i === 0 ? '(min-width: 900px) 600px, 78vw' : '(min-width: 900px) 300px, 78vw' })}<figcaption><b>${t}</b><span>${sub}</span></figcaption><button type="button" class="photo-open" data-photo-open="${id}" data-photo-title="${t}" aria-label="View ${t} photo"><span aria-hidden="true">↗</span></button></figure>`)}</div>
+      <p class="wrap swipe-hint tiny dim">Swipe to explore · Tap a photo to view</p>
     </section>`)}
 
     <section class="section programme-section" aria-labelledby="week-h"><div class="wrap stack" style="--gap:28px">
@@ -183,12 +186,32 @@ route('/', async (_p, ctx) => {
       <div class="grid cards" style="--min:300px;--gap:20px">
         ${amenityCard(nightTurf ? 'turf-night' : 'turf-day', 'Football turf', `From ${fmtUGX(a.turf.dayRate)} / hr`, 'Hire the turf by the hour for your team or your company.', [[`Day, until ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.dayRate)} / hr`], [`Night, from ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.nightRate)} / hr`], ['Open sessions, Wed–Fri 7–11 PM', `${fmtUGX(a.turf.adultPerPerson)} / person`]], '/book/turf', 'Book the turf')}
         ${amenityCard('gym', 'Gym', `Day pass ${fmtUGX(plan('gym-day').price)}`, `Classes every day. Mornings ${fmtTime(gym.sessions[0].from)}–${fmtTime(gym.sessions[0].to)}, evenings ${fmtTime(gym.sessions[1].from)}–${fmtTime(gym.sessions[1].to)}.`, [['Day pass', fmtUGX(plan('gym-day').price)], ['Monthly', fmtUGX(plan('gym-month').price)], ['Gym & sauna, monthly', fmtUGX(plan('gs-month').price)]], '/book/gym', 'Get a gym pass')}
-        ${amenityCard('', 'Steam & sauna', `Adults ${fmtUGX(a.sauna.adult)}`, 'Book a slot, walk in, switch off.', [['Adults', fmtUGX(a.sauna.adult)], ['Kids', fmtUGX(a.sauna.kid)]], '/book/sauna', 'Book a session')}
-        ${amenityCard('sunset-arrival', 'Penthouse', `From ${money(Math.min(...a.penthouse.packages.map((p) => p.price)), 'USD')} / night`, 'Five ways to stay, from a single room to the full floor with every balcony.', a.penthouse.packages.slice(0, 3).map((p) => [p.name, `${money(p.price, 'USD')} / night`]), '/book/penthouse', 'Request a stay')}
-        ${amenityCard('', 'Kids soccer', `From ${fmtUGX(a.kids.kidsOnly)}`, 'Saturday training on the turf.', [['With a coach', fmtUGX(a.kids.withCoach)], ['Kids only', fmtUGX(a.kids.kidsOnly)]], '/book/kids', 'Book a Saturday')}
-        ${amenityCard('golden-hour', 'Tables & Family Dinner', 'Free to reserve', `Sundays are Family Dinner Day. Fridays are Bucket Night: ${a.bucketNight.offer}.`, [['Table reservation', 'Free'], ['Food and drinks', 'Bought on the day']], '/book/table', 'Reserve a table')}
+        ${amenityCard('sauna-detail', 'Steam & sauna', `Adults ${fmtUGX(a.sauna.adult)}`, 'Book a slot, walk in, switch off.', [['Adults', fmtUGX(a.sauna.adult)], ['Kids', fmtUGX(a.sauna.kid)]], '/book/sauna', 'Book a session')}
+        ${amenityCard('penthouse', 'Penthouse', `From ${money(Math.min(...a.penthouse.packages.map((p) => p.price)), 'USD')} / night`, 'Five ways to stay, from a single room to the full floor with every balcony.', a.penthouse.packages.slice(0, 3).map((p) => [p.name, `${money(p.price, 'USD')} / night`]), '/book/penthouse', 'Request a stay')}
+        ${amenityCard('turf-day', 'Kids soccer', `From ${fmtUGX(a.kids.kidsOnly)}`, 'Saturday training on the turf.', [['With a coach', fmtUGX(a.kids.withCoach)], ['Kids only', fmtUGX(a.kids.kidsOnly)]], '/book/kids', 'Book a Saturday')}
+        ${amenityCard('terrace', 'Tables & Family Dinner', 'Free to reserve', `Sundays are Family Dinner Day. Fridays are Bucket Night: ${a.bucketNight.offer}.`, [['Table reservation', 'Free'], ['Food and drinks', 'Bought on the day']], '/book/table', 'Reserve a table')}
       </div>
     </div></section>
+
+    ${when(hasPhoto('penthouse'), () => html`<section class="section space-stories" aria-labelledby="spaces-h"><div class="wrap">
+      <article class="space-story">
+        <figure>${photo('penthouse', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>The penthouse dining space and balcony. The view is part of the stay.</figcaption></figure>
+        <div class="space-story-copy"><p class="eyebrow red">04 / Make yourself at home</p><h2 class="h1" id="spaces-h">Upstairs.<br>Unhurried.</h2><p class="lead">Stay a little longer. Choose a room or reserve the full penthouse floor, with space to gather and balconies overlooking Akright City.</p>
+          <ul>${a.penthouse.packages.slice(0, 3).map((p) => html`<li><b>${p.name}</b> · ${money(p.price, 'USD')} / night</li>`)}</ul>
+          <a class="btn line" href="/book/penthouse">Explore your stay ${icon('arrow')}</a></div>
+      </article>
+      <article class="space-story reverse">
+        <figure>${photo('gym', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>The Social Spot gym. Cardio, strength and room to move.</figcaption></figure>
+        <div class="space-story-copy"><p class="eyebrow red">Move. Unwind. Repeat.</p><h2 class="h1">A little time<br>for yourself.</h2><p class="lead">Make a workout part of your day, or book a steam and sauna session. A day pass makes it easy to start; monthly options make it a routine.</p>
+          <ul><li><b>Gym day pass</b> · ${fmtUGX(plan('gym-day').price)}</li><li><b>Steam & sauna</b> · ${fmtUGX(a.sauna.adult)} per adult</li><li><b>Gym & sauna, monthly</b> · ${fmtUGX(plan('gs-month').price)}</li></ul>
+          <div class="row"><a class="btn line" href="/book/gym">Choose a gym pass ${icon('arrow')}</a><a class="btn glass" href="/book/sauna">Steam & sauna ${icon('arrow')}</a></div></div>
+      </article>
+      ${when(hasPhoto('match-viewing'), () => html`<article class="space-story">
+        <figure>${photo('match-viewing', 'card', { mobile: 'tall', sizes: '(min-width: 900px) 580px, 100vw' })}<figcaption>Football on the screen inside the Social Spot bar.</figcaption></figure>
+        <div class="space-story-copy"><p class="eyebrow red">Bring the whole table</p><h2 class="h1">Big screen.<br>Good company.</h2><p class="lead">Come for the football. Stay for the food, drinks and company. Reserve a table for your group and call us to check the match programme.</p>
+          <a class="btn line" href="/book/table">Reserve your table ${icon('arrow')}</a></div>
+      </article>`)}
+    </div></section>`)}
 
     <section class="section band quiz-sec" aria-labelledby="quiz-h"><div class="wrap quiz-band">
       <div class="stack" style="--gap:16px"><p class="eyebrow red">Every Saturday</p><h2 class="display sm" id="quiz-h">Quiz Night</h2>
@@ -227,6 +250,7 @@ route('/', async (_p, ctx) => {
 
     <div class="sticky-cta" data-sticky><p class="from">${ev.name}${when(fp, () => html`<b class="num">${fmtUGX(fp.price)}</b>`)}</p><div class="row" style="--gap:8px;flex-wrap:nowrap"><a class="btn line sm" href="/book">Book</a><a class="btn sm glow" href="/replay#tickets">Tickets</a></div></div>`,
     mount(root) {
+      mountPhotoViewer(root, ctx);
       on(root, 'click', '[data-copy]', (b) => copyText(b.dataset.copy, b));
       const sticky = root.querySelector('[data-sticky]');
       const hero = root.querySelector('.hero');
@@ -240,7 +264,7 @@ route('/', async (_p, ctx) => {
 });
 const CARD_SIZES = '(min-width: 1240px) 380px, (min-width: 700px) 45vw, 100vw';
 function amenityCard(photoId, name, tag, text, prices, href, cta) {
-  return html`<article class="amenity"><a class="amenity-media" href="${href}" tabindex="-1" aria-hidden="true">${photoOrTile(photoId, 'card', { sizes: CARD_SIZES, alt: '' })}<span class="price-tag">${tag}</span></a><h3 class="h3">${name}</h3><p class="muted small">${text}</p>
+  return html`<article class="amenity"><a class="amenity-media" href="${href}" tabindex="-1" aria-hidden="true">${photoOrTile(photoId, 'card', { sizes: CARD_SIZES, alt: '' })}<span class="price-tag">${tag}</span></a>${photoNote(photoId)}<h3 class="h3">${name}</h3><p class="muted small">${text}</p>
     <div class="prices">${prices.map(([k, v]) => html`<div><span>${k}</span><span>${v}</span></div>`)}</div>
     <a class="btn line sm" href="${href}">${cta} ${icon('arrow')}</a></article>`;
 }

@@ -43,8 +43,8 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / 'assets-src' / 'photos'
 OUT = ROOT / 'assets' / 'photos'
 DEFAULT_WIDTHS = [480, 960, 1600]
-AVIF_QUALITY = 52
-JPEG_QUALITY = 74
+AVIF_QUALITY = 62
+JPEG_QUALITY = 84
 
 
 def load(name, adjust):
@@ -115,18 +115,37 @@ def og_image(base, spec):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--sheet', help='also write a contact sheet of every crop to this file')
+    ap.add_argument('--only', nargs='+', help='rebuild selected photo IDs, keeping all other crops intact')
     args = ap.parse_args()
 
     manifest = json.loads((SRC / 'photos.json').read_text())
-    shutil.rmtree(OUT, ignore_errors=True)
-    OUT.mkdir(parents=True)
-    result, sheet, total = {}, [], 0
+    selected = set(args.only or manifest['photos'])
+    unknown = selected - manifest['photos'].keys()
+    if unknown:
+        sys.exit('Unknown photo IDs: ' + ', '.join(sorted(unknown)))
+    prior = SRC / 'photos.gen.json'
+    result = json.loads(prior.read_text())['photos'] if args.only and prior.exists() else {}
+    if not args.only:
+        shutil.rmtree(OUT, ignore_errors=True)
+    OUT.mkdir(parents=True, exist_ok=True)
+    sheet, total, file_count = [], 0, 0
     for pid, p in manifest['photos'].items():
+        if pid not in selected:
+            continue
         base = load(p['src'], p.get('adjust', {}))
+        # Remove only the previously generated files for this photo. Similar
+        # names (e.g. gym and gym-detail) must never remove each other's crops.
+        previous = result.get(pid, {})
+        for crop in previous.get('crops', {}).values():
+            for variants in crop['files'].values():
+                for _, path in variants:
+                    (ROOT / path).unlink(missing_ok=True)
         crops = {}
         for cname, spec in p['crops'].items():
             im = base.crop(crop_box(base.size, spec))
-            widths = [w for w in spec.get('widths', DEFAULT_WIDTHS) if w <= im.width] or [im.width]
+            # Keep a native-resolution final variant when a requested width
+            # exceeds the source (941px restorations still deserve more than 480px).
+            widths = sorted({min(w, im.width) for w in spec.get('widths', DEFAULT_WIDTHS)})
             files = {'avif': [], 'jpg': []}
             for w in widths:
                 h = round(im.height * w / im.width)
@@ -134,17 +153,18 @@ def main():
                 for fmt in files:
                     data = encode(small, fmt)
                     total += len(data)
+                    file_count += 1
                     files[fmt].append([w, write(data, f'{pid}-{cname}-{w}', fmt)])
             lqip, color = placeholder(im)
             top = widths[-1]
             crops[cname] = {'w': top, 'h': round(im.height * top / im.width), 'files': files, 'lqip': lqip, 'color': color}
             sheet.append((f'{pid}/{cname}', im))
-        result[pid] = {'alt': p['alt'], 'crops': crops}
+        result[pid] = {'alt': p['alt'], 'crops': crops, **({'note': p['note']} if p.get('note') else {})}
         print(f'{pid:14} {p["src"]:15} ' + ', '.join(f'{c} {v["w"]}x{v["h"]}' for c, v in crops.items()))
         if manifest.get('og', {}).get('photo') == pid:
             og_image(base, manifest['og'])
     (SRC / 'photos.gen.json').write_text(json.dumps({'photos': result}, indent=1) + '\n')
-    print(f'{sum(len(c["files"]["avif"]) * 2 for r in result.values() for c in r["crops"].values())} files, {total / 1048576:.1f} MB')
+    print(f'{file_count} files rebuilt, {total / 1048576:.1f} MB')
 
     if args.sheet:
         cell = 260

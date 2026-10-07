@@ -1,5 +1,5 @@
 {
- "_readme": "Venue photos used on the site. Run scripts/prepare_photos.py after editing, then npm run build. ratio = width/height, focus = [x, y] from 0 to 1, zoom > 1 crops tighter. Unused originals in originals/: IMG_0876 (people, no consent yet), IMG_0896/0899/0902 (mostly a parked car), IMG_4707 (typo on the screen), IMG_4762/4765 (match on the bar screen, no section for it yet), IMG_7674 (near-duplicate of IMG_7677).",
+ "_readme": "Venue originals are the source of truth; see IMAGE_PLAN.md and retouch-prompts.json. Restored photos preserve the real amenities; sauna-detail is explicitly illustrative because no sauna interior reference was supplied. Run scripts/prepare_photos.py --only <IDs> after edits, then npm run build. Originals remain intact.",
  "og": {
   "photo": "night-crowd",
   "focus": [
@@ -276,8 +276,8 @@
    }
   },
   "turf-day": {
-   "src": "IMG_0904.jpg",
-   "alt": "The netted football turf on a clear day",
+   "src": "turf-restored.jpg",
+   "alt": "The real Social Spot football turf, with its net enclosure, white goal, brick boundary and burgundy plants",
    "crops": {
     "card": {
      "ratio": [
@@ -285,12 +285,13 @@
       2
      ],
      "focus": [
-      0.62,
-      0.6
+      0.5,
+      0.5
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
      ]
     },
     "band": {
@@ -299,10 +300,14 @@
       1
      ],
      "focus": [
-      0.6,
+      0.5,
       0.6
      ],
-     "zoom": 1.1
+     "widths": [
+      480,
+      960,
+      1600
+     ]
     },
     "tall": {
      "ratio": [
@@ -310,12 +315,28 @@
       5
      ],
      "focus": [
-      0.6,
+      0.68,
       0.6
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     }
    }
@@ -368,8 +389,8 @@
    }
   },
   "gym": {
-   "src": "IMG_2410.HEIC",
-   "alt": "The gym floor with treadmills, exercise bikes and a cable machine",
+   "src": "gym-restored.jpg",
+   "alt": "The Social Spot gym: exercise bike and strength machines, red and mint walls, mirrors and black flooring",
    "crops": {
     "card": {
      "ratio": [
@@ -378,21 +399,27 @@
      ],
      "focus": [
       0.5,
-      0.57
+      0.5
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
      ]
     },
     "band": {
      "ratio": [
-      3,
+      2,
       1
      ],
      "focus": [
       0.5,
-      0.6
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
      ]
     },
     "tall": {
@@ -402,11 +429,26 @@
      ],
      "focus": [
       0.5,
-      0.55
+      0.5
      ],
      "widths": [
       480,
-      960
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      941,
+      1672
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      941
      ]
     }
    }
@@ -509,6 +551,237 @@
      "focus": [
       0.55,
       0.3
+     ]
+    }
+   }
+  },
+  "penthouse": {
+   "src": "penthouse-restored.jpg",
+   "alt": "The Social Spot penthouse dining area and balcony: marble table, black chairs, checkerboard tiles, gorilla pendant and hillside view",
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.58
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "band": {
+     "ratio": [
+      2,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.57
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.5,
+      0.52
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      941,
+      1672
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      941
+     ]
+    }
+   }
+  },
+  "terrace": {
+   "src": "terrace-restored.jpg",
+   "alt": "Social Spot terrace with white wooden lounge furniture, parasols, hanging lanterns and a black central walkway",
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.57
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.58
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.5,
+      0.54
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      941,
+      1672
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      941
+     ]
+    }
+   }
+  },
+  "sauna-detail": {
+   "src": "sauna-detail.jpg",
+   "alt": "Illustrative wellness detail of folded towels and warm sauna stones",
+   "note": "Illustrative wellness detail",
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    },
+    "full": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      480,
+      960,
+      1600
+     ]
+    }
+   }
+  },
+  "match-viewing": {
+   "src": "IMG_4765.jpg",
+   "alt": "Football on the big screen inside the Social Spot bar",
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.48
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ],
+     "widths": [
+      480,
+      960
      ]
     }
    }

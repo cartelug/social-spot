@@ -568,99 +568,143 @@
    }
   },
   "turf-day": {
-   "alt": "The netted football turf on a clear day",
+   "alt": "The real Social Spot football turf, with its net enclosure, white goal, brick boundary and burgundy plants",
    "crops": {
     "card": {
-     "w": 960,
-     "h": 640,
+     "w": 1536,
+     "h": 1024,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/turf-day-card-480.13145d1b.avif"
+        "assets/photos/turf-day-card-480.32ca6c50.avif"
        ],
        [
         960,
-        "assets/photos/turf-day-card-960.cab8ad17.avif"
+        "assets/photos/turf-day-card-960.c6ee5908.avif"
+       ],
+       [
+        1536,
+        "assets/photos/turf-day-card-1536.10b87d06.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/turf-day-card-480.d75aa325.jpg"
+        "assets/photos/turf-day-card-480.f1a82981.jpg"
        ],
        [
         960,
-        "assets/photos/turf-day-card-960.0d313d92.jpg"
+        "assets/photos/turf-day-card-960.4cb543be.jpg"
+       ],
+       [
+        1536,
+        "assets/photos/turf-day-card-1536.1b47d1c9.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoQAAsAA4BaJZQCdAEfvvnPnrAA/uALCWOScQHdX0wjcX7NdJVP+ko3NrdyHBOVnz6iWEaBHchHkcVus/gAAA==",
-     "color": "#798582"
+     "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoQAAsAA4BaJYgCdH8AFwxJX7CAAP7n01VDnHQzbx6gqIm6YF+bLRje31aPAITaQaRb5LfkB6k+bO+1wVkNSkLAAAA=",
+     "color": "#778b86"
     },
     "band": {
-     "w": 1600,
-     "h": 533,
+     "w": 1536,
+     "h": 512,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/turf-day-band-480.644c2c1c.avif"
+        "assets/photos/turf-day-band-480.a9c3ea3e.avif"
        ],
        [
         960,
-        "assets/photos/turf-day-band-960.1e0bd98f.avif"
+        "assets/photos/turf-day-band-960.0206b6ea.avif"
        ],
        [
-        1600,
-        "assets/photos/turf-day-band-1600.4417482d.avif"
+        1536,
+        "assets/photos/turf-day-band-1536.9531024f.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/turf-day-band-480.3faa96ea.jpg"
+        "assets/photos/turf-day-band-480.93abee6e.jpg"
        ],
        [
         960,
-        "assets/photos/turf-day-band-960.ae5c4b76.jpg"
+        "assets/photos/turf-day-band-960.beb3147d.jpg"
        ],
        [
-        1600,
-        "assets/photos/turf-day-band-1600.e7d20537.jpg"
+        1536,
+        "assets/photos/turf-day-band-1536.5da410b0.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAUAA4BaJZQAAq9ckM74AMszjfeM07c3uBsO8XLLU3VdH6DAp+2aQvICwAAA",
-     "color": "#6b756b"
+     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQAAUAA4BaJQBOgB07+cLOAAD6TlLh9envT1i8fEVWa7RN0pPUHxleZ37hgs8lAAA=",
+     "color": "#66745a"
     },
     "tall": {
-     "w": 960,
-     "h": 1200,
+     "w": 819,
+     "h": 1024,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/turf-day-tall-480.9fbeb914.avif"
+        "assets/photos/turf-day-tall-480.4e3ad956.avif"
        ],
        [
-        960,
-        "assets/photos/turf-day-tall-960.f33b6351.avif"
+        819,
+        "assets/photos/turf-day-tall-819.583e0cd6.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/turf-day-tall-480.968d2edf.jpg"
+        "assets/photos/turf-day-tall-480.6ef70d1f.jpg"
        ],
        [
-        960,
-        "assets/photos/turf-day-tall-960.2e7f11ed.jpg"
+        819,
+        "assets/photos/turf-day-tall-819.c51ca594.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoNABAAA4BaJZQCdAERG8bI+oAA/vUT8cHZwT5HDRPyFEAjKDdZUKQVWp9B4HprbdmFyrjsZLbWFAAA",
-     "color": "#818c8e"
+     "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAAAQAgCdASoNABAAA4BaJZACdADL/Bm3Z5QAAP6w0BpVnQnOIE30Cjj0HB/VXNJINosBpnjnZzdBdkbW6+BVwt5bEfzKAQAA",
+     "color": "#71847e"
+    },
+    "full": {
+     "w": 1536,
+     "h": 1024,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-day-full-480.32ca6c50.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-full-960.c6ee5908.avif"
+       ],
+       [
+        1536,
+        "assets/photos/turf-day-full-1536.10b87d06.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-day-full-480.f1a82981.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-full-960.4cb543be.jpg"
+       ],
+       [
+        1536,
+        "assets/photos/turf-day-full-1536.1b47d1c9.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAAAQAgCdASoQAAsAA4BaJYgCdH8AFwxJX7CAAP7n01VDnHQzbx6gqIm6YF+bLRje31aPAITaQaRb5LfkB6k+bO+1wVkNSkLAAAA=",
+     "color": "#778b86"
     }
    }
   },
@@ -762,99 +806,119 @@
    }
   },
   "gym": {
-   "alt": "The gym floor with treadmills, exercise bikes and a cable machine",
+   "alt": "The Social Spot gym: exercise bike and strength machines, red and mint walls, mirrors and black flooring",
    "crops": {
     "card": {
-     "w": 960,
-     "h": 640,
+     "w": 941,
+     "h": 628,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/gym-card-480.b03ecc59.avif"
+        "assets/photos/gym-card-480.24de5a17.avif"
        ],
        [
-        960,
-        "assets/photos/gym-card-960.ef5d2ae0.avif"
+        941,
+        "assets/photos/gym-card-941.ad071949.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/gym-card-480.3a04629d.jpg"
+        "assets/photos/gym-card-480.89176466.jpg"
        ],
        [
-        960,
-        "assets/photos/gym-card-960.5e137459.jpg"
+        941,
+        "assets/photos/gym-card-941.a19de40a.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAsAA4BaJZACdACzDSiQqIAA/sni/pqcBIdwq5Cb78XEqQ8TA4EhuBMjDJkB/NK32Umgr+FkGFH+WCSkwagAAAA=",
-     "color": "#705d56"
+     "lqip": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADwAQCdASoQAAsAA4BaJaACdAD5eZK+9FgAzXTF7jg2t1Phi9CIjwHJViJ6BLQ6nPmCnV5cDgWeTeLFUbTrE0NffX/4pWj0pIAAAA==",
+     "color": "#78554d"
     },
     "band": {
-     "w": 1600,
-     "h": 533,
+     "w": 941,
+     "h": 470,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/gym-band-480.881f00c4.avif"
+        "assets/photos/gym-band-480.4642eacb.avif"
        ],
        [
-        960,
-        "assets/photos/gym-band-960.d7936d0d.avif"
-       ],
-       [
-        1600,
-        "assets/photos/gym-band-1600.26a3e4d9.avif"
+        941,
+        "assets/photos/gym-band-941.f745fc47.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/gym-band-480.bd9af559.jpg"
+        "assets/photos/gym-band-480.d4e194d3.jpg"
        ],
        [
-        960,
-        "assets/photos/gym-band-960.9b552449.jpg"
-       ],
-       [
-        1600,
-        "assets/photos/gym-band-1600.0b8e3315.jpg"
+        941,
+        "assets/photos/gym-band-941.933d1dab.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAUAA4BaJZQC7AEOZ/HeAPKiLydJrPXcruAhUVUmoHE1Hz50KX2U+M9T6AAA",
-     "color": "#695d59"
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADQAQCdASoQAAgAA4BaJZACdACg4SMZAADNln9MGaXlcf6HHPwzm2pxs+FlBSz5D0onObYBQ5eB6GU6HZmMoAAA",
+     "color": "#795a51"
     },
     "tall": {
-     "w": 960,
-     "h": 1200,
+     "w": 941,
+     "h": 1176,
      "files": {
       "avif": [
        [
         480,
-        "assets/photos/gym-tall-480.ec300afd.avif"
+        "assets/photos/gym-tall-480.7537ce1c.avif"
        ],
        [
-        960,
-        "assets/photos/gym-tall-960.320d0dbb.avif"
+        941,
+        "assets/photos/gym-tall-941.830e6e89.avif"
        ]
       ],
       "jpg": [
        [
         480,
-        "assets/photos/gym-tall-480.6010304d.jpg"
+        "assets/photos/gym-tall-480.6e18e6bc.jpg"
        ],
        [
-        960,
-        "assets/photos/gym-tall-960.97043586.jpg"
+        941,
+        "assets/photos/gym-tall-941.297f6c3b.jpg"
        ]
       ]
      },
-     "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoNABAAA4BaJZACdACyn0wmDwAA/sjgD1o2gLiMyi3EN4qJUEEuLKo29Xr/klrOjuALTNtLZp9m/s67gSyEB/suD/nPiAAA",
-     "color": "#6e615b"
+     "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoNABAAA4BaJZgCdAD5igHAAAD85L7gEIiOrwZG1Igp/zKn+kcbY0Q+G0WKAm973z3Q1f5kZNJrNvVpMpnVckUQAAA=",
+     "color": "#725d58"
+    },
+    "full": {
+     "w": 941,
+     "h": 1672,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/gym-full-480.791baf72.avif"
+       ],
+       [
+        941,
+        "assets/photos/gym-full-941.90ac9dc8.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/gym-full-480.c45cd5dc.jpg"
+       ],
+       [
+        941,
+        "assets/photos/gym-full-941.310dfe43.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkgAAABXRUJQVlA4IDwAAADQAQCdASoJABAAA4BaJQBOgB5wP1L/gAD+bDBfqbHokt2Q8rvJBHNg+S7kJFW3vVUr0M7ZomdafGkAAAA=",
+     "color": "#716361"
     }
    }
   },
@@ -1061,6 +1125,443 @@
      "color": "#728199"
     }
    }
+  },
+  "penthouse": {
+   "alt": "The Social Spot penthouse dining area and balcony: marble table, black chairs, checkerboard tiles, gorilla pendant and hillside view",
+   "crops": {
+    "card": {
+     "w": 941,
+     "h": 627,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/penthouse-card-480.4252d6e3.avif"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-card-941.46a38cba.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/penthouse-card-480.eb055094.jpg"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-card-941.38454039.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQAAsAA4BaJQBYdhojc2yg5AD+trYGmIfYHQw9rNdFJSkQTAk80gmmQ/PL3pTWQ82V20h4+wGsLhHTAio3JLt7hfaW/n4AAAA=",
+     "color": "#8d9085"
+    },
+    "band": {
+     "w": 941,
+     "h": 470,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/penthouse-band-480.c3d50921.avif"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-band-941.0b4181f1.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/penthouse-band-480.a6d39bca.jpg"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-band-941.ac211d9d.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAQAgCdASoQAAgAA4BaJYwC7AERCZFoZwdgAP5rDZ9Z3RCeERG7+DEVUn3dRPR1eS6zaHRI1fKbgNrj3AzsgAAA",
+     "color": "#8d8f7f"
+    },
+    "tall": {
+     "w": 941,
+     "h": 1177,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/penthouse-tall-480.6e52d7c9.avif"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-tall-941.adbb9e86.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/penthouse-tall-480.aa634093.jpg"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-tall-941.0576dda2.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAAAwAgCdASoNABAAA4BaJZQCw7EQA32mcmjt8AD91frkjI0tiN1VggLGmS2GFa7hH3viZB992ciqdq/1D4YFOhKm6utcM+fBvFPWKuuK+8mawOQIAAA=",
+     "color": "#95948b"
+    },
+    "full": {
+     "w": 941,
+     "h": 1672,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/penthouse-full-480.23b502c4.avif"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-full-941.a5feb8f3.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/penthouse-full-480.147da9b4.jpg"
+       ],
+       [
+        941,
+        "assets/photos/penthouse-full-941.4a8b7f9c.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAQAgCdASoJABAAA4BaJZQC7ADckbq4sOUAAP7f9GsmOkDlkFHSw3yxEB5vd4azz+mELLGIQVTgUXJURd3HgAAA",
+     "color": "#a09e96"
+    }
+   }
+  },
+  "terrace": {
+   "alt": "Social Spot terrace with white wooden lounge furniture, parasols, hanging lanterns and a black central walkway",
+   "crops": {
+    "card": {
+     "w": 940,
+     "h": 626,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/terrace-card-480.66d0b0e6.avif"
+       ],
+       [
+        940,
+        "assets/photos/terrace-card-940.e89c6d32.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/terrace-card-480.9ce4a996.jpg"
+       ],
+       [
+        940,
+        "assets/photos/terrace-card-940.fb923cfd.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADwAQCdASoQAAsAA4BaJZQC7ADRZSFJUYAA/k9IZTYRAHWKqQDFyry1v9z3fP7MPhyIoKu7iOW62RlZlGZUekFLp9TPBAAA",
+     "color": "#7f7a7f"
+    },
+    "band": {
+     "w": 940,
+     "h": 313,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/terrace-band-480.cd6f3a4c.avif"
+       ],
+       [
+        940,
+        "assets/photos/terrace-band-940.a49541f2.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/terrace-band-480.154b21e3.jpg"
+       ],
+       [
+        940,
+        "assets/photos/terrace-band-940.bc4d368a.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACQAQCdASoQAAUAA4BaJYwC7ACCbOAA/u0kFrCetsESTnLBLdLarYtKnKC8GkrEUJH3tvzAnbhAAA==",
+     "color": "#7d777a"
+    },
+    "tall": {
+     "w": 940,
+     "h": 1175,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/terrace-tall-480.9b65480b.avif"
+       ],
+       [
+        940,
+        "assets/photos/terrace-tall-940.07c84cad.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/terrace-tall-480.0fc2003b.jpg"
+       ],
+       [
+        940,
+        "assets/photos/terrace-tall-940.dac0ba16.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADQAQCdASoNABAAA4BaJQBOgBuGI+z7UAD+eTEOjKl0rFvxZLQNanQNQL4/aeQFGq4YpCmu+oB0AAWCfyBfU98BvO1CleUAmle/9ud6RsY8eAAA",
+     "color": "#787375"
+    },
+    "full": {
+     "w": 940,
+     "h": 1670,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/terrace-full-480.86f02ffa.avif"
+       ],
+       [
+        940,
+        "assets/photos/terrace-full-940.070050d7.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/terrace-full-480.4928e6b3.jpg"
+       ],
+       [
+        940,
+        "assets/photos/terrace-full-940.794b4b40.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAQCdASoJABAAA4BaJQBOgB5Q0HWYAPQzs3K2KAOSVok0w75btxMyQmUrpTxjamIK3cF4g5aCa8veX9NORkAA",
+     "color": "#79736d"
+    }
+   }
+  },
+  "match-viewing": {
+   "alt": "Football on the big screen inside the Social Spot bar",
+   "crops": {
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/match-viewing-card-480.faeac99b.avif"
+       ],
+       [
+        960,
+        "assets/photos/match-viewing-card-960.3add9b4f.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/match-viewing-card-480.0a452601.jpg"
+       ],
+       [
+        960,
+        "assets/photos/match-viewing-card-960.b60eb2c5.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoQAAsAA4BaJZgC7AEO+RiENgAA/vWA0KG0iAhk55cfzjDLV6744V+FBpSp/naseLaJRm25bSDY/VKiwAA=",
+     "color": "#333e39"
+    },
+    "tall": {
+     "w": 960,
+     "h": 1200,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/match-viewing-tall-480.4744d44d.avif"
+       ],
+       [
+        960,
+        "assets/photos/match-viewing-tall-960.e8cc64d5.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/match-viewing-tall-480.da0db45a.jpg"
+       ],
+       [
+        960,
+        "assets/photos/match-viewing-tall-960.f482b655.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAAAQAgCdASoNABAAA4BaJYwCdIExGXz/7qoAAP7vkgZwHXnqrbCwuHZQOmNYBmR3Z9FNHzwUe8hF+D0cvaK82MKqcDrAAA==",
+     "color": "#30342e"
+    }
+   }
+  },
+  "sauna-detail": {
+   "alt": "Illustrative wellness detail of folded towels and warm sauna stones",
+   "crops": {
+    "card": {
+     "w": 1536,
+     "h": 1024,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/sauna-detail-card-480.7124ed82.avif"
+       ],
+       [
+        960,
+        "assets/photos/sauna-detail-card-960.274fc77c.avif"
+       ],
+       [
+        1536,
+        "assets/photos/sauna-detail-card-1536.2f4d0f41.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/sauna-detail-card-480.a1fdc914.jpg"
+       ],
+       [
+        960,
+        "assets/photos/sauna-detail-card-960.4e160c8c.jpg"
+       ],
+       [
+        1536,
+        "assets/photos/sauna-detail-card-1536.ca7114db.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoQAAsAA4BaJQBOgCKKfS5AbbtgAPvUF5FaCwHezLh5HRjC09zCvloLoEio/jLaqKNypEHSHBpAmlWAAAA=",
+     "color": "#563e2d"
+    },
+    "band": {
+     "w": 1536,
+     "h": 512,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/sauna-detail-band-480.60243e8b.avif"
+       ],
+       [
+        960,
+        "assets/photos/sauna-detail-band-960.da3d1744.avif"
+       ],
+       [
+        1536,
+        "assets/photos/sauna-detail-band-1536.fe250fb9.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/sauna-detail-band-480.2aeba3d8.jpg"
+       ],
+       [
+        960,
+        "assets/photos/sauna-detail-band-960.88f1aab8.jpg"
+       ],
+       [
+        1536,
+        "assets/photos/sauna-detail-band-1536.a4e4abd4.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAUAA4BaJQBOgCB/ADGJIAD3301QmtdaM4YRTlL/VaiI7VvWmK1gmtJQAAAA",
+     "color": "#694f3b"
+    },
+    "tall": {
+     "w": 820,
+     "h": 1024,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/sauna-detail-tall-480.457d2b4b.avif"
+       ],
+       [
+        820,
+        "assets/photos/sauna-detail-tall-820.45e88623.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/sauna-detail-tall-480.b94dfc36.jpg"
+       ],
+       [
+        820,
+        "assets/photos/sauna-detail-tall-820.94a5fe88.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoNABAAA4BaJQBOgBu2iIMhn2AA/vFU4CI+sCXZnJtIZ/fisc+9PWQi7Je+mrF+/4ovxiQoJp4Fk4hkzPDwAA==",
+     "color": "#4c3626"
+    },
+    "full": {
+     "w": 1536,
+     "h": 1024,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/sauna-detail-full-480.7124ed82.avif"
+       ],
+       [
+        960,
+        "assets/photos/sauna-detail-full-960.274fc77c.avif"
+       ],
+       [
+        1536,
+        "assets/photos/sauna-detail-full-1536.2f4d0f41.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/sauna-detail-full-480.a1fdc914.jpg"
+       ],
+       [
+        960,
+        "assets/photos/sauna-detail-full-960.4e160c8c.jpg"
+       ],
+       [
+        1536,
+        "assets/photos/sauna-detail-full-1536.ca7114db.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAAAQAgCdASoQAAsAA4BaJQBOgCKKfS5AbbtgAPvUF5FaCwHezLh5HRjC09zCvloLoEio/jLaqKNypEHSHBpAmlWAAAA=",
+     "color": "#563e2d"
+    }
+   },
+   "note": "Illustrative wellness detail"
   }
  }
 }

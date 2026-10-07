@@ -1,6 +1,6 @@
 // Every observer/listener is released on navigation; no permanent frame loop.
 const REDUCED = '(prefers-reduced-motion: reduce)';
-const TARGETS = '.sec-head, .amenity, .shot, .day, .track, .tier, .board, .facts, .quiz-band > *, .cta-grid > *, .arrive figure, .split > .panel, details.faq';
+const TARGETS = '.space-story > *, .sec-head, .amenity, .shot, .day, .track, .tier, .board, .facts, .quiz-band > *, .cta-grid > *, .arrive figure, .split > .panel, details.faq';
 export const motionAllowed = () => !matchMedia(REDUCED).matches && !document.documentElement.hasAttribute('data-motion-off');
 export function syncMotionControls() {
   const paused = !motionAllowed();
