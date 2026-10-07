@@ -282,6 +282,9 @@ input[type='date']::-webkit-calendar-picker-indicator { filter: invert(0.85); cu
 .amenity .prices div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dotted var(--line-2); padding-bottom: 4px; }
 .amenity .prices span:last-child { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .amenity .btn { justify-self: start; margin-top: 4px; }
+.amenity > .ph { margin: -22px -22px 4px; border-radius: calc(var(--r-lg) - 1px) calc(var(--r-lg) - 1px) 0 0; }
+a.amenity > .ph img { transition: transform 0.4s ease; }
+a.amenity:hover > .ph img { transform: scale(1.03); }
 .band { background: var(--ink-2); border-block: 1px solid var(--line); }
 .quiz-band { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: center; }
 @media (min-width: 900px) { .quiz-band { grid-template-columns: 1.1fr 0.9fr; } }
@@ -290,6 +293,23 @@ input[type='date']::-webkit-calendar-picker-indicator { filter: invert(0.85); cu
 .facts b { display: block; font-size: 22px; letter-spacing: -0.02em; }
 .facts span { font-size: 13px; color: var(--muted); }
 .copyline { display: inline-flex; align-items: center; gap: 10px; }
+
+/* ---------- photos ---------- */
+.ph { display: block; position: relative; overflow: hidden; aspect-ratio: var(--ar); background-size: cover; background-position: center; }
+.ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ph.rounded { border-radius: var(--r-lg); }
+@media (min-width: 900px) { .ph.banner { aspect-ratio: 5 / 1; } }
+@media (max-width: 699px) { .ph { aspect-ratio: var(--ar-m, var(--ar)); } }
+.ph-tile { display: grid; place-items: center; background: radial-gradient(120% 90% at 50% 110%, var(--red-wash), transparent 60%), var(--ink-3); }
+.ph-tile img { width: 46%; height: auto; opacity: 0.35; object-fit: contain; }
+.has-photo { position: relative; isolation: isolate; }
+.photo-bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.photo-bg .ph { position: absolute; inset: 0; aspect-ratio: auto; }
+.photo-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 10, 10, 0.5) 0%, rgba(11, 10, 10, 0.62) 50%, var(--ink) 100%); }
+@media (min-width: 900px) { .photo-bg::after { background: linear-gradient(90deg, rgba(11, 10, 10, 0.88) 0%, rgba(11, 10, 10, 0.55) 60%, rgba(11, 10, 10, 0.35) 100%), linear-gradient(180deg, transparent 60%, var(--ink) 100%); } }
+.arrive { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+.arrive figure { margin: 0; display: grid; gap: 8px; }
+.arrive figcaption { font-size: 13.5px; color: var(--muted); font-weight: 600; }
 
 /* ---------- The Replay ---------- */
 .replay-hero { padding-block: clamp(36px, 6vw, 80px) clamp(28px, 4vw, 48px); }
@@ -326,6 +346,9 @@ input[type='date']::-webkit-calendar-picker-indicator { filter: invert(0.85); cu
 .track h3 { font-size: 19px; }
 .track p { color: var(--muted); font-size: 15px; margin-top: 4px; max-width: 60ch; }
 @media (max-width: 560px) { .track { grid-template-columns: 34px minmax(0, 1fr); } .track .tm { grid-column: 2; } .track > div { grid-column: 2; } }
+.track.has-ph { grid-template-columns: 52px 92px minmax(0, 1fr) 96px; }
+.track > .ph { width: 96px; border-radius: var(--r); align-self: center; }
+@media (max-width: 560px) { .track.has-ph { grid-template-columns: 34px minmax(0, 1fr) 72px; } .track > .ph { width: 72px; grid-column: 3; grid-row: 1 / span 2; } }
 .terms li { position: relative; padding: 9px 0 9px 26px; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--muted); }
 .terms li::before { content: ''; position: absolute; left: 2px; top: 17px; width: 12px; height: 2px; background: var(--line-2); }
 details.faq { border-bottom: 1px solid var(--line); }

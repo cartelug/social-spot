@@ -23,6 +23,22 @@ ADMIN_EMAIL=you@example.com ADMIN_PASSWORD='a-long-password' npm start
 
 The website files are already built. Run `npm install && npm run build` only after editing `src/`, `shared/` or `assets-src/`. The build never overwrites your `config.js`.
 
+## Photos
+
+Phone originals (HEIC or JPEG, as they come off the phone) live in `assets-src/photos/originals/`, never in `assets/`, so they aren't published. `assets-src/photos/photos.json` says which ones the site uses, their alt text and how each is cropped (shape and focus point).
+
+To add or change a photo, drop the original in `originals/`, edit `photos.json`, then:
+
+```bash
+pip install pillow pillow-heif
+python3 scripts/prepare_photos.py --sheet /tmp/crops.jpg   # check the framing in crops.jpg
+npm run build
+```
+
+That writes AVIF and JPEG copies at a few widths to `assets/photos/` with GPS and camera details removed, a tiny blurred placeholder for each, and the share image `assets-src/og.jpg`. Pages pick the right size and format for each screen and load photos only as you scroll to them.
+
+Still to shoot: steam & sauna, the penthouse inside and its views, kids soccer, food and drinks. Until then those cards show the logo.
+
 ## Go-live checklist (Founders opens Mon 12 Oct)
 
 1. Deploy (below) with `PUBLIC_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`.
@@ -87,6 +103,7 @@ See `.env.example`. `PUBLIC_URL` (ticket links in SMS), `DATA_DIR`, `PORT`, `ADM
 | `server/` | HTTP server, SQLite store, staff auth, SMS sender. |
 | `src/` | Front end (views, styles, QR scanner, preloader). |
 | `scripts/build.js` | Builds the website files at the top of the folder and the single-file preview. |
+| `scripts/prepare_photos.py` | Crops, resizes and compresses the venue photos listed in `assets-src/photos/photos.json`, and makes the share image. |
 | `scripts/extract_logo.py` | Cuts the supplied logo into its parts for the preloader without redrawing anything; the parts recompose the original pixel for pixel. |
 | `test/` | `npm test` runs the engine tests. Browser tests expect a fresh server on port 3100 (`PORT=3100 ADMIN_EMAIL=admin@socialspot.test ADMIN_PASSWORD=TestPass123`, empty `DATA_DIR`): run `python3 test/e2e.py http://localhost:3100`, then start `node test/pages-emulator.mjs 3300 social-spot http://localhost:3100` and `node test/pages-emulator.mjs 3301 social-spot` and run `python3 test/static_host.py`. |
 

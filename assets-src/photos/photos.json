@@ -1,0 +1,404 @@
+{
+ "_readme": "Venue photos used on the site. Run scripts/prepare_photos.py after editing, then npm run build. ratio = width/height, focus = [x, y] from 0 to 1, zoom > 1 crops tighter. Unused originals in originals/: IMG_0876 (people, no consent yet), IMG_0896/0899/0902 (mostly a parked car), IMG_4707 (typo on the screen), IMG_4762/4765 (match on the bar screen, no section for it yet), IMG_7674 (near-duplicate of IMG_7677).",
+ "og": {
+  "photo": "night-crowd",
+  "focus": [
+   0.5,
+   0.45
+  ],
+  "dim": 0.5
+ },
+ "photos": {
+  "night-lanterns": {
+   "src": "IMG_7784.jpg",
+   "alt": "Lanterns and string lights over the terrace, with the Social Spot building lit up at night",
+   "adjust": {
+    "brightness": 1.25
+   },
+   "crops": {
+    "wide": {
+     "ratio": [
+      2,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ]
+    },
+    "square": {
+     "ratio": [
+      1,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.6
+     ],
+     "widths": [
+      240,
+      480
+     ]
+    }
+   }
+  },
+  "night-crowd": {
+   "src": "IMG_7771.HEIC",
+   "alt": "The terrace at night seen from above: guests at white lounge tables under lanterns and string lights",
+   "adjust": {
+    "brightness": 1.15
+   },
+   "crops": {
+    "wide": {
+     "ratio": [
+      2,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.6
+     ]
+    },
+    "tall": {
+     "ratio": [
+      4,
+      5
+     ],
+     "focus": [
+      0.5,
+      0.6
+     ]
+    }
+   }
+  },
+  "sunset-arrival": {
+   "src": "IMG_7659.HEIC",
+   "alt": "Late-afternoon sun over the Social Spot building and the white lounge furniture on the terrace",
+   "crops": {
+    "square": {
+     "ratio": [
+      1,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ],
+     "widths": [
+      240,
+      480
+     ]
+    },
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.4
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    }
+   }
+  },
+  "golden-hour": {
+   "src": "IMG_7695.HEIC",
+   "alt": "Guests at high tables and lounge sofas on the lawn in the early evening",
+   "crops": {
+    "square": {
+     "ratio": [
+      1,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ],
+     "widths": [
+      240,
+      480
+     ]
+    },
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    },
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ]
+    }
+   }
+  },
+  "main-peak": {
+   "src": "IMG_7887.HEIC",
+   "alt": "A full terrace at night in front of the lit-up building, under lanterns",
+   "crops": {
+    "square": {
+     "ratio": [
+      1,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.58
+     ],
+     "widths": [
+      240,
+      480
+     ]
+    }
+   }
+  },
+  "afterglow": {
+   "src": "IMG_7888.HEIC",
+   "alt": "Purple light at the foot of the building late at night, with lanterns overhead",
+   "adjust": {
+    "brightness": 1.15
+   },
+   "crops": {
+    "square": {
+     "ratio": [
+      1,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.5
+     ],
+     "widths": [
+      240,
+      480
+     ]
+    }
+   }
+  },
+  "lounge-setup": {
+   "src": "IMG_7677.jpg",
+   "alt": "The terrace from above before guests arrive: white sofas, lounge tables and a black carpet",
+   "crops": {
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.62
+     ]
+    }
+   }
+  },
+  "turf-day": {
+   "src": "IMG_0904.jpg",
+   "alt": "The netted football turf on a clear day",
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.62,
+      0.6
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    },
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.6,
+      0.6
+     ],
+     "zoom": 1.1
+    }
+   }
+  },
+  "turf-night": {
+   "src": "IMG_4766.HEIC",
+   "alt": "The football turf under floodlights at night, with the city lights behind",
+   "adjust": {
+    "brightness": 1.2
+   },
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.4,
+      0.8
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    },
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.4,
+      0.78
+     ]
+    }
+   }
+  },
+  "gym": {
+   "src": "IMG_2410.HEIC",
+   "alt": "The gym floor with treadmills, exercise bikes and a cable machine",
+   "crops": {
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.57
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    },
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.6
+     ]
+    }
+   }
+  },
+  "quiz-sheet": {
+   "src": "IMG_4696.HEIC",
+   "alt": "A Social Spot Quiz Night answer sheet on a table",
+   "crops": {
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.5,
+      0.52
+     ],
+     "zoom": 1.3
+    },
+    "card": {
+     "ratio": [
+      3,
+      2
+     ],
+     "focus": [
+      0.5,
+      0.55
+     ],
+     "zoom": 1.2,
+     "widths": [
+      480,
+      960
+     ]
+    }
+   }
+  },
+  "entrance": {
+   "src": "IMG_2465.HEIC",
+   "alt": "The Social Spot entrance: the gate, the gatehouse and the paved courtyard",
+   "crops": {
+    "card": {
+     "ratio": [
+      4,
+      3
+     ],
+     "focus": [
+      0.5,
+      0.6
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    }
+   }
+  },
+  "parking": {
+   "src": "IMG_3028.HEIC",
+   "alt": "Cars parked in the paved courtyard inside the gate, with the hills behind",
+   "crops": {
+    "card": {
+     "ratio": [
+      4,
+      3
+     ],
+     "focus": [
+      0.5,
+      0.62
+     ],
+     "widths": [
+      480,
+      960
+     ]
+    }
+   }
+  },
+  "building-day": {
+   "src": "IMG_7665.HEIC",
+   "alt": "The Social Spot building by day: four floors of balconies above the terrace",
+   "crops": {
+    "band": {
+     "ratio": [
+      3,
+      1
+     ],
+     "focus": [
+      0.55,
+      0.3
+     ]
+    }
+   }
+  }
+ }
+}

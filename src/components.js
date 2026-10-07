@@ -1,8 +1,35 @@
 // Shared UI pieces for the public site.
 import { html, raw, icon, app, when } from './core.js';
-import { fmtDate, fmtTime, fmtMoney, fmtUGX } from '../shared/util.js';
+import { fmtDate, fmtTime, fmtMoney, fmtUGX, eatTime, minutesOf } from '../shared/util.js';
 
 export const money = (n, cur = 'UGX') => fmtMoney(n, cur);
+
+// ---------------------------------------------------------------- venue photos
+// Crops and sizes come from assets-src/photos/photos.json (scripts/prepare_photos.py).
+// AVIF with a JPEG fallback, the right width for the screen, a blurred placeholder
+// while it loads, and fixed proportions so nothing jumps. `mobile` names a second
+// crop for phones (art direction). Returns '' when the photo isn't built (preview).
+const PHONE = '(max-width: 699px)';
+const srcset = (list) => list.map(([w, f]) => `${f} ${w}w`).join(', ');
+export const hasPhoto = (id) => Boolean(app.assets.photos && app.assets.photos[id]);
+export function photo(id, crop, { mobile = '', sizes = '100vw', eager = false, cls = '', alt } = {}) {
+  const p = hasPhoto(id) && app.assets.photos[id];
+  const c = p && p.crops[crop];
+  if (!c) return '';
+  const m = mobile && p.crops[mobile];
+  const jpg = c.files.jpg;
+  const style = `--ar:${c.w}/${c.h};${m ? `--ar-m:${m.w}/${m.h};` : ''}background-color:${c.color};background-image:url(${c.lqip})`;
+  return html`<picture class="ph ${cls}" style="${style}">${when(m, () => html`<source media="${PHONE}" type="image/avif" srcset="${srcset(m.files.avif)}" sizes="100vw"><source media="${PHONE}" type="image/jpeg" srcset="${srcset(m.files.jpg)}" sizes="100vw">`)}<source type="image/avif" srcset="${srcset(c.files.avif)}" sizes="${sizes}"><img src="${jpg[Math.min(1, jpg.length - 1)][1]}" srcset="${srcset(jpg)}" sizes="${sizes}" width="${c.w}" height="${c.h}" alt="${alt == null ? p.alt : alt}" ${eager ? raw('fetchpriority="high"') : raw('loading="lazy"')} decoding="async"></picture>`;
+}
+/** A photo, or the logo on a dark tile when there's no photo of this yet (keeps card grids even). */
+export function photoOrTile(id, crop, opts = {}) {
+  return photo(id, crop, opts) || html`<div class="ph ph-tile ${opts.cls || ''}" style="--ar:3/2" aria-hidden="true"><img src="${app.assets.logoSmall}" alt="" width="520" height="172"></div>`;
+}
+/** Turf photo for the time of day: the floodlit one from the night rate onwards. */
+export function turfPhotoId(nightFrom) {
+  const now = minutesOf(eatTime(Date.now()));
+  return now >= minutesOf(nightFrom || '18:00') || now < 6 * 60 ? 'turf-night' : 'turf-day';
+}
 
 export function contactFields(v = {}, { email = true, marketing = true, nameLabel = 'Full name' } = {}) {
   return html`

@@ -51,7 +51,7 @@ sms.start();
 // ------------------------------------------------------------------ helpers
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
-  '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
+  '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.avif': 'image/avif', '.svg': 'image/svg+xml', '.ico': 'image/x-icon',
   '.woff2': 'font/woff2', '.webmanifest': 'application/manifest+json', '.txt': 'text/plain; charset=utf-8',
 };
 const SECURITY_HEADERS = {
@@ -180,7 +180,7 @@ async function serveFile(req, res, file, { spa = false } = {}) {
       let raw = await readFile(file);
       if (file.endsWith('index.html')) {
         // served by this server: the site sits at '/', and links/OG image use PUBLIC_URL
-        raw = Buffer.from(raw.toString('utf8').replace('<meta name="ss-base" content="">', '<meta name="ss-base" content="/">').replace('content="assets/og.png"', `content="${PUBLIC_URL ? PUBLIC_URL + '/' : '/'}assets/og.png"`));
+        raw = Buffer.from(raw.toString('utf8').replace('<meta name="ss-base" content="">', '<meta name="ss-base" content="/">').replace('content="assets/og.jpg"', `content="${PUBLIC_URL ? PUBLIC_URL + '/' : '/'}assets/og.jpg"`));
       }
       const type = MIME[extname(file)] || 'application/octet-stream';
       const gz = /^(text|application\/(json|manifest)|image\/svg)/.test(type) && raw.length > 1024 ? gzipSync(raw) : null;

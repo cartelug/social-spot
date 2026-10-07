@@ -1,5 +1,5 @@
 import { app, html, raw, icon, when, rpc, route, navigate, render, on, toast, dialog, act, errText, copyText, waShare, countdownHtml, refreshSite, formValues, busy, rootEl, linkify, absUrl } from '../core.js';
-import { contactFields, payPanel, statusHead, stubHtml, kv, money } from '../components.js';
+import { contactFields, payPanel, statusHead, stubHtml, kv, money, photo, hasPhoto, photoOrTile, turfPhotoId } from '../components.js';
 import { fillQrs } from '../qr.js';
 import { fmtDate, fmtTime, fmtUGX, eatStampToMs, DOW, dowOf, addDays } from '../../shared/util.js';
 
@@ -88,7 +88,7 @@ route('/', async () => {
   return {
     title: '',
     body: html`
-    <section class="hero"><div class="wrap hero-grid">
+    <section class="hero ${hasPhoto('night-lanterns') ? 'has-photo' : ''}">${when(hasPhoto('night-lanterns'), () => html`<div class="photo-bg">${photo('night-lanterns', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}<div class="wrap hero-grid">
       <div>
         <img class="hero-logo" src="${app.assets.logo}" alt="Social Spot" width="1200" height="397">
         <h1>${s.venue.slogan}</h1>
@@ -121,12 +121,12 @@ route('/', async () => {
       <div><p class="eyebrow red">Book online</p><h2 class="h2" id="book-h" style="margin-top:8px">Pick a time. Show your code at reception.</h2>
       <p class="lead" style="margin-top:12px">${a.loyalty} Gym, turf and kids soccer.</p></div>
       <div class="grid" style="--min:300px">
-        ${amenityCard('Football turf', 'Hire the turf by the hour for your team or your company.', [[`Day, until ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.dayRate)} / hr`], [`Night, from ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.nightRate)} / hr`], ['Open sessions, Wed–Fri 7–11 PM', `${fmtUGX(a.turf.adultPerPerson)} / person`]], '/book/turf', 'Book the turf')}
-        ${amenityCard('Gym', `Classes every day. Mornings ${fmtTime(gym.sessions[0].from)}–${fmtTime(gym.sessions[0].to)}, evenings ${fmtTime(gym.sessions[1].from)}–${fmtTime(gym.sessions[1].to)}.`, [['Day pass', fmtUGX(plan('gym-day').price)], ['Monthly', fmtUGX(plan('gym-month').price)], ['Gym & sauna, monthly', fmtUGX(plan('gs-month').price)]], '/book/gym', 'Get a gym pass')}
-        ${amenityCard('Steam & sauna', 'Book a slot, walk in, switch off.', [['Adults', fmtUGX(a.sauna.adult)], ['Kids', fmtUGX(a.sauna.kid)]], '/book/sauna', 'Book a session')}
-        ${amenityCard('Penthouse', 'Five ways to stay, from a single room to the full floor with every balcony.', a.penthouse.packages.slice(0, 3).map((p) => [p.name, `${money(p.price, 'USD')} / night`]), '/book/penthouse', 'Request a stay')}
-        ${amenityCard('Kids soccer', 'Saturday training on the turf.', [['With a coach', fmtUGX(a.kids.withCoach)], ['Kids only', fmtUGX(a.kids.kidsOnly)]], '/book/kids', 'Book a Saturday')}
-        ${amenityCard('Tables & Family Dinner', `Sundays are Family Dinner Day. Fridays are Bucket Night: ${a.bucketNight.offer}.`, [['Table reservation', 'Free'], ['Food and drinks', 'Bought on the day']], '/book/table', 'Reserve a table')}
+        ${amenityCard(turfPhotoId(a.turf.nightFrom), 'Football turf', 'Hire the turf by the hour for your team or your company.', [[`Day, until ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.dayRate)} / hr`], [`Night, from ${fmtTime(a.turf.nightFrom)}`, `${fmtUGX(a.turf.nightRate)} / hr`], ['Open sessions, Wed–Fri 7–11 PM', `${fmtUGX(a.turf.adultPerPerson)} / person`]], '/book/turf', 'Book the turf')}
+        ${amenityCard('gym', 'Gym', `Classes every day. Mornings ${fmtTime(gym.sessions[0].from)}–${fmtTime(gym.sessions[0].to)}, evenings ${fmtTime(gym.sessions[1].from)}–${fmtTime(gym.sessions[1].to)}.`, [['Day pass', fmtUGX(plan('gym-day').price)], ['Monthly', fmtUGX(plan('gym-month').price)], ['Gym & sauna, monthly', fmtUGX(plan('gs-month').price)]], '/book/gym', 'Get a gym pass')}
+        ${amenityCard('', 'Steam & sauna', 'Book a slot, walk in, switch off.', [['Adults', fmtUGX(a.sauna.adult)], ['Kids', fmtUGX(a.sauna.kid)]], '/book/sauna', 'Book a session')}
+        ${amenityCard('sunset-arrival', 'Penthouse', 'Five ways to stay, from a single room to the full floor with every balcony.', a.penthouse.packages.slice(0, 3).map((p) => [p.name, `${money(p.price, 'USD')} / night`]), '/book/penthouse', 'Request a stay')}
+        ${amenityCard('', 'Kids soccer', 'Saturday training on the turf.', [['With a coach', fmtUGX(a.kids.withCoach)], ['Kids only', fmtUGX(a.kids.kidsOnly)]], '/book/kids', 'Book a Saturday')}
+        ${amenityCard('golden-hour', 'Tables & Family Dinner', `Sundays are Family Dinner Day. Fridays are Bucket Night: ${a.bucketNight.offer}.`, [['Table reservation', 'Free'], ['Food and drinks', 'Bought on the day']], '/book/table', 'Reserve a table')}
       </div>
     </div></section>
 
@@ -134,18 +134,19 @@ route('/', async () => {
       <div class="stack" style="--gap:14px"><p class="eyebrow red">Every Saturday</p><h2 class="h1" id="quiz-h">Quiz Night</h2>
         <p class="lead">${a.quiz.rounds} rounds hosted by ${a.quiz.host}. ${a.quiz.entry ? fmtUGX(a.quiz.entry) + ' entry' : 'Free entry'}. Round winners take ${a.quiz.roundPrize.toLowerCase()}.</p>
         <div class="row"><a class="btn lg" href="/quiz">Register your team</a></div></div>
-      <div class="facts">
+      <div class="stack" style="--gap:14px">${photo('quiz-sheet', 'band', { sizes: '(min-width: 900px) 520px, 100vw', cls: 'rounded' })}<div class="facts">
         <div><b>${fmtTime(a.quiz.time)}</b><span>Every Saturday</span></div>
         <div><b>${nextQuiz ? fmtDate(nextQuiz.date, { noDow: true }) : '—'}</b><span>Next quiz</span></div>
         <div><b class="num">${nextQuiz ? Math.max(0, nextQuiz.max - nextQuiz.teams) : '—'}</b><span>Team places left</span></div>
         <div><b>${a.quiz.minSize}–${a.quiz.maxSize}</b><span>Players per team</span></div>
-      </div>
+      </div></div>
     </div></section>
 
     <section class="section" aria-labelledby="visit-h"><div class="wrap split even">
       <div class="stack" style="--gap:14px"><p class="eyebrow red">Find us</p><h2 class="h1" id="visit-h">${s.venue.area}</h2><p class="lead">${s.venue.landmark}.</p>
         <div class="row"><a class="btn line" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Elite High School Akright City Bwebajja')}" target="_blank" rel="noopener">${icon('pin')}Open in Maps</a>
-        <span class="copyline"><a class="btn" href="${telHref()}">${icon('phone')}${s.venue.phone}</a><button class="icon-btn" data-copy="${s.venue.phone}" aria-label="Copy phone number">${icon('copy')}</button></span></div></div>
+        <span class="copyline"><a class="btn" href="${telHref()}">${icon('phone')}${s.venue.phone}</a><button class="icon-btn" data-copy="${s.venue.phone}" aria-label="Copy phone number">${icon('copy')}</button></span></div>
+        ${when(hasPhoto('entrance'), () => html`<div class="arrive">${[['entrance', 'The gate'], ['parking', 'Parking inside the gate']].map(([id, cap]) => html`<figure>${photo(id, 'card', { sizes: '(min-width: 900px) 280px, 50vw', cls: 'rounded' })}<figcaption>${cap}</figcaption></figure>`)}</div>`)}</div>
       <div class="panel stack" style="--gap:12px">
         <h3 class="h4">Weekly times</h3>
         ${kv([['Gym, mornings', `${fmtTime(gym.sessions[0].from)} – ${fmtTime(gym.sessions[0].to)}`], ['Gym, evenings', `${fmtTime(gym.sessions[1].from)} – ${fmtTime(gym.sessions[1].to)}`], ['Open soccer', 'Wed – Fri, 7 – 11 PM'], ['Quiz Night', `Saturdays, ${fmtTime(a.quiz.time)}`], ['Family Dinner', 'Sundays']])}
@@ -157,13 +158,16 @@ route('/', async () => {
     },
   };
 });
-function amenityCard(name, text, prices, href, cta) {
-  return html`<article class="amenity"><h3 class="h3">${name}</h3><p class="muted small">${text}</p>
+const CARD_SIZES = '(min-width: 1240px) 380px, (min-width: 700px) 45vw, 100vw';
+function amenityCard(photoId, name, text, prices, href, cta) {
+  return html`<article class="amenity">${photoOrTile(photoId, 'card', { sizes: CARD_SIZES, alt: '' })}<h3 class="h3">${name}</h3><p class="muted small">${text}</p>
     <div class="prices">${prices.map(([k, v]) => html`<div><span>${k}</span><span>${v}</span></div>`)}</div>
     <a class="btn line sm" href="${href}">${cta} ${icon('arrow')}</a></article>`;
 }
 
 // ------------------------------------------------------------------ The Replay
+// one photo per chapter of the night, in programme order (the April launch, shot from 4:30 PM to 10 PM)
+const CHAPTER_PHOTOS = ['sunset-arrival', 'golden-hour', 'night-lanterns', 'main-peak', 'afterglow'];
 route('/replay', async (_p, ctx) => {
   if (app.query.ref) { app.referral = app.query.ref.toUpperCase().slice(0, 12); try { sessionStorage.setItem('ss-ref', app.referral); } catch { /* ignore */ } }
   const s = await fresh();
@@ -209,7 +213,7 @@ route('/replay', async (_p, ctx) => {
   return {
     title: `${ev.name} · ${ev.edition}`,
     body: html`
-    <section class="replay-hero"><div class="wrap split with-aside">
+    <section class="replay-hero ${hasPhoto('night-crowd') ? 'has-photo' : ''}">${when(hasPhoto('night-crowd'), () => html`<div class="photo-bg">${photo('night-crowd', 'wide', { mobile: 'tall', eager: true, alt: '' })}</div>`)}<div class="wrap split with-aside">
       <div>
         <p class="eyebrow">${s.venue.name} presents</p>
         <h1 class="display">${ev.name}</h1>
@@ -237,13 +241,14 @@ route('/replay', async (_p, ctx) => {
           <p class="hint">Lost your link? <a href="/tickets">Find my ticket</a> with your phone number.</p>
         </div>
       </div>
+      ${photo('lounge-setup', 'band', { sizes: '(min-width: 1240px) 1180px, 100vw', cls: 'rounded banner' })}
       <div><h3 class="h3">Tables</h3><p class="muted" style="margin-top:6px">Reserved seating for your group, with its own entry lane.</p></div>
       <div class="grid" style="--min:320px">${s.tables.map(tierCard)}</div>
     </div></section>
 
     <section class="section" aria-labelledby="prog-h"><div class="wrap split">
       <div class="stack" style="--gap:22px"><div><p class="eyebrow red">The night</p><h2 class="h2" id="prog-h" style="margin-top:8px">Five chapters, sunset to the last song.</h2></div>
-        <div class="tracklist">${ev.programme.map((p, i) => html`<div class="track"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="tm">${fmtTime(p.time)}</span><div><h3>${p.name}</h3><p>${p.text}</p></div></div>`)}</div></div>
+        <div class="tracklist">${ev.programme.map((p, i) => { const ph = CHAPTER_PHOTOS[i] ? photo(CHAPTER_PHOTOS[i], 'square', { sizes: '(max-width: 560px) 72px, 96px', alt: '' }) : ''; return html`<div class="track ${ph ? 'has-ph' : ''}"><span class="no">${String(i + 1).padStart(2, '0')}</span><span class="tm">${fmtTime(p.time)}</span><div><h3>${p.name}</h3><p>${p.text}</p></div>${ph}</div>`; })}</div></div>
       <div class="stack" style="--gap:16px">
         <div class="panel stack" style="--gap:12px"><h3 class="h4">On the night</h3><ul class="terms">${ev.promise.map((p) => html`<li>${p}</li>`)}</ul><p class="small"><b>Dress:</b> ${ev.dress}</p></div>
       </div>

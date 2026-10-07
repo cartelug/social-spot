@@ -21,10 +21,15 @@ mkdirSync(P('build'), { recursive: true });
 
 // ---------------------------------------------------------------- logo assets
 const meta = JSON.parse(readFileSync(join(SRC_ASSETS, 'parts.json'), 'utf8')).parts.filter((p) => p.id !== 'dust');
-const files = ['logo-1200.png', 'logo-520.png', 'favicon-32.png', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'og.png'];
+const files = ['logo-1200.png', 'logo-520.png', 'favicon-32.png', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', 'og.png', 'og.jpg'];
 for (const f of files) copyFileSync(join(SRC_ASSETS, f), P('assets', f));
 for (const p of meta) copyFileSync(join(SRC_ASSETS, 'parts', `${p.id}.png`), P('assets', 'parts', `${p.id}.png`));
 copyFileSync(join(SRC_ASSETS, 'social-spot-logo-original.png'), P('assets', 'social-spot-logo.png'));
+
+// ---------------------------------------------------------------- venue photos
+// scripts/prepare_photos.py writes the images to assets/photos/ and lists them here
+const photoGen = join(SRC_ASSETS, 'photos', 'photos.gen.json');
+const photos = existsSync(photoGen) ? JSON.parse(readFileSync(photoGen, 'utf8')).photos : {};
 
 const QR_VER = '1.4.4';
 const JSQR_VER = '1.4.0';
@@ -41,6 +46,7 @@ const serverAssets = {
   logoSmall: 'assets/logo-520.png',
   parts: Object.fromEntries(meta.map((p) => [p.id, `assets/parts/${p.id}.png`])),
   partsMeta: meta,
+  photos,
   qrLib: 'vendor/qrcode.js',
   jsqrLib: 'vendor/jsQR.js',
 };
@@ -50,6 +56,7 @@ const previewAssets = {
   logoSmall: dataUri(join(SRC_ASSETS, 'logo-520.png')),
   parts: Object.fromEntries(meta.map((p) => [p.id, dataUri(join(SRC_ASSETS, 'parts', `${p.id}.png`))])),
   partsMeta: meta,
+  photos: {}, // the single-file preview leaves the photos out to stay small
   qrLib: `https://cdn.jsdelivr.net/npm/qrcode-generator@${QR_VER}/qrcode.js`,
   jsqrLib: `https://cdn.jsdelivr.net/npm/jsqr@${JSQR_VER}/dist/jsQR.js`,
 };
@@ -110,7 +117,9 @@ const page = (is404) => `<!doctype html>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Social Spot · Bwebajja">
 <meta property="og:description" content="Everything worth leaving the house for.">
-<meta property="og:image" content="${PUBLIC_URL ? PUBLIC_URL + '/' : ''}assets/og.png">
+<meta property="og:image" content="${PUBLIC_URL ? PUBLIC_URL + '/' : ''}assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body>

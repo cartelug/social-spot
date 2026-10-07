@@ -1,0 +1,834 @@
+{
+ "photos": {
+  "night-lanterns": {
+   "alt": "Lanterns and string lights over the terrace, with the Social Spot building lit up at night",
+   "crops": {
+    "wide": {
+     "w": 1600,
+     "h": 800,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/night-lanterns-wide-480.e863bf9b.avif"
+       ],
+       [
+        960,
+        "assets/photos/night-lanterns-wide-960.be9397f0.avif"
+       ],
+       [
+        1600,
+        "assets/photos/night-lanterns-wide-1600.480addd3.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/night-lanterns-wide-480.8fb7f1fb.jpg"
+       ],
+       [
+        960,
+        "assets/photos/night-lanterns-wide-960.609ca5d2.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/night-lanterns-wide-1600.2d6aee08.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADwAQCdASoQAAgAA4BaJZwAAvensyEaHAAA/vkUAmKQsWKWljevVOPROyVdHAAA",
+     "color": "#191715"
+    },
+    "tall": {
+     "w": 1600,
+     "h": 2001,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/night-lanterns-tall-480.ad4b524f.avif"
+       ],
+       [
+        960,
+        "assets/photos/night-lanterns-tall-960.4695bc1b.avif"
+       ],
+       [
+        1600,
+        "assets/photos/night-lanterns-tall-1600.899ab496.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/night-lanterns-tall-480.ae5a327e.jpg"
+       ],
+       [
+        960,
+        "assets/photos/night-lanterns-tall-960.321c4e12.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/night-lanterns-tall-1600.af6669dd.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACQAQCdASoNABAAA4BaJZwAAudFrAAA/vnHy+2GkNXhPMk1P1MxeUBXFrq7gXH8urDN0dOOcZgAAA==",
+     "color": "#161413"
+    },
+    "square": {
+     "w": 480,
+     "h": 480,
+     "files": {
+      "avif": [
+       [
+        240,
+        "assets/photos/night-lanterns-square-240.84c018ce.avif"
+       ],
+       [
+        480,
+        "assets/photos/night-lanterns-square-480.9080303a.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        240,
+        "assets/photos/night-lanterns-square-240.18a5bd96.jpg"
+       ],
+       [
+        480,
+        "assets/photos/night-lanterns-square-480.65942f21.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoQABAAA4BaJZwAAudQQJOgAAD++RBJ1XeCZP+nzg6kusillUa4n3SowhtiP1vAAAA=",
+     "color": "#171717"
+    }
+   }
+  },
+  "night-crowd": {
+   "alt": "The terrace at night seen from above: guests at white lounge tables under lanterns and string lights",
+   "crops": {
+    "wide": {
+     "w": 1600,
+     "h": 800,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/night-crowd-wide-480.d75aa6e0.avif"
+       ],
+       [
+        960,
+        "assets/photos/night-crowd-wide-960.7e1b7135.avif"
+       ],
+       [
+        1600,
+        "assets/photos/night-crowd-wide-1600.f99e497c.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/night-crowd-wide-480.13c25858.jpg"
+       ],
+       [
+        960,
+        "assets/photos/night-crowd-wide-960.320d0640.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/night-crowd-wide-1600.c4bf786e.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAAAQAgCdASoQAAgAA4BaJYwCdAD1fWw0Ln0AAP7zDR0ylBGmW71i/37VxnHozUbuN0xILItdVKIAAA==",
+     "color": "#322f22"
+    },
+    "tall": {
+     "w": 1600,
+     "h": 2000,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/night-crowd-tall-480.afad0ee9.avif"
+       ],
+       [
+        960,
+        "assets/photos/night-crowd-tall-960.7aec9559.avif"
+       ],
+       [
+        1600,
+        "assets/photos/night-crowd-tall-1600.655e2187.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/night-crowd-tall-480.8798de0f.jpg"
+       ],
+       [
+        960,
+        "assets/photos/night-crowd-tall-960.5df8604f.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/night-crowd-tall-1600.b214e6f7.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADQAQCdASoNABAAA4BaJQBOgCG8dZxXAAD+9HDxHBQ+/oLKyUk/78Ai9mn7iq/O7oUDLZZNO4k+/UKQeo4KeSqnCYxgAA==",
+     "color": "#302d20"
+    }
+   }
+  },
+  "sunset-arrival": {
+   "alt": "Late-afternoon sun over the Social Spot building and the white lounge furniture on the terrace",
+   "crops": {
+    "square": {
+     "w": 480,
+     "h": 480,
+     "files": {
+      "avif": [
+       [
+        240,
+        "assets/photos/sunset-arrival-square-240.b48370ba.avif"
+       ],
+       [
+        480,
+        "assets/photos/sunset-arrival-square-480.b3627dd8.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        240,
+        "assets/photos/sunset-arrival-square-240.bee7cc61.jpg"
+       ],
+       [
+        480,
+        "assets/photos/sunset-arrival-square-480.26d708b6.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADwAQCdASoQABAAA4BaJQBOkCYiIrN94AAA4fwXMPmb6/54Pm6uTSbNn33GhmX3J01aj5kDNOQjcZl3UJBFeQPv4u9AP5k42OodwAAA",
+     "color": "#566471"
+    },
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/sunset-arrival-card-480.f4050720.avif"
+       ],
+       [
+        960,
+        "assets/photos/sunset-arrival-card-960.69de7ddf.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/sunset-arrival-card-480.d7fc25c0.jpg"
+       ],
+       [
+        960,
+        "assets/photos/sunset-arrival-card-960.d42d51ba.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAADwAQCdASoQAAsAA4BaJQBOgBnPB4TPXoAA/N3Mdpj9F2cpFuUdTOILrXKBUJEERrupRYaQ68xzE+yGxiNpGAAA",
+     "color": "#6f7b87"
+    }
+   }
+  },
+  "golden-hour": {
+   "alt": "Guests at high tables and lounge sofas on the lawn in the early evening",
+   "crops": {
+    "square": {
+     "w": 480,
+     "h": 480,
+     "files": {
+      "avif": [
+       [
+        240,
+        "assets/photos/golden-hour-square-240.937e1431.avif"
+       ],
+       [
+        480,
+        "assets/photos/golden-hour-square-480.faa8e7d1.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        240,
+        "assets/photos/golden-hour-square-240.8940ac9e.jpg"
+       ],
+       [
+        480,
+        "assets/photos/golden-hour-square-480.63bca2af.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRl4AAABXRUJQVlA4IFIAAADwAQCdASoQABAAA4BaJQBOgB9TdnjChcAA+6U8sh9ktxIRrcQQGIU7KLv1nP3BYDXrNsgNVDoaoGDeNIbN95nwC1asCwBTZZRXU8KPfL/4AAAA",
+     "color": "#494f56"
+    },
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/golden-hour-card-480.06c03548.avif"
+       ],
+       [
+        960,
+        "assets/photos/golden-hour-card-960.df6a4549.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/golden-hour-card-480.ab313eea.jpg"
+       ],
+       [
+        960,
+        "assets/photos/golden-hour-card-960.1623d541.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoQAAsAA4BaJYgCdADPqSdKAAD85MxdGbFXVXF7cq5WtCsTZouE1PN7MkrQ95YkFvsTf5ZPi0DKkuawQY6RaqQA",
+     "color": "#4b4f54"
+    },
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/golden-hour-band-480.0d1ffe3c.avif"
+       ],
+       [
+        960,
+        "assets/photos/golden-hour-band-960.25bcb672.avif"
+       ],
+       [
+        1600,
+        "assets/photos/golden-hour-band-1600.4891164b.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/golden-hour-band-480.5b6f8333.jpg"
+       ],
+       [
+        960,
+        "assets/photos/golden-hour-band-960.224d4af1.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/golden-hour-band-1600.b8c6926f.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAACwAQCdASoQAAUAA4BaJQBOgBtddgUAAP7CBr/jXTHb5JKLm1gvN64Lv6Z9L+QSSGzgn1CTmQAAAA==",
+     "color": "#404249"
+    }
+   }
+  },
+  "main-peak": {
+   "alt": "A full terrace at night in front of the lit-up building, under lanterns",
+   "crops": {
+    "square": {
+     "w": 480,
+     "h": 480,
+     "files": {
+      "avif": [
+       [
+        240,
+        "assets/photos/main-peak-square-240.6474421e.avif"
+       ],
+       [
+        480,
+        "assets/photos/main-peak-square-480.b7c2831b.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        240,
+        "assets/photos/main-peak-square-240.1fd7a4aa.jpg"
+       ],
+       [
+        480,
+        "assets/photos/main-peak-square-480.d688ddc6.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADwAQCdASoQABAAA4BaJYwCsACxuUDUIfAA/vhWJCPH7TPOkkQoq8uAfvCUF3nD3bU2qvm5u3pB+llL8vbyiugBny80IcJ0SroXIkhwAAA=",
+     "color": "#514643"
+    }
+   }
+  },
+  "afterglow": {
+   "alt": "Purple light at the foot of the building late at night, with lanterns overhead",
+   "crops": {
+    "square": {
+     "w": 480,
+     "h": 480,
+     "files": {
+      "avif": [
+       [
+        240,
+        "assets/photos/afterglow-square-240.11a4f330.avif"
+       ],
+       [
+        480,
+        "assets/photos/afterglow-square-480.9b7340e2.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        240,
+        "assets/photos/afterglow-square-240.b2357bff.jpg"
+       ],
+       [
+        480,
+        "assets/photos/afterglow-square-480.4019782b.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAQCdASoQABAAA4BaJQAAU6d+sjh+gAD++RfA6ZfIkHogw2bVjqrsKAZXchUdzWDUJpV1F57c6hjUFfJEC9YaphO/pGZThjxrAAAA",
+     "color": "#3d3639"
+    }
+   }
+  },
+  "lounge-setup": {
+   "alt": "The terrace from above before guests arrive: white sofas, lounge tables and a black carpet",
+   "crops": {
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/lounge-setup-band-480.9804a9cf.avif"
+       ],
+       [
+        960,
+        "assets/photos/lounge-setup-band-960.134513da.avif"
+       ],
+       [
+        1600,
+        "assets/photos/lounge-setup-band-1600.71f021d9.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/lounge-setup-band-480.60289e8b.jpg"
+       ],
+       [
+        960,
+        "assets/photos/lounge-setup-band-960.fa5b6879.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/lounge-setup-band-1600.d72edd77.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACQAQCdASoQAAUAA4BaJQBOgBg6ekAA/vRHq+4fynS8IQoj+hUTCXsI+z58MwpdeUjVAAAA",
+     "color": "#555b6a"
+    }
+   }
+  },
+  "turf-day": {
+   "alt": "The netted football turf on a clear day",
+   "crops": {
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-day-card-480.13145d1b.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-card-960.cab8ad17.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-day-card-480.d75aa325.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-card-960.0d313d92.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlAAAABXRUJQVlA4IEQAAADwAQCdASoQAAsAA4BaJZQCdAEfvvnPnrAA/uALCWOScQHdX0wjcX7NdJVP+ko3NrdyHBOVnz6iWEaBHchHkcVus/gAAA==",
+     "color": "#798582"
+    },
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-day-band-480.644c2c1c.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-band-960.1e0bd98f.avif"
+       ],
+       [
+        1600,
+        "assets/photos/turf-day-band-1600.4417482d.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-day-band-480.3faa96ea.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-day-band-960.ae5c4b76.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/turf-day-band-1600.e7d20537.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAUAA4BaJZQAAq9ckM74AMszjfeM07c3uBsO8XLLU3VdH6DAp+2aQvICwAAA",
+     "color": "#6b756b"
+    }
+   }
+  },
+  "turf-night": {
+   "alt": "The football turf under floodlights at night, with the city lights behind",
+   "crops": {
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-night-card-480.fb749eb3.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-night-card-960.718f58cf.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-night-card-480.ed3ab155.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-night-card-960.9669dd0f.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkoAAABXRUJQVlA4ID4AAADQAQCdASoQAAsAA4BaJagCdAEPPtPcgAD+GcSHAYZBleS6P9gtXfsaiSNqi5JXuOZ9bKan9y/XlCP3V4AAAA==",
+     "color": "#47411d"
+    },
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/turf-night-band-480.96b91221.avif"
+       ],
+       [
+        960,
+        "assets/photos/turf-night-band-960.157c5981.avif"
+       ],
+       [
+        1600,
+        "assets/photos/turf-night-band-1600.deb7e17c.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/turf-night-band-480.6c19f422.jpg"
+       ],
+       [
+        960,
+        "assets/photos/turf-night-band-960.4698c209.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/turf-night-band-1600.70c131f5.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAADQAQCdASoQAAUAA4BaJagCdADp/Wj08AD+OjoE1M2R4nHnzCWmTnWsTSZoevKE4woZmAAA",
+     "color": "#4f4b1f"
+    }
+   }
+  },
+  "gym": {
+   "alt": "The gym floor with treadmills, exercise bikes and a cable machine",
+   "crops": {
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/gym-card-480.b03ecc59.avif"
+       ],
+       [
+        960,
+        "assets/photos/gym-card-960.ef5d2ae0.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/gym-card-480.3a04629d.jpg"
+       ],
+       [
+        960,
+        "assets/photos/gym-card-960.5e137459.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADwAQCdASoQAAsAA4BaJZACdACzDSiQqIAA/sni/pqcBIdwq5Cb78XEqQ8TA4EhuBMjDJkB/NK32Umgr+FkGFH+WCSkwagAAAA=",
+     "color": "#705d56"
+    },
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/gym-band-480.881f00c4.avif"
+       ],
+       [
+        960,
+        "assets/photos/gym-band-960.d7936d0d.avif"
+       ],
+       [
+        1600,
+        "assets/photos/gym-band-1600.26a3e4d9.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/gym-band-480.bd9af559.jpg"
+       ],
+       [
+        960,
+        "assets/photos/gym-band-960.9b552449.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/gym-band-1600.0b8e3315.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkAAAABXRUJQVlA4IDQAAACwAQCdASoQAAUAA4BaJZQC7AEOZ/HeAPKiLydJrPXcruAhUVUmoHE1Hz50KX2U+M9T6AAA",
+     "color": "#695d59"
+    }
+   }
+  },
+  "quiz-sheet": {
+   "alt": "A Social Spot Quiz Night answer sheet on a table",
+   "crops": {
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/quiz-sheet-band-480.e0486154.avif"
+       ],
+       [
+        960,
+        "assets/photos/quiz-sheet-band-960.78057999.avif"
+       ],
+       [
+        1600,
+        "assets/photos/quiz-sheet-band-1600.8154fc37.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/quiz-sheet-band-480.e002af1b.jpg"
+       ],
+       [
+        960,
+        "assets/photos/quiz-sheet-band-960.1c479f4d.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/quiz-sheet-band-1600.eb21a9a1.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoQAAUAA4BaJZgCdAD2BndInAD+Ztf511xmrPR4kjo4iTRCKby+ncnVSCyb90E1ptwAAA==",
+     "color": "#9c8569"
+    },
+    "card": {
+     "w": 960,
+     "h": 640,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/quiz-sheet-card-480.41edb270.avif"
+       ],
+       [
+        960,
+        "assets/photos/quiz-sheet-card-960.3daf0270.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/quiz-sheet-card-480.1981f103.jpg"
+       ],
+       [
+        960,
+        "assets/photos/quiz-sheet-card-960.8b6bb3f7.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAQAgCdASoQAAsAA4BaJZACdAELZIfAYoMAAP6H3c2pZQSASqNwFnzF/GVj6iG9He9m4842+0w6cOLiqyYwIAAA",
+     "color": "#a18a6d"
+    }
+   }
+  },
+  "entrance": {
+   "alt": "The Social Spot entrance: the gate, the gatehouse and the paved courtyard",
+   "crops": {
+    "card": {
+     "w": 960,
+     "h": 720,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/entrance-card-480.f051c4a8.avif"
+       ],
+       [
+        960,
+        "assets/photos/entrance-card-960.b381b10d.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/entrance-card-480.db6f350d.jpg"
+       ],
+       [
+        960,
+        "assets/photos/entrance-card-960.20df93af.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAAAQAgCdASoQAAwAA4BaJYgCdAD7VBlPvj4AAPKlgX2eBPKFIyQBBoknqJUs0rOuVJ7lHMqomyfIxQ8HhISQAAAA",
+     "color": "#8b7968"
+    }
+   }
+  },
+  "parking": {
+   "alt": "Cars parked in the paved courtyard inside the gate, with the hills behind",
+   "crops": {
+    "card": {
+     "w": 960,
+     "h": 720,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/parking-card-480.8bdf7139.avif"
+       ],
+       [
+        960,
+        "assets/photos/parking-card-960.d2c1684e.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/parking-card-480.a88987e0.jpg"
+       ],
+       [
+        960,
+        "assets/photos/parking-card-960.d0b0bfae.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRkwAAABXRUJQVlA4IEAAAACwAQCdASoQAAwAA4BaJZwAAsewhTIAAP4naANNp2vIcDMKoQuR/+tYyA8WsxxqSEZQLFb+yQV+4ulp5q6bAgAA",
+     "color": "#5d6160"
+    }
+   }
+  },
+  "building-day": {
+   "alt": "The Social Spot building by day: four floors of balconies above the terrace",
+   "crops": {
+    "band": {
+     "w": 1600,
+     "h": 533,
+     "files": {
+      "avif": [
+       [
+        480,
+        "assets/photos/building-day-band-480.9fda2ab5.avif"
+       ],
+       [
+        960,
+        "assets/photos/building-day-band-960.6a49415e.avif"
+       ],
+       [
+        1600,
+        "assets/photos/building-day-band-1600.d94d7003.avif"
+       ]
+      ],
+      "jpg": [
+       [
+        480,
+        "assets/photos/building-day-band-480.ef071999.jpg"
+       ],
+       [
+        960,
+        "assets/photos/building-day-band-960.ad5c60a6.jpg"
+       ],
+       [
+        1600,
+        "assets/photos/building-day-band-1600.aebb9aa3.jpg"
+       ]
+      ]
+     },
+     "lqip": "data:image/webp;base64,UklGRjwAAABXRUJQVlA4IDAAAADQAQCdASoQAAUAA4BaJYgCdADhgbvjQAD7ja5KonH6UVvAuzN6ke/ZnUB+A/poAAA=",
+     "color": "#728199"
+    }
+   }
+  }
+ }
+}

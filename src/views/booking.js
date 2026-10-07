@@ -1,5 +1,5 @@
 import { app, html, icon, when, rpc, route, navigate, render, on, toast, act, copyText, refreshSite, formValues, confirmDialog } from '../core.js';
-import { contactFields, payPanel, statusHead, kv, money } from '../components.js';
+import { contactFields, payPanel, statusHead, kv, money, photo, photoOrTile, turfPhotoId } from '../components.js';
 import { fmtDate, fmtTime, fmtUGX, addDays, daysBetween, minutesOf, timeOf, eatDate } from '../../shared/util.js';
 
 const TYPES = {
@@ -10,6 +10,10 @@ const TYPES = {
   kids: { title: 'Book kids soccer', eyebrow: 'Kids soccer', lead: 'Saturday training on the turf, with a coach or just for play.' },
   table: { title: 'Reserve a table', eyebrow: 'Tables', lead: 'Sunday Family Dinner, birthdays, team nights. Reservations are free; we confirm by SMS.' },
 };
+
+// banner photo per booking page (crop "band"); the turf follows the time of day
+const BANNERS = { turf: () => turfPhotoId(app.site.amenities.turf.nightFrom), gym: 'gym', penthouse: 'building-day', kids: 'turf-day', table: 'golden-hour' };
+const banner = (type) => { const b = BANNERS[type]; return b ? photo(typeof b === 'function' ? b() : b, 'band', { sizes: '(min-width: 1240px) 1180px, 100vw', cls: 'rounded banner', eager: true }) : ''; };
 
 const dateRange = (from, n) => Array.from({ length: n }, (_, i) => addDays(from, i));
 const chipDate = (d, today) => (d === today ? 'Today' : d === addDays(today, 1) ? 'Tomorrow' : fmtDate(d).split(' ')[0]);
@@ -51,6 +55,7 @@ function shell(type, form, aside) {
   return html`<section class="section"><div class="wrap stack" style="--gap:26px">
     <a href="/book" class="btn ghost sm" style="justify-self:start">${icon('back')}All bookings</a>
     <div><p class="eyebrow red">${t.eyebrow}</p><h1 class="h1" style="margin-top:8px">${t.title}</h1><p class="lead" style="margin-top:12px">${t.lead}</p></div>
+    ${banner(type)}
     <div class="split with-aside"><div class="min0">${form}</div><aside class="stack" style="--gap:14px;align-self:start">${aside}</aside></div>
   </div></section>`;
 }
@@ -84,11 +89,12 @@ route('/book', async () => {
     ['/quiz', 'Quiz Night team', a.quiz.entry ? fmtUGX(a.quiz.entry) : 'Free entry', `Saturdays, ${fmtTime(a.quiz.time)}.`],
     ['/book/table', 'Table reservation', 'Free', 'Family Dinner Sundays and group nights.'],
   ];
+  const cardPhoto = { '/book/turf': turfPhotoId(a.turf.nightFrom), '/book/gym': 'gym', '/book/penthouse': 'sunset-arrival', '/quiz': 'quiz-sheet', '/book/table': 'golden-hour' };
   return {
     title: 'Book',
     body: html`<section class="section"><div class="wrap stack" style="--gap:28px">
       <div><p class="eyebrow red">Book online</p><h1 class="h1" style="margin-top:8px">What are you coming for?</h1><p class="lead" style="margin-top:12px">Every booking gets a code by SMS. Show it at reception. ${a.loyalty}</p></div>
-      <div class="grid" style="--min:280px">${cards.map(([href, name, price, text]) => html`<a class="amenity" href="${href}" style="text-decoration:none"><h2 class="h3">${name}</h2><p class="muted small">${text}</p><p class="h4 num">${price}</p><span class="btn line sm">Book ${icon('arrow')}</span></a>`)}</div>
+      <div class="grid" style="--min:280px">${cards.map(([href, name, price, text]) => html`<a class="amenity" href="${href}" style="text-decoration:none">${photoOrTile(cardPhoto[href] || '', 'card', { sizes: '(min-width: 1240px) 380px, (min-width: 640px) 45vw, 100vw', alt: '' })}<h2 class="h3">${name}</h2><p class="muted small">${text}</p><p class="h4 num">${price}</p><span class="btn line sm">Book ${icon('arrow')}</span></a>`)}</div>
       <p class="hint">Already booked? <a href="/tickets">Find your booking</a> with your phone number and SB- code.</p>
     </div></section>`,
   };
@@ -362,7 +368,7 @@ route('/quiz', async () => {
           ${contactFields(app.buyer, { nameLabel: 'Team captain' })}
           ${footer('Register the team')}
         </form>
-        <aside class="stack" style="--gap:12px;align-self:start"><div class="facts">${days.slice(0, 4).map((d) => html`<div><b>${fmtDate(d.date, { noDow: true })}</b><span>${d.full ? 'Full' : `${d.teams} of ${d.max} teams in`}</span></div>`)}</div>
+        <aside class="stack" style="--gap:12px;align-self:start">${photo('quiz-sheet', 'card', { sizes: '(min-width: 900px) 380px, 100vw', cls: 'rounded' })}<div class="facts">${days.slice(0, 4).map((d) => html`<div><b>${fmtDate(d.date, { noDow: true })}</b><span>${d.full ? 'Full' : `${d.teams} of ${d.max} teams in`}</span></div>`)}</div>
           <p class="hint">Arrive by ${fmtTime(timeOf(minutesOf(q.time) - 30))} to settle in. Team names must be unique each night.</p></aside>
       </div></section>`,
     mount(root) {
